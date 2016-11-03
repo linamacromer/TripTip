@@ -11,7 +11,7 @@
 * Bradley Inniss
 * Alex Perez
 
-## Useful Links
+## Useful Gems
 * [Yelp Ruby Gem](https://github.com/Yelp/yelp-ruby)
 * [Omniauth Ruby Gem](https://github.com/omniauth/omniauth)
 * [Geocoder](http://www.rubygeocoder.com/)
