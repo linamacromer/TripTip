@@ -10,3 +10,6 @@
 * Lina Cromer
 * Bradley Inniss
 * Alex Perez
+
+## Useful Links
+[Yelp Ruby Gem](https://github.com/Yelp/yelp-ruby)
