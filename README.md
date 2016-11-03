@@ -12,5 +12,5 @@
 * Alex Perez
 
 ## Useful Links
-[Yelp Ruby Gem](https://github.com/Yelp/yelp-ruby)
-[Omniauth Ruby Gem](https://github.com/omniauth/omniauth)
+* [Yelp Ruby Gem](https://github.com/Yelp/yelp-ruby)
+* [Omniauth Ruby Gem](https://github.com/omniauth/omniauth)
