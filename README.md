@@ -14,3 +14,5 @@
 ## Useful Links
 * [Yelp Ruby Gem](https://github.com/Yelp/yelp-ruby)
 * [Omniauth Ruby Gem](https://github.com/omniauth/omniauth)
+* [Geocoder](http://www.rubygeocoder.com/)
+* [Google Maps for Rails](https://github.com/apneadiving/Google-Maps-for-Rails)
