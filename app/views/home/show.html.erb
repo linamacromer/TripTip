@@ -1,13 +1,22 @@
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
 <% if session[:user_id] %>
 <% @user = User.find(session[:user_id]) %>
+        <div id="sidebar" role="navigation">
+  <ul class="nav">
+    <li id="user-home" class="active"><a href="#"><%= @user.name %></a></li>
+    <li id="new-trip"><a href="#">New Trip</a></li>
+    <li id="friend-list"><a href="#">Friends</a></li>
+    <li id="inner-friend" class="hidden"></li>
+  </ul>
   <% if @user.friends.length != 0 %>
-    <p>Friends list:</p>
     <% @user.friends.each do |x| %>
       <p><a href="/users/<%= @user.id%>/friends/<%= x.id%>"><%= x.name %></a></p>
     <% end %>
   <% else %>
     <p>You don't have any friends</p>
+
   <% end %>
+
+  </div>
+    <div id="map"></div>
+</div>
 <% end %>

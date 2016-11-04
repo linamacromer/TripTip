@@ -12,6 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= underscore
 //= gmaps/google
 //= require_tree .
+
+$(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+});

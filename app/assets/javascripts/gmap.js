@@ -6,10 +6,10 @@ function initMap() {
     mapTypeControl: false,
     streetViewControl: false,
     zoomControl: false,
-    zoom: 8
+    zoom: 12
   });
  google.maps.event.addListener(map, 'click', function (event) {
-        displayCoordinates(event.latLng);               
+        displayCoordinates(event.latLng);
     });
   function displayCoordinates(pnt) {
     var lat = pnt.lat();
@@ -17,5 +17,7 @@ function initMap() {
     var lng = pnt.lng();
     lng = lng.toFixed(4);
     console.log("Latitude: " + lat + "  Longitude: " + lng);
-} 
+}
+    //Uncomment below to freeze map
+    //map.setOptions({draggable: false});
 }
