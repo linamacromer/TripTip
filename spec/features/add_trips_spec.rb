@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature "Admin adds new competitor", type: :feature do
-  scenario "Admin adds new competitor" do
+RSpec.feature "User adds a new trip", type: :feature do
+  scenario "User creates a new trip" do
 
-    # Needs to be an admin
-    visit login_path
+    visit user_path(1)
+    p user_path(1)
     fill_in "Password", :with => ENV["ADMIN_PASSWORD"]
     click_button "Submit"
 
