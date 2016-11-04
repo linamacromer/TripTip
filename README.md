@@ -6,10 +6,10 @@
 
 ## Team Members
 
-* Jason Bulicek
-* Lina Cromer
-* Bradley Inniss
-* Alex Perez
+* [Jason Bulicek](https://github.com/bulicekj)
+* [Lina Cromer](https://github.com/linamacromer)
+* [Bradley Inniss](https://github.com/ratley)
+* [Alex Perez](https://github.com/ap2539)
 
 ## Useful Gems
 * [Yelp Ruby Gem](https://github.com/Yelp/yelp-ruby)
