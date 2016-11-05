@@ -11,7 +11,8 @@ $(function() {
       url: '/users/' + id + '/trips',
       data: data
     }).done(function(data){
-      console.log(data)
+      prependTripToList(data)
+      $('#trip_name').val("")
     })
   })
 
@@ -22,7 +23,7 @@ $(function() {
       zoom = data.zoom
       center = data.center.split(" ")
       latlng = new google.maps.LatLng(center[0], center[1])
-      map.setCenter(latlng)
+      map.panTo(latlng)
       map.setZoom(zoom)
     });
   })
@@ -40,4 +41,9 @@ $(function() {
   })
 });
 
-
+function prependTripToList(data){
+  var id = $('#user_id').val()
+  var template = $('#trip-template')
+  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
+  $(template).removeClass('hidden')
+}
