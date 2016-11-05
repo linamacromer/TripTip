@@ -2,35 +2,25 @@ class TripsController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:user_id])
-
-    respond_to do |format|
-      if @trip.save
-        format.json { render json: @trip, status: :created} 
-      else
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
-    end
-
+    @trip = @user.trips.find_by(id: params[:id]) if @user
+    render json: @trip, status: :created
   end
 
   def create
     @user = User.find_by(id: params[:user_id])
-    @trip = @user.trips.new(trip_params)
+    @trip = @user.trips.create(trip_params)
     
-    respond_to do |format|
-      if @trip.save
-        format.json { render json: @trip, status: :created} 
-      else
-        format.json { render json: @trip.errors, status: :unprocessable_entity }
-      end
+    if @trip.save!
+      render json: @trip, status: :created
+    else
+      render json: @trip.errors, status: :unprocessable_entity
     end
-
   end
 
   private
 
   def trip_params
-    params.require(:trip).permit( :name, :center, :zoom )
+    params.require(:trip).permit( :name, :center, :zoom)
   end
 
 end

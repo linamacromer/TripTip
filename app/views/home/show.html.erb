@@ -3,7 +3,27 @@
   <div id="sidebar" role="navigation">
     <ul class="nav">
       <li id="user-home" class="active"><a href="#"><%= @user.name %></a></li>
-      <li id="new-trip"><a href="#">New Trip</a></li>
+      <li id="trips-nav">
+        <div id='trips-container'>
+          <p id='trips-title'>Trips</p>
+          <ul id='trips-list'>
+            <li id='trip-add'><a id='trip-add-link' href="#">Add Trip</a></li>
+            <li id='trip-form-container'>
+              <%= form_tag("/users/#{@user.id}/trips", method: "post") do %>
+                <%= text_field_tag("trip[name]") %>
+                <%= hidden_field_tag("trip[center]", "") %>
+                <%= hidden_field_tag("trip[zoom]", "12") %>
+                <%= submit_tag("add") %>
+              <% end %>
+            </li>
+            <% if @user.trips.length != 0 %>
+              <% @user.trips.each do |x| %>
+                <li class=trip-items><%= link_to x.name, user_trip_path(@user, x) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </li>
       <li id="friend-list"><a href="#">Friends</a></li>
       <li id="inner-friend" class="hidden"></li>
     </ul>
