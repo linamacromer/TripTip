@@ -13,20 +13,23 @@
  *= require_tree .
  *= require_self
  */
+ *{
+  border: 1px solid red;
+ }
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 #map {
-  height: 100%;
-  width: 88%;
+  height: 100vh;
+  width: 1625px;
   float: right;
 }
 
 #sidebar {
-  height:100%;
-  width: 11.72%;
+  height:100vh;
+  width: 30vh;
   float: left;
   border: 1px solid black;
   word-wrap: break-word;
@@ -55,4 +58,15 @@ li a:hover {
 
 .hidden {
   display: none;
+}
+
+.login{
+  border: 1px solid black;
+   position:fixed;
+   right:10px;
+   top:5px;
+   padding-top: 5px;
+   padding-left: 5px;
+   padding-right: 5px;
+   padding-bottom: 5px;
 }
