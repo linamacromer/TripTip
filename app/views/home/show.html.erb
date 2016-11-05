@@ -3,38 +3,46 @@
   <div id="sidebar" role="navigation">
     <ul class="nav">
       <li id="user-home" class="active"><a href="#"><%= @user.name %></a></li>
+      <div id="user-box" class="hidden">
       <li id="trips-nav">
         <div id='trips-container'>
-          <p id='trips-title'>Trips</p>
           <ul id='trips-list'>
-            <li id='trip-add'><a id='trip-add-link' href="#">Add Trip</a></li>
+            <li id='trips-title' class="sub-li"><a id="all-trips" href="#">Trips</a>
+            <li id='trip-add' class="sub-li"><a id='trip-add-link' href="#">Add Trip</a></li>
             <li id='trip-form-container'>
-              <%= form_tag("/users/#{@user.id}/trips", method: "post") do %>
+              <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %>
                 <%= text_field_tag("trip[name]") %>
+                <%= hidden_field_tag("user[id]", @user.id) %>
                 <%= hidden_field_tag("trip[center]", "3245678") %>
                 <%= hidden_field_tag("trip[zoom]", "12") %>
                 <%= submit_tag("add") %>
               <% end %>
             </li>
+            <div id="user-trips" class="hidden">
             <% if @user.trips.length != 0 %>
               <% @user.trips.each do |x| %>
-                <li class=trip-items><%= link_to x.name, user_trip_path(@user, x) %></li>
+                <li class="trip-items sub-li"><%= link_to x.name, user_trip_path(@user, x) %></li>
               <% end %>
             <% end %>
+            </div>
           </ul>
         </div>
       </li>
+      </div>
       <li id="friend-list"><a href="#">Friends</a></li>
-      <li id="inner-friend" class="hidden"></li>
-    </ul>
-    <% if @user.friends.length != 0 %>
-      <% @user.friends.each do |x| %>
-        <%= link_to x.name, user_trips_path(x) %>
+      <div id="friends" class="hidden">
+        <li id="hidden-friend" class="hidden trip-items sub-li"></li>
+      <% if @user.friends.length != 0 %>
+        <% @user.friends.each do |x| %>
+          <li class="trip-items sub-li">
+          <%= link_to x.name, user_trips_path(x) %>
+          </li>
+        <% end %>
+      <% else %>
+        <p>You don't have any friends</p>
       <% end %>
-    <% else %>
-      <p>You don't have any friends</p>
-    <% end %>
-  </div>
+      </ul>
+    </div>
   <div id="map"></div>
   </div>
 <% end %>
