@@ -19,6 +19,7 @@
               <% end %>
             </li>
             <div id="user-trips" class="hidden">
+            <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
             <% if @user.trips.length != 0 %>
               <% @user.trips.each do |x| %>
                 <li class="trip-items sub-li"><%= link_to x.name, user_trip_path(@user, x) %></li>
