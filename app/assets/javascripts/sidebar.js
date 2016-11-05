@@ -12,6 +12,7 @@ $(function() {
       data: data
     }).done(function(data){
       prependTripToList(data)
+      $('#trip_name').val("")
     })
   })
 
@@ -42,8 +43,7 @@ $(function() {
 
 function prependTripToList(data){
   var id = $('#user_id').val()
-  var clone = $('#trip-template').clone()
-  clone.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
-  $('#user-trips').append(clone)
-  $('.trip-items').last().removeClass('hidden')
+  var template = $('#trip-template')
+  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
+  $(template).removeClass('hidden')
 }
