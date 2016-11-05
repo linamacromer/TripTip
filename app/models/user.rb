@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :trips
   has_many :tips, through: :trips
+  has_many :friendships, :class_name => :Friendship, :foreign_key => "friend1_id"
 
 
   def self.from_omniauth(auth)

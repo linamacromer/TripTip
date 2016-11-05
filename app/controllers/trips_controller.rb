@@ -1,5 +1,11 @@
 class TripsController < ApplicationController
 
+  def index
+    @user = User.find_by(id: params[:user_id])
+    @trips = @user.trips if @user
+    render json: @trips, status: :created
+  end
+
   def show
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.find_by(id: params[:id]) if @user
@@ -10,7 +16,7 @@ class TripsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.create(trip_params)
     
-    if @trip.save!
+    if @trip.save
       render json: @trip, status: :created
     else
       render json: @trip.errors, status: :unprocessable_entity

@@ -11,7 +11,7 @@
             <li id='trip-form-container'>
               <%= form_tag("/users/#{@user.id}/trips", method: "post") do %>
                 <%= text_field_tag("trip[name]") %>
-                <%= hidden_field_tag("trip[center]", "") %>
+                <%= hidden_field_tag("trip[center]", "3245678") %>
                 <%= hidden_field_tag("trip[zoom]", "12") %>
                 <%= submit_tag("add") %>
               <% end %>
@@ -29,7 +29,7 @@
     </ul>
     <% if @user.friends.length != 0 %>
       <% @user.friends.each do |x| %>
-        <p><a href="/users/<%= @user.id%>/friends/<%= x.id%>"><%= x.name %></a></p>
+        <%= link_to x.name, user_trips_path(x) %>
       <% end %>
     <% else %>
       <p>You don't have any friends</p>
