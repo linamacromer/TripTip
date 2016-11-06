@@ -19,6 +19,8 @@ $(function() {
   $('.trip-items').on('click', 'a', function(event){
     event.preventDefault()
     var url = $(event.target).attr('href')
+
+    get_tips_list(url, event.target.text)
     $.get( url, function(data) {
       zoom = data.zoom
       center = data.center.split(" ")
@@ -46,4 +48,27 @@ function prependTripToList(data){
   var template = $('#trip-template')
   template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
   $(template).removeClass('hidden')
+}
+
+function get_tips_list(url,nav_text){
+    remove_temp_nav()
+    $.ajax({
+      type: "GET",
+      url: url + '/tips'
+    })
+    .done(function(data){
+      add_to_nav(data)
+    })
+}
+
+function add_to_nav(html){
+  $('.nav').append(html)
+}
+
+function remove_temp_nav(){
+  $('#temp-nav').remove()
+}
+
+function add_list(data){
+
 }
