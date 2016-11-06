@@ -18,6 +18,7 @@ $(function() {
 
   $('.trip-items').on('click', 'a', function(event){
     event.preventDefault()
+    remove_temp_nav()
     var url = $(event.target).attr('href')
 
     get_tips_list(url, event.target.text)
@@ -51,7 +52,6 @@ function prependTripToList(data){
 }
 
 function get_tips_list(url,nav_text){
-    remove_temp_nav()
     $.ajax({
       type: "GET",
       url: url + '/tips'
@@ -62,11 +62,11 @@ function get_tips_list(url,nav_text){
 }
 
 function add_to_nav(html){
-  $('.nav').append(html)
+  $('#nav').append(html)
 }
 
 function remove_temp_nav(){
-  $('#temp-nav').remove()
+  $('#temp-section').remove()
 }
 
 function add_list(data){

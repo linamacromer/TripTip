@@ -1,24 +1,17 @@
-<div id='temp-nav'>
-<li id="user-home" class="active"><a href="#"><%= @trip.name %> :Tips</a></li>
-<div id="user-box" class="hidden">
-<li>
-  <div id='tips-container'>
-     <ul id='tips-list'>
-       <li id='tip-add' class="sub-li"><a id='tip-add-link' href="#">Add tip</a></li>
-       <li id='tip-form-container'>
-          <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :class => 'new-tip', method: "post") do %>
-            <%= text_field_tag("tip[name]") %>
-            <%= hidden_field_tag("tip[place_id]") %>
-            <%= submit_tag("add") %>
-          <% end %>
-       </li>
-          <% if @trip.tips.length != 0 %>
-            <% @trip.tips.reverse.each do |x| %>
-              <li class="tip-items sub-li"><%= link_to x.name, new_user_trip_tip_path(@user, @trip, x) %></li>
-            <% end %>
-          <% end %>
-        </div>
-     </ul>
-  </div>
+<li id='temp-section'>
+  <h1><%= @trip.name %>:Tips</h1>
+  <ul>
+    <li>
+      <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :class => '', method: "post") do %>
+        <%= text_field_tag("tip[name]") %>
+        <%= hidden_field_tag("tip[place_id]") %>
+        <%= submit_tag("add") %>
+      <% end %>
+    </li>
+    <% if @trip.tips.length != 0 %>
+    <% @trip.tips.reverse.each do |x| %>
+      <li class=""><%= link_to x.name, new_user_trip_tip_path(@user, @trip, x) %></li>
+    <% end %>
+    <% end %>
+  </ul>
 </li>
-</div>
