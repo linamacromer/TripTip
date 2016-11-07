@@ -2,10 +2,12 @@
   <h1><%= @trip.name %>:Tips</h1>
   <ul>
     <li>
-      <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :class => '', method: "post") do %>
-        <%= text_field_tag("tip[name]") %>
-        <%= hidden_field_tag("tip[place_id]") %>
-        <%= submit_tag("add") %>
+      <% if session[:user_id] == @user.id %>
+        <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :id => 'add-tip-form', method: "post") do %>
+          <%= text_field_tag("tip[name]") %>
+          <%= hidden_field_tag("tip[place_id]") %>
+          <%= submit_tag("add") %>
+        <% end %>
       <% end %>
     </li>
     <% if @trip.tips.length != 0 %>
