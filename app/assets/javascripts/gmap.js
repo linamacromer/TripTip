@@ -50,7 +50,7 @@ function initMap() {
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
         'Place ID: ' + place.place_id + '<br>' +
-        place.formatted_address);
+        place.formatted_address + '<form class="marker" action="/user/1/trips/tips/new"><button name="marker-btn" type=submit>add</button>');
     infowindow.open(map, marker);
   });
 }
