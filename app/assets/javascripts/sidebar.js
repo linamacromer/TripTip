@@ -17,6 +17,7 @@ $(function() {
     })
   })
 
+
   $('.trip-items').on('click', 'a', function(event){
     event.preventDefault()
     remove_temp_nav()
