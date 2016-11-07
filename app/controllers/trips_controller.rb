@@ -13,9 +13,10 @@ class TripsController < ApplicationController
   end
 
   def create
+    p params
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.create(trip_params)
-    
+
     if @trip.save
       render json: @trip, status: :created
     else
@@ -26,7 +27,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit( :name, :center, :zoom)
+    params.require(:trip).permit( :name, :center, :zoom, :private)
   end
 
 end
