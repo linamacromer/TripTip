@@ -39,7 +39,10 @@
 
             <% if @user.trips.length != 0 %>
             <% @user.trips.reverse.each do |x| %>
-            <li class='trip-items'><%= link_to x.name, user_trip_path(@user, x) %></li>
+            <li class='trip-items'>
+              <%= link_to x.name, user_trip_path(@user, x) %>
+              <a class="trip-delete-link" data-confirm="Are you sure you want to delete?" data-method="delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">x</a>
+            </li>
             <% end %>
             <% end %>
         </ul>

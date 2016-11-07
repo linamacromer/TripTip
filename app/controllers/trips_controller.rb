@@ -13,7 +13,6 @@ class TripsController < ApplicationController
   end
 
   def create
-    p params
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.create(trip_params)
 
@@ -22,6 +21,14 @@ class TripsController < ApplicationController
     else
       render json: @trip.errors, status: :unprocessable_entity
     end
+  end
+
+  def update
+    p params
+  end
+
+  def destroy
+    Trip.destroy(params[:id])
   end
 
   private
