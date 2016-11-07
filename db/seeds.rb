@@ -1,34 +1,20 @@
 require 'faker'
 
-User.delete_all
-Trip.delete_all
-Tip.delete_all
-Friendship.delete_all
-# old_logger = ActiveRecord::Base.logger
-# ActiveRecord::Base.logger = nil
+puts "***Did you remember to db:drop, then db:create, db:migrate, then log in through OAuth? If not, start over***"
+# User.delete_all
+# Trip.delete_all
+# Tip.delete_all
+# Friendship.delete_all
+# # old_logger = ActiveRecord::Base.logger
+# # ActiveRecord::Base.logger = nil
 
-ActiveRecord::Base.connection.reset_pk_sequence!('users')
-ActiveRecord::Base.connection.reset_pk_sequence!('posts')
-ActiveRecord::Base.connection.reset_pk_sequence!('comments')
-ActiveRecord::Base.connection.reset_pk_sequence!('votes')
+# ActiveRecord::Base.connection.reset_pk_sequence!('users')
+# ActiveRecord::Base.connection.reset_pk_sequence!('posts')
+# ActiveRecord::Base.connection.reset_pk_sequence!('comments')
+# ActiveRecord::Base.connection.reset_pk_sequence!('votes')
 
 10.times do
   User.create(name: Faker::Name.name)
-end
-
-trip = Trip.create( user_id: 1, name: "Philadelphia", center: "39.9415235,-75.1728016", zoom: 13)
-3.times do
-	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
-end
-
-trip = Trip.create( user_id: 1, name: "Italy", center: "42.1733409,11.4456719", zoom: 7)
-3.times do
-	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
-end
-
-trip = Trip.create( user_id: 1, name: "San Diego", center: "32.7116516,-117.1944211", zoom: 13)
-3.times do
-	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
 end
 
 trip = Trip.create( user_id: 2, name: "NYC", center: "40.7591704,-74.039271", zoom: 12)
@@ -162,6 +148,21 @@ trip = Trip.create( user_id: 10, name: "LA", center: "34.0207504,-118.6919209", 
 end
 
 trip = Trip.create( user_id: 10, name: "Seattle", center: "47.6149943,-122.4759893", zoom: 11 )
+3.times do
+	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
+end
+
+trip = Trip.create( user_id: 11, name: "Philadelphia", center: "39.9415235,-75.1728016", zoom: 13)
+3.times do
+	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
+end
+
+trip = Trip.create( user_id: 11, name: "Italy", center: "42.1733409,11.4456719", zoom: 7)
+3.times do
+	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
+end
+
+trip = Trip.create( user_id: 11, name: "San Diego", center: "32.7116516,-117.1944211", zoom: 13)
 3.times do
 	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
 end
