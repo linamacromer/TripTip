@@ -108,6 +108,19 @@ ul {
     }
   }
 }
+#friend-name {
+  // box-shadow: 0px 3px 1px #d2d2d2;
+  padding-bottom: 3px;
+}
+.friend-trips {
+  padding: 0px 0px 10px 20px;
+  li {
+    font-weight: 300;
+    a {
+      width: 100%;
+    }
+  }
+}
 #friends-section {
   p {
     text-align: center;

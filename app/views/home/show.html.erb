@@ -25,11 +25,15 @@
                   <%= hidden_field_tag("user[id]", @user.id) %>
                   <%= hidden_field_tag("trip[center]", "3245678") %>
                   <%= hidden_field_tag("trip[zoom]", "12") %>
+                  <%= check_box_tag :private %> Private?
                   <%= button_tag(type: "submit", class: 'add-trip-button', id: 'add-trip-submit') do %>
                     <i class="fa fa-plus-square" aria-hidden="true"></i>
                   <% end %>
                 <% end %>
             </li>
+
+            <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
+
             <% if @user.trips.length != 0 %>
             <% @user.trips.reverse.each do |x| %>
             <li class='trip-items'><%= link_to x.name, user_trip_path(@user, x) %></li>
@@ -46,13 +50,26 @@
     </li>
     <ul id="friends" class="hidden">
         <% if @user.friends.length != 0 %>
-        <% @user.friends.each do |x| %>
-        <li>
-            <%= link_to x.name, user_trips_path(x) %>
-        </li>
-        <% end %>
-    <% else %>
-        <p>You don't have any friends</p>
+          <% @user.friends.each do |x| %>
+            <li id="friend-name">
+              <%= link_to x.name, user_trips_path(x), :class => 'friend-li', :data => x.id %>
+            </li>
+            <% if x.trips != 0 %>
+              <ul class="friend-trips">
+              <% x.trips.each do |t| %>
+                <% if !t.private %>
+                  <li class='trip-items'>
+                    <%= link_to t.name, user_trip_path(x, t), :class => 'sub-li', :data => x.id %>
+                  </li>
+                <% end %>
+              <% end %>
+              </ul>
+            <% else %>
+              <li><%= x.name %> doesn't have any trips!</li>
+            <% end %>
+          <% end %>
+        <% else %>
+            <p>You don't have any friends</p>
         <% end %>
     </ul>
 </li>
@@ -62,7 +79,6 @@
 <div id="map"></div>
 
 <% end %>
-
 <!-- <% if session[:user_id] %>
   <% @user = User.find(session[:user_id]) %>
   <div id="sidebar" role="navigation">
