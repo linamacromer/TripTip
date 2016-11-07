@@ -1,20 +1,10 @@
 require 'faker'
 
 puts "***Did you remember to db:drop, then db:create, db:migrate, then log in through OAuth? If not, start over***"
-# User.delete_all
-# Trip.delete_all
-# Tip.delete_all
-# Friendship.delete_all
-# # old_logger = ActiveRecord::Base.logger
-# # ActiveRecord::Base.logger = nil
-
-# ActiveRecord::Base.connection.reset_pk_sequence!('users')
-# ActiveRecord::Base.connection.reset_pk_sequence!('posts')
-# ActiveRecord::Base.connection.reset_pk_sequence!('comments')
-# ActiveRecord::Base.connection.reset_pk_sequence!('votes')
 
 10.times do
-  User.create(name: Faker::Name.name)
+  user = User.create(name: Faker::Name.name)
+  user.friendships.create(friend2_id: 1)
 end
 
 trip = Trip.create( user_id: 2, name: "NYC", center: "40.7591704,-74.039271", zoom: 12)
@@ -166,3 +156,11 @@ trip = Trip.create( user_id: 11, name: "San Diego", center: "32.7116516,-117.194
 3.times do
 	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
 end
+
+
+
+
+User.create(name: Faker::Name.name)
+
+trip = Trip.create( user_id: 12, name: "Bermuda Triangle", center: "24.8339412,-71.5727022,", zoom: 9)
+trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
