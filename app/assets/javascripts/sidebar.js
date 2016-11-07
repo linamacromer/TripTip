@@ -42,16 +42,9 @@ $(function() {
     $('.add-trip-button').toggleClass('add-trip-opacity-animation')
   })
 
-  $(document).click(function() {
-    if($('#new-trip').is(':visible')) {
-      $('.new-trip').toggleClass('hidden')
-      $('#add-trip-submit').toggleClass('add-trip-opacity-animation')
-    }
-  })
-
   $('.add-trip-button').on('click', function(){
     $('.new-trip').toggleClass('hidden')
-    $('#add-trip-submit').toggleClass('add-trip-opacity-animation')
+    $('.add-trip-button').toggleClass('add-trip-opacity-animation')
   })
 
   $('#sidebar').on('click', '#friend-list', function(){
