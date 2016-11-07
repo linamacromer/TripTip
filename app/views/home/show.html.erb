@@ -15,10 +15,11 @@
             <%= hidden_field_tag("user[id]", @user.id) %>
             <%= hidden_field_tag("trip[center]", "3245678") %>
             <%= hidden_field_tag("trip[zoom]", "12") %>
+            <%= check_box_tag :private %> Private?
             <%= submit_tag("add") %>
           <% end %>
         </li>
-        <li id="trip-template" class="trip-items hidden"><a href="#"></a></li>
+        <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
 
         <% if @user.trips.length != 0 %>
         <% @user.trips.reverse.each do |x| %>
@@ -38,9 +39,11 @@
             </li>
             <% if x.trips != 0 %>
               <% x.trips.each do |t| %>
-                <li class='trip-items'>
-                  <%= link_to t.name, user_trip_path(x, t), :class => 'sub-li', :data => x.id %>
-                </li>
+                <% if !t.private %>
+                  <li class='trip-items'>
+                    <%= link_to t.name, user_trip_path(x, t), :class => 'sub-li', :data => x.id %>
+                  </li>
+                <% end %>
               <% end %>
             <% else %>
               <li><%= x.name %> doesn't have any trips!</li>

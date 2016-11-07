@@ -6,7 +6,8 @@ $(function() {
     var tripZ = map.getZoom()
     var tripName = $('#trip_name').val()
     var id = $('#user_id').val()
-    var data = {trip: {name: tripName, center: latLng, zoom: tripZ}}
+    var private = $("#private").is(':checked')
+    var data = {trip: {name: tripName, center: latLng, zoom: tripZ, private: private}}
     $.ajax({
       type: "POST",
       url: '/users/' + user_id + '/trips',
