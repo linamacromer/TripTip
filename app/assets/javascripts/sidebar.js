@@ -4,12 +4,13 @@ $(function() {
     event.preventDefault()
     var latLng = map.getCenter().lat() + " " + map.getCenter().lng()
     var tripZ = map.getZoom()
+    var id = $('#user_id').val()
     var tripName = $('#trip_name').val()
     var private = $("#private").is(':checked')
     var data = {trip: {name: tripName, center: latLng, zoom: tripZ, private: private}}
     $.ajax({
       type: "POST",
-      url: '/users/' + user_id + '/trips',
+      url: '/users/' + id + '/trips',
       data: data
     }).done(function(data){
       prependTripToList(data)
@@ -63,8 +64,9 @@ $(function() {
 });
 
 function prependTripToList(data){
+  var id = $('#user_id').val()
   var template = $('#trip-template')
-  template.find('a').attr('href', "/users/" + user_id + "/trips/" + data.id).text(data.name)
+  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
   $(template).removeClass('hidden')
 }
 
@@ -79,7 +81,7 @@ function get_tips_list(url,self){
 }
 
 function add_to_nav(html){
-  $('#nav').append(html)
+  $('#nav').append("<br>" + html)
 }
 
 function remove_temp_nav(){
