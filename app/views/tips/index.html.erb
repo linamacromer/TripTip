@@ -1,0 +1,17 @@
+<li id='temp-section'>
+  <h1><%= @trip.name %>:Tips</h1>
+  <ul>
+    <li>
+      <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :class => '', method: "post") do %>
+        <%= text_field_tag("tip[name]") %>
+        <%= hidden_field_tag("tip[place_id]") %>
+        <%= submit_tag("add") %>
+      <% end %>
+    </li>
+    <% if @trip.tips.length != 0 %>
+    <% @trip.tips.reverse.each do |x| %>
+      <li class=""><%= link_to x.name, new_user_trip_tip_path(@user, @trip, x) %></li>
+    <% end %>
+    <% end %>
+  </ul>
+</li>

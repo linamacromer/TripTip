@@ -1,12 +1,8 @@
 class TipsController < ApplicationController
 	def index
-		@trip = Trip.find(params[:trip_id])
-		@tips = @trip.tips
-
-		respond_to do |format|
-			format.html { render }
-			format.json { render json: @tips }
-		end
+    @user = User.find_by(id: params[:user_id])
+    @trip = @user.trips.find_by(id: params[:trip_id])
+    render :index, :layout => false
 	end
 
 	def show

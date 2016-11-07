@@ -1,0 +1,91 @@
+<% if session[:user_id] %>
+  <% @user = User.find(session[:user_id]) %>
+<div id="sidebar" role="navigation">
+  <ul id='nav'>
+    <li id='user-section'>
+      <h1><%= @user.name%></h1>
+    </li>
+
+    <li id='trips-section'>
+      <h1>Trips</h1>
+      <ul>
+        <li>
+          <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %>
+            <%= text_field_tag("trip[name]") %>
+            <%= hidden_field_tag("user[id]", @user.id) %>
+            <%= hidden_field_tag("trip[center]", "3245678") %>
+            <%= hidden_field_tag("trip[zoom]", "12") %>
+            <%= submit_tag("add") %>
+          <% end %>
+        </li>
+        <% if @user.trips.length != 0 %>
+        <% @user.trips.reverse.each do |x| %>
+          <li class='trip-items'><%= link_to x.name, user_trip_path(@user, x) %></li>
+        <% end %>
+        <% end %>
+      </ul>
+    </li>
+    
+    <li id='friends-section'>
+      <h1>Friends</h1>
+      <ul>
+        <% if @user.friends.length != 0 %>
+        <% @user.friends.each do |x| %>
+          <li>
+            <%= link_to x.name, user_trips_path(x) %>
+          </li>
+        <% end %>
+        <% else %>
+            <p>You don't have any friends</p>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div id="map"></div>
+
+<% end %>
+
+
+  <!-- <div id="sidebar" role="navigation">
+    <ul class="nav">
+      <li id="user-home" class="active"><a href="#">Trips</a></li>
+      <div id="user-box" class="hidden">
+      <li id="trips-nav">
+        <ul id='trips-list'>
+          <li id='trip-add' class="sub-li"><a id='trip-add-link' href="#">Add Trip</a></li>
+          <li id='trip-form-container'>
+            <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %>
+                <%= text_field_tag("trip[name]") %>
+                <%= hidden_field_tag("user[id]", @user.id) %>
+                <%= hidden_field_tag("trip[center]", "3245678") %>
+                <%= hidden_field_tag("trip[zoom]", "12") %>
+                <%= submit_tag("add") %>
+              <% end %>
+          </li>
+          <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
+            <% if @user.trips.length != 0 %>
+              <% @user.trips.reverse.each do |x| %>
+                <li class="trip-items sub-li"><%= link_to x.name, user_trip_path(@user, x) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
+      </div>
+      <li id="friend-list"><a href="#">Friends</a></li>
+      <div id="friends" class="hidden">
+        <li id="hidden-friend" class="hidden sub-li"></li>
+      <% if @user.friends.length != 0 %>
+        <% @user.friends.each do |x| %>
+          <li class="sub-li">
+          <%= link_to x.name, user_trips_path(x) %>
+          </li>
+        <% end %>
+      <% else %>
+        <p>You don't have any friends</p>
+      <% end %>
+      </ul>
+    </div>
+  <div id="map"></div>
+  </div> -->
