@@ -5,7 +5,6 @@ $(function() {
     var latLng = map.getCenter().lat() + " " + map.getCenter().lng()
     var tripZ = map.getZoom()
     var tripName = $('#trip_name').val()
-    var id = $('#user_id').val()
     var private = $("#private").is(':checked')
     var data = {trip: {name: tripName, center: latLng, zoom: tripZ, private: private}}
     $.ajax({
@@ -48,9 +47,8 @@ $(function() {
 });
 
 function prependTripToList(data){
-  var id = $('#user_id').val()
   var template = $('#trip-template')
-  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
+  template.find('a').attr('href', "/users/" + user_id + "/trips/" + data.id).text(data.name)
   $(template).removeClass('hidden')
 }
 
