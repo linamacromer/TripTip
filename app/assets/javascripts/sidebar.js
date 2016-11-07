@@ -4,6 +4,7 @@ $(function() {
     event.preventDefault()
     var latLng = map.getCenter().lat() + " " + map.getCenter().lng()
     var tripZ = map.getZoom()
+    var tripName = $('#trip_name').val()
     var id = $('#user_id').val()
     var data = {trip: {name: tripName, center: latLng, zoom: tripZ}}
     $.ajax({
