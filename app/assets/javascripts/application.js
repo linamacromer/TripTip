@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= underscore
 //= gmaps/google
+//= require mustache
+//= require jquery.mustache
 //= require_tree .
 
 $(document).ready(function() {
