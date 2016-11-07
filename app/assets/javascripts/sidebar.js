@@ -30,14 +30,18 @@ $(function() {
 
   $('#sidebar').on('click', '#user-home', function(){
     $('#user-box').toggleClass('hidden')
+    $('#user-home a .fa').toggleClass('fa-rotate-180')
   })
 
   $('#sidebar').on('click', '#friend-list', function(){
     $('#friends').toggleClass('hidden')
+    $('#friend-list a .fa').toggleClass('fa-rotate-180')
   })
 
   $('#sidebar').on('click', '#trips-title', function(){
     $('#user-trips').toggleClass('hidden')
+    $('#trips-title a .fa').toggleClass('fa-sort-asc')
+
   })
 });
 
