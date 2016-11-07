@@ -17,6 +17,7 @@ $(function() {
     })
   })
 
+
   $('.trip-items').on('click', 'a', function(event){
     event.preventDefault()
     remove_temp_nav()
@@ -47,9 +48,8 @@ $(function() {
 });
 
 function prependTripToList(data){
-  var id = $('#user_id').val()
   var template = $('#trip-template')
-  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
+  template.find('a').attr('href', "/users/" + user_id + "/trips/" + data.id).text(data.name)
   $(template).removeClass('hidden')
 }
 
