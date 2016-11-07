@@ -2,20 +2,22 @@
   <% @user = User.find(session[:user_id]) %>
   <div id="sidebar" role="navigation">
     <ul class="nav">
-      <li id="user-home" class="active"><a href="#"><%= @user.name %></a></li>
+      <li id="user-home" class="active"><a href="#"><%= @user.name %><i class="fa fa-sort-desc" aria-hidden="true"></i></a></li>
       <div id="user-box" class="hidden">
       <li id="trips-nav">
         <div id='trips-container'>
           <ul id='trips-list'>
-            <li id='trips-title' class="sub-li"><a id="all-trips" href="#">Trips</a>
-            <li id='trip-add' class="sub-li"><a id='trip-add-link' href="#">Add Trip</a></li>
+            <li id='trips-title' class="sub-li"><a id="all-trips" href="#">Trips<i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+            <!-- <li id='trip-add' class="sub-li"><a id='trip-add-link' href="#">Add Trip</a></li> -->
             <li id='trip-form-container'>
               <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %>
-                <%= text_field_tag("trip[name]") %>
+                <!-- <%= text_field_tag("trip[name]") %> -->
                 <%= hidden_field_tag("user[id]", @user.id) %>
                 <%= hidden_field_tag("trip[center]", "3245678") %>
                 <%= hidden_field_tag("trip[zoom]", "12") %>
-                <%= submit_tag("add") %>
+                <%= button_tag(type: "submit", class: 'add-trip-button') do %>
+                <i class="fa fa-plus-square" aria-hidden="true"></i> Add trip
+                <% end %>
               <% end %>
             </li>
             <div id="user-trips" class="hidden">
@@ -30,7 +32,7 @@
         </div>
       </li>
       </div>
-      <li id="friend-list"><a href="#">Friends</a></li>
+      <li id="friend-list"><a href="#">Friends<i class="fa fa-sort-desc" aria-hidden="true"></i></a></li>
       <div id="friends" class="hidden">
         <li id="hidden-friend" class="hidden trip-items sub-li"></li>
       <% if @user.friends.length != 0 %>
@@ -40,7 +42,7 @@
           </li>
         <% end %>
       <% else %>
-        <p>You don't have any friends</p>
+        <p>You don't have any friends <i class="fa fa-frown-o" aria-hidden="true"></i></p>
       <% end %>
       </ul>
     </div>
