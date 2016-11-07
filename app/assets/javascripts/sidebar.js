@@ -63,6 +63,7 @@ $(function() {
 });
 
 function prependTripToList(data){
+  var user_id = $('#user_id').val()
   var template = $('#trip-template')
   template.find('a').attr('href', "/users/" + user_id + "/trips/" + data.id).text(data.name)
   $(template).removeClass('hidden')
