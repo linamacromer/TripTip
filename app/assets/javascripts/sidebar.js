@@ -4,8 +4,9 @@ $(function() {
     event.preventDefault()
     var latLng = map.getCenter().lat() + " " + map.getCenter().lng()
     var tripZ = map.getZoom()
-    var id = $('#user_id').val()
-    var data = {trip: {name: tripName, center: latLng, zoom: tripZ}}
+    var tripName = $('#trip_name').val()
+    var private = $("#private").is(':checked')
+    var data = {trip: {name: tripName, center: latLng, zoom: tripZ, private: private}}
     $.ajax({
       type: "POST",
       url: '/users/' + user_id + '/trips',
