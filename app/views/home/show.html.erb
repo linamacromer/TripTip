@@ -20,15 +20,18 @@
         </li>
         <ul id="user-trips" class="hidden">
             <li>
-                <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %>
-                  <%= text_field_tag("trip[name]","", class: 'hidden') %>
+                <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip hidden', method: "post") do %>
+                  <%= text_field_tag("trip[name]") %>
                   <%= hidden_field_tag("user[id]", @user.id) %>
                   <%= hidden_field_tag("trip[center]", "3245678") %>
                   <%= hidden_field_tag("trip[zoom]", "12") %>
-                  <%= check_box_tag :private %> Private?
-                  <%= button_tag(type: "submit", class: 'add-trip-button', id: 'add-trip-submit') do %>
-                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                  <%= button_tag(type: "submit", class: 'add-trip-submit') do %>
+                            <%= content_tag(:strong, '+') %>
+                    <!-- <i class="fa fa-plus-square" aria-hidden="true"></i> -->
                   <% end %>
+                  <div class="">
+                    <%= check_box_tag :private %> private
+                  </div>
                 <% end %>
             </li>
 
