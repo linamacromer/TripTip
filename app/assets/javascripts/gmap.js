@@ -48,9 +48,37 @@ function initMap() {
     });
     marker.setVisible(true);
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-        'Place ID: ' + place.place_id + '<br>' +
-        place.formatted_address + '<form class="marker" action="/user/1/trips/tips/new"><button name="marker-btn" type=submit>add</button>');
+    info = buildInfoWindow(place);
+    
+    infowindow.setContent(info);
     infowindow.open(map, marker);
   });
 }
+
+function  buildInfoWindow(place) {
+    form = $('#add-tip-form').wrap('<p/>').parent();
+    name = place.name
+    address = place.formatted_address
+    place_id = place.place_id
+    info = '<div><strong>' + name + '</strong><br>' + address +
+        '<br>' 
+
+
+    if (form === undefined){
+        return info + 'Select a trip to add location'
+    } else {
+        return info + setForm(form,place)
+    }
+    
+}
+
+function setForm(form, place){
+    $(form).find('input[name="tip[name]"]').val(place.name)
+    $(form).find('input[name="tip[place_id]"]').val(place.place_id)
+    $(form).find('#add-tip-form').removeClass('hidden')
+    return $(form).html()
+
+}
+
+[value='Hot Fuzz']
+
