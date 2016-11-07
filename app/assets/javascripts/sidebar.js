@@ -17,6 +17,7 @@ $(function() {
     })
   })
 
+
   $('.trip-items').on('click', 'a', function(event){
     event.preventDefault()
     remove_temp_nav()
@@ -33,23 +34,37 @@ $(function() {
 
   })
 
-  $('#sidebar').on('click', '#user-home', function(){
-    $('#user-box').toggleClass('hidden')
+
+  $('#sidebar').on('click', '#all-trips i', function(){
+    $('#user-trips').toggleClass('hidden')
+    $('#trips-title a .fa').toggleClass('fa-sort-asc')
+    $('.t-underline').toggleClass('underline-animation')
+    $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+  })
+
+  $('.add-trip-button').on('click', function(){
+    $('.new-trip').toggleClass('hidden')
+    $('.add-trip-button').toggleClass('add-trip-opacity-animation')
   })
 
   $('#sidebar').on('click', '#friend-list', function(){
     $('#friends').toggleClass('hidden')
+    $('#friend-list a .fa').toggleClass('fa-rotate-180')
+    $('.f-underline').toggleClass('underline-animation')
   })
 
-  $('#sidebar').on('click', '#trips-title', function(){
-    $('#user-trips').toggleClass('hidden')
+  $('#sidebar').on('click', '#user-home', function(){
+    $('#user-box').toggleClass('hidden')
+    $('#user-home a .fa').toggleClass('fa-rotate-180')
   })
+
+
+
 });
 
 function prependTripToList(data){
-  var id = $('#user_id').val()
   var template = $('#trip-template')
-  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
+  template.find('a').attr('href', "/users/" + user_id + "/trips/" + data.id).text(data.name)
   $(template).removeClass('hidden')
 }
 
