@@ -1,3 +1,205 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('https://fonts.googleapis.com/css?family=Raleway|Roboto');
+$ocean-blue: #A3CCFF;
+$purple: #2E3192;
+$green: #0B9444;
+@mixin blue-border-bottom {
+  border-bottom: 2px solid $ocean-blue;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: Roboto;
+    &#friends, &#user-trips {
+      li {
+        padding-left: 30px;
+      }
+    }
+    li {
+      a {
+        display: block;
+        color: $purple;
+        text-decoration: none;
+      }
+      &#trips-title, &#friend-list {
+        padding-top: 6px; padding-bottom: 6px;
+        // width: 100%;
+        a {
+          display: block;
+          font-size: 1.4em;
+          font-weight: 400;
+          color: $purple;
+        }
+      }
+    }
+}
+#user-home, #trips-section {
+  padding: 0;
+}
+#sidebar {
+  img {
+    width: 100%;
+    transform: scale(.7);
+  }
+}
+#nav {
+  // box-shadow: 0px 1px 5px #d2d2d2;
+  li {
+    padding: 0px 10px 0px 10px;
+    h1 {
+      margin: 0;
+      font-weight: normal;
+      font-size: 1em;
+    }
+  }
+}
+#trips-list {
+  // font-size: .7em;
+  li {
+    a {
+      &#all-trips {
+        .fa-sort-desc {
+          font-size: .95em;
+        }
+        padding-right: 6px;
+        @include blue-border-bottom;
+      }
+      &#trip-add-link {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+#trips-title {
+  &:hover {
+    // background-color: $ocean-blue;
+  }
+  a {
+    font-family: Roboto;
+
+    padding-top: 0;
+  }
+}
+#user-trips {
+  .trip-items {
+    padding-bottom: 5px;
+  }
+  form {
+    padding: 5px 0px 15px -5px;
+    // @include blue-border-bottom;
+    #trip_name {
+      font-size: 1.2em;
+      width: 80%;
+      &:focus {
+        outline: none;
+        border: 1px solid $ocean-blue;
+      }
+    }
+    input[type=submit] {
+      // width: 40px;
+      vertical-align: middle;
+      height: 25px;
+      background-color: white;
+      border-radius: 5px;
+      font-size: 1em;
+      // padding: 0;
+      // margin-top: 5px;
+    }
+  }
+}
+#friend-name {
+  // box-shadow: 0px 3px 1px #d2d2d2;
+  padding-bottom: 3px;
+}
+.friend-trips {
+  padding: 0px 0px 10px 20px;
+  li {
+    font-weight: 300;
+    a {
+      width: 100%;
+    }
+  }
+}
+#friends-section {
+  p {
+    text-align: center;
+    font-weight: 300;
+  }
+}
+#friend-list {
+  a {
+  }
+}
+.hidden {
+  display: none;
+}
+.login{
+  border: 1px solid black;
+  position:fixed;
+  right:10px;
+  top:5px;
+  padding: 5px 5px 5px 5px;
+}
+.add-trip-button {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: .7em;
+  // padding-right: -1px;
+  width: 30%;
+  color: $purple;
+  // margin-top: -2px;
+  float: right;
+  opacity: 0;
+  transition: opacity, .5s;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none
+  }
+}
+.add-trip-opacity-animation {
+  opacity: 1;
+}
+#add-trip-submit {
+  opacity: 0
+}
+.fa-sort-desc {
+  float: right;
+  margin-top: -3px
+}
+.fa-rotate-180 {
+  margin-top: 6.15px
+}
+.fa-sort-asc {
+  margin-top: 6px
+}
+.t-underline, .f-underline {
+  width: 0%;
+  height: 1.5px;
+  background-color: $green;
+  margin-top: 2px;
+  transition: width .5s, opacity .5s;
+  opacity: 0;
+}
+.underline-animation {
+  opacity: 1;
+  width: 100%
+}
+// .rotate-fa {
+//   -ms-transform: rotate(90deg); /* IE 9 */
+//   -webkit-transform: rotate(90deg); /* Safari */
+//   transform: rotate(90deg);
+//   margin-right: -5px;
+// }
+
+// notes:
+//   -click add trip button to make input field visible
+//   -make drop down arrow change direction when dropdown is open...if that makes sense
+//   -when dropdown is clicked change background color of header( friends for example )
+//   -i don't think the trips dropdown should be accessed from clicking the name?
+//     shouldn't it be it's own li and dropdown??
+//   -definitely need more to fill space on sidebar, logo or more content
+//   -colors are all placeholder, sidebar color could probably be changed instead of being white

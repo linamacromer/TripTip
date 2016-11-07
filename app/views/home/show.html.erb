@@ -1,43 +1,61 @@
 <% if session[:user_id] %>
-  <% @user = User.find(session[:user_id]) %>
+<% @user = User.find(session[:user_id]) %>
 <div id="sidebar" role="navigation">
-  <ul id='nav'>
-    <li id='user-section'>
-      <h1><%= @user.name%></h1>
-    </li>
-
-    <li id='trips-section'>
-      <h1>Trips</h1>
-      <ul>
-        <li>
-          <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %>
-            <%= text_field_tag("trip[name]") %>
-            <%= hidden_field_tag("user[id]", @user.id) %>
-            <%= hidden_field_tag("trip[center]", "3245678") %>
-            <%= hidden_field_tag("trip[zoom]", "12") %>
-            <%= check_box_tag :private %> Private?
-            <%= submit_tag("add") %>
-          <% end %>
+    <%= image_tag('TripTip_Logo-01') %>
+    <ul id='nav'>
+        <li id='user-home'>
+            <!-- <h1><%= @user.name%></h1> -->
         </li>
-        <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
 
-        <% if @user.trips.length != 0 %>
-        <% @user.trips.reverse.each do |x| %>
-          <li class='trip-items'><%= link_to x.name, user_trip_path(@user, x), :class => 'sub-li', :data => @user.id %></li>
-        <% end %>
-        <% end %>
-      </ul>
+        <li id='trips-section'>
+        <li id='trips-title'>
+            <a id="all-trips" href="#">Trips
+              <i class="fa fa-sort-desc" aria-hidden="true"></i>
+              <%= button_tag(type: "button", class: 'add-trip-button') do %>
+                <i class="fa fa-plus-square" aria-hidden="true"></i>
+                add
+              <% end %>
+            </a>
+            <div class="t-underline"></div>
+        </li>
+        <ul id="user-trips" class="hidden">
+            <li>
+                <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %>
+                  <%= text_field_tag("trip[name]","", class: 'hidden') %>
+                  <%= hidden_field_tag("user[id]", @user.id) %>
+                  <%= hidden_field_tag("trip[center]", "3245678") %>
+                  <%= hidden_field_tag("trip[zoom]", "12") %>
+                  <%= check_box_tag :private %> Private?
+                  <%= button_tag(type: "submit", class: 'add-trip-button', id: 'add-trip-submit') do %>
+                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+            </li>
+
+            <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
+
+            <% if @user.trips.length != 0 %>
+            <% @user.trips.reverse.each do |x| %>
+            <li class='trip-items'><%= link_to x.name, user_trip_path(@user, x) %></li>
+            <% end %>
+            <% end %>
+        </ul>
     </li>
 
     <li id='friends-section'>
-      <h1>Friends</h1>
-      <ul>
+    <li id="friend-list">
+        <a href="#">Friends<i class="fa fa-sort-desc" aria-hidden="true"></i>
+        </a>
+        <div class="f-underline"></div>
+    </li>
+    <ul id="friends" class="hidden">
         <% if @user.friends.length != 0 %>
           <% @user.friends.each do |x| %>
-            <li>
+            <li id="friend-name">
               <%= link_to x.name, user_trips_path(x), :class => 'friend-li', :data => x.id %>
             </li>
             <% if x.trips != 0 %>
+              <ul class="friend-trips">
               <% x.trips.each do |t| %>
                 <% if !t.private %>
                   <li class='trip-items'>
@@ -45,6 +63,7 @@
                   </li>
                 <% end %>
               <% end %>
+              </ul>
             <% else %>
               <li><%= x.name %> doesn't have any trips!</li>
             <% end %>
@@ -52,9 +71,9 @@
         <% else %>
             <p>You don't have any friends</p>
         <% end %>
-      </ul>
-    </li>
-  </ul>
+    </ul>
+</li>
+</ul>
 </div>
 
   <input id="pac-input" class="controls" type="text"
@@ -63,4 +82,54 @@
 
 
 <% end %>
-
+<!-- <% if session[:user_id] %>
+  <% @user = User.find(session[:user_id]) %>
+  <div id="sidebar" role="navigation">
+    <ul class="nav"> -->
+<!-- <li id="user-home" class="active"><a href="#"><%= @user.name %><i class="fa fa-sort-desc" aria-hidden="true"></i></a></li>
+      <div id="user-box" class="hidden">
+      <li id="trips-nav"> -->
+<!-- <div id='trips-container'>
+          <ul id='trips-list'>
+            <li id='trips-title' class="sub-li"><a id="all-trips" href="#">Trips<i class="fa fa-sort-desc" aria-hidden="true"></i></a> -->
+<!-- <li id='trip-add' class="sub-li"><a id='trip-add-link' href="#">Add Trip</a></li> -->
+<!-- <li id='trip-form-container'> -->
+<!-- <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip', method: "post") do %> -->
+<!-- <%= text_field_tag("trip[name]") %> -->
+<!-- <%= hidden_field_tag("user[id]", @user.id) %> -->
+<!-- <%= hidden_field_tag("trip[center]", "3245678") %> -->
+<!-- <%= hidden_field_tag("trip[zoom]", "12") %> -->
+<!-- <%= button_tag(type: "submit", class: 'add-trip-button') do %> -->
+<!-- <i class="fa fa-plus-square" aria-hidden="true"></i> Add trip -->
+<!-- <% end %>
+              <% end %>
+            </li>
+            <div id="user-trips" class="hidden">
+            <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
+            <% if @user.trips.length != 0 %> -->
+<!-- <% @user.trips.reverse.each do |x| %>
+                <li class="trip-items sub-li"><%= link_to x.name, user_trip_path(@user, x) %></li>
+              <% end %>
+            <% end %>
+            </div>
+          </ul>
+        </div>
+      </li>
+      </div> -->
+<!-- <li id="friend-list"><a href="#">Friends<i class="fa fa-sort-desc" aria-hidden="true"></i></a></li>
+      <div id="friends" class="hidden">
+        <li id="hidden-friend" class="hidden trip-items sub-li"></li>
+      <% if @user.friends.length != 0 %>
+        <% @user.friends.each do |x| %>
+          <li class="trip-items sub-li"> -->
+<!-- <%= link_to x.name, user_trips_path(x) %>
+          </li>
+        <% end %>
+      <% else %>
+        <p>You don't have any friends <i class="fa fa-frown-o" aria-hidden="true"></i></p> -->
+<!-- <% end %>
+      </ul>
+    </div>
+  <div id="map"></div>
+  </div>
+<% end %> -->
