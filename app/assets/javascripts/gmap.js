@@ -38,7 +38,7 @@ function initMap() {
       map.setZoom(15);
     } else {
       map.setCenter(place.geometry.location);
-      map.setZoom(15);
+      map.setZoom(12);
     }
 
     // Set the position of the marker using the place ID and location.
