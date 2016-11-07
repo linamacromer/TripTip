@@ -24,7 +24,10 @@ class TripsController < ApplicationController
   end
 
   def update
-    p params
+    p "---------------------------------"
+    @trip = Trip.find(params[:id])
+    p @trip
+    p "---------------------------------"
   end
 
   def destroy
