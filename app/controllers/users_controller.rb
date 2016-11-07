@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    User.where('name LIKE ?', '%%').all
+    @results = User.where('name LIKE ?', '%%').all
   end
 
 end
