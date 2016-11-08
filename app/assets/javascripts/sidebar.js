@@ -79,6 +79,7 @@ $(function() {
   })
 
 
+// LINA IS WORKING ON THIS
   // $('.trip-edits').on('click', ".trip-update", function(event) {
   //   event.preventDefault();
   //   console.log(event);
