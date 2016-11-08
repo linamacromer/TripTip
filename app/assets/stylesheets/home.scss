@@ -32,6 +32,11 @@ ul {
         display: block;
         color: $purple;
         text-decoration: none;
+        &.trip-name {
+          display: inline;
+          font-size: 1.15em;
+          padding-right: 10px;
+        }
       }
       &#trips-title, &#friend-list {
         padding-top: 6px; padding-bottom: 6px;
@@ -94,22 +99,26 @@ ul {
 }
 #trips-header {
   display: inline-block;
-  width: 200px;
+  width: 150px;
   position: relative;
   z-index: 0;
 }
 #user-trips {
   .trip-items {
     padding-bottom: 5px;
+    .trip-map {
+      padding-right: 10px;
+      font-size: 1.4em;
+    }
   }
   form {
     padding: 5px 0px 15px -5px;
     // @include blue-border-bottom;
     #trip_name {
-      font-size: 1.1em;
+      font-size: 1.4em;
       width: 85%;
-      // box-shadow: 0px 3px 5px #d2d2d2;
-      padding: 3px;
+      display: inline;
+      padding: 3px 0px 6px 6px;
       border-style: solid;
       border-radius: 5px;
       border: 1px solid #2E3192;
@@ -129,6 +138,9 @@ ul {
       // margin-top: 5px;
     }
   }
+}
+.trip-map, .trip-update, .trip-delete {
+  display: inline
 }
 #friend-name {
   // box-shadow: 0px 3px 1px #d2d2d2;
@@ -197,7 +209,6 @@ ul {
 .add-trip-opacity-animation {
   opacity: 1;
 }
-
 .fa-sort-desc {
   float: right;
   margin-top: -3px
@@ -207,6 +218,12 @@ ul {
 }
 .fa-sort-asc {
   margin-top: 6px
+}
+.trip-delete .fa-trash {
+  padding-left: 5px;
+}
+.trip-update .fa-pencil {
+  font-size: .9em
 }
 .t-underline, .f-underline {
   width: 0%;

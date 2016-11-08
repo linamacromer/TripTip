@@ -19,12 +19,13 @@ $(function() {
       prependTripToList(data)
       $('#trip_name').val("")
       $('.new-trip').toggleClass('hidden')
+      $('.add-trip-button').show()
       $('.add-trip-button').toggleClass('add-trip-opacity-animation')
     })
   })
 
 
-  $('.trip-items').on('click', 'a', function(event){
+  $('.trip-items').on('click', 'a.trip-map', function(event){
     event.preventDefault()
     remove_temp_nav()
     var url = $(event.target).attr('href')
@@ -63,8 +64,12 @@ $(function() {
   })
 
   $('.add-trip-button').on('click', function(){
-    $('.new-trip').toggleClass('hidden')
-    $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+    if(!$('#user-trips').hasClass('hidden')) {
+      $('.new-trip').toggleClass('hidden')
+      $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+      $('.add-trip-button').hide()
+      $('input#trip_name').focus()
+    }
   })
 
   $('#sidebar').on('click', '#friend-list', function(){
@@ -75,20 +80,40 @@ $(function() {
     $('.f-underline').toggleClass('underline-animation')
   })
 
-  $('#sidebar').on('click', '#user-home', function(){
-    $('#user-box').toggleClass('hidden')
-    $('#user-home a .fa').toggleClass('fa-rotate-180')
-  })
+  // if(!$('#user-trips').hasClass('hidden')) {
+  //   $('*:not(#user-trips)').on('click', function() {
+  //     $('#user-trips').toggleClass('hidden')
+  //   })
+  // }
 
+// LINA IS WORKING ON THIS
+  // $('.trip-edits').on('click', ".trip-update", function(event) {
+  //   event.preventDefault();
+  //   console.log(event);
+  // })
 
+  // $('.trip-edits').on('click', ".trip-delete", function(event) {
+  //   event.preventDefault();
+  //   alert("Are you sure you want to delete this trip?")
+
+  //   $.ajax({
+  //     method: "DELETE",
+  //     url: this.pathname,
+  //   }).done(function(response) {
+  //   })
+  // })
 
 });
 
 function prependTripToList(data){
-  var id = $('#user_id').val()
-  var template = $('#trip-template')
-  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
-  $(template).removeClass('hidden')
+  var user_id = $('#user_id').val()
+  var template = $('#trip-template').clone()
+  var link = "/users/" + user_id + "/trips/" + data.id
+  template.find('.trip-name').attr('href', link).text(data.name)
+  template.find('.trip-update').attr('href', link)
+  template.find('.trip-delete').attr('href', link)
+  template.removeClass('hidden')
+  $("#user-trips > li:nth-child(2)").after(template);
 }
 
 function get_tips_list(url,self){
