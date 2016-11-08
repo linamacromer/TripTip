@@ -59,13 +59,17 @@ $(function() {
   })
 
 
-
+  $('.trip-delete').on('click', '.trip-delete', function(event) {
+    event.preventDefault();
+  })
 });
 
 function prependTripToList(data){
   var user_id = $('#user_id').val()
   var template = $('#trip-template')
-  template.find('a').attr('href', "/users/" + user_id + "/trips/" + data.id).text(data.name)
+  template.find('.trip-name').attr('href', "/users/" + user_id + "/trips/" + data.id).text(data.name)
+  template.find('.trip-update').attr('href', "/users/" + user_id + "/trips/" + data.id)
+  template.find('.trip-delete').attr('href', "/users/" + user_id + "/trips/" + data.id)
   $(template).removeClass('hidden')
 }
 

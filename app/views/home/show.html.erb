@@ -35,13 +35,17 @@
                 <% end %>
             </li>
 
-            <li id="trip-template" class="trip-items sub-li hidden"><a href="#"></a></li>
+            <li id="trip-template" class="trip-items sub-li hidden"><a class="trip-name" href="#"></a>
+                <a class="trip-update" data-method="patch" href="#" rel="nofollow">pencil</a>
+                <a class="trip-delete" data-confirm="Are you sure you want to delete?" data-method="delete" href="#" rel="nofollow">x</a>
+            </li>
 
             <% if @user.trips.length != 0 %>
             <% @user.trips.reverse.each do |x| %>
             <li class='trip-items'>
               <%= link_to x.name, user_trip_path(@user, x) %>
-              <a data-confirm="Are you sure you want to delete?" data-method="delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">x</a>
+              <a class="trip-update" data-method="patch" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">pencil</a>
+              <a class="trip-delete" data-confirm="Are you sure you want to delete?" data-method="delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">x</a>
             </li>
             <% end %>
             <% end %>
