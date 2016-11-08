@@ -64,6 +64,7 @@ $(function() {
 
   $('.add-trip-button').on('click', function(){
     $('.new-trip').toggleClass('hidden')
+    $('#trip_name').focus();
     $('.add-trip-button').toggleClass('add-trip-opacity-animation')
   })
 
@@ -85,16 +86,24 @@ $(function() {
   //   console.log(event);
   // })
 
-  // $('.trip-edits').on('click', ".trip-delete", function(event) {
-  //   event.preventDefault();
-  //   alert("Are you sure you want to delete this trip?")
-    
+  $('.trip-edits').on('click', ".trip-delete", function(event) {
+    console.log("hi")
+    event.preventDefault();
+    // var answer=confirm('Are you sure you want to delete this trip?');
+    //   if(answer){
+    //     alert('Deleted');
+    //   }
+    //   else{
+    //     event.preventDefault();      
+    //   }    
+
+
   //   $.ajax({
   //     method: "DELETE",
   //     url: this.pathname,
   //   }).done(function(response) {
   //   })
-  // })
+  })
 
 });
 
