@@ -17,6 +17,8 @@ $(function() {
     }).done(function(data){
       prependTripToList(data)
       $('#trip_name').val("")
+      $('.new-trip').toggleClass('hidden')
+      $('.add-trip-button').toggleClass('add-trip-opacity-animation')
     })
   })
 
@@ -37,12 +39,26 @@ $(function() {
 
   })
 
+  // $('#sidebar').on('click', '#all-trips', function(){
+  //   $('#user-trips').toggleClass('hidden')
+  //   $('#trips-title a .fa').toggleClass('fa-sort-asc')
+  //   $('.t-underline').toggleClass('underline-animation')
+  //   $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+  // })
+    $('.add-trip-button').hide()
 
-  $('#sidebar').on('click', '#all-trips i', function(){
+    $('#trips-header, #all-trips i').on('click', function(){
     $('#user-trips').toggleClass('hidden')
     $('#trips-title a .fa').toggleClass('fa-sort-asc')
     $('.t-underline').toggleClass('underline-animation')
-    $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+
+    if($('#user-trips').hasClass('hidden')) {
+      $('.add-trip-button').removeClass('add-trip-opacity-animation')
+      $('.add-trip-button').hide()
+    } else {
+      $('.add-trip-button').show()
+      $('.add-trip-button').addClass('add-trip-opacity-animation')
+    }
   })
 
   $('.add-trip-button').on('click', function(){
