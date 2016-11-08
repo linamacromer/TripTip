@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   scope :users do
     get 'search/:q' => 'users#search'
+    post ':id/friends' => 'friendships#create'
+    get ':id/friends/pending' => 'friendships#pending'
+    put ':id/friends/:friend_id' => 'friendships#confirm'
   end
 
   root to: "home#show"

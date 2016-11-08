@@ -69,6 +69,8 @@ $(function() {
 
   $('#sidebar').on('click', '#friend-list', function(){
     $('#friends').toggleClass('hidden')
+    $('#add-friends-section').toggleClass('hidden')
+    $('#pending').toggleClass('hidden')
     $('#friend-list a .fa').toggleClass('fa-rotate-180')
     $('.f-underline').toggleClass('underline-animation')
   })
