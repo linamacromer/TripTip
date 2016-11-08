@@ -129,7 +129,6 @@ function get_tips_list(url,self){
 }
 
 function get_tip_markers(url){
-    console.log(url)
     $.ajax({
       dataType: "json",
       type: "GET",

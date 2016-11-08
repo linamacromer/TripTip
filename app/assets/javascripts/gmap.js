@@ -1,5 +1,6 @@
 var map;
 var markers = [];
+var infoWindows = [];
 var service;
 
 function initMap() {
@@ -51,6 +52,7 @@ function initMap() {
     });
     marker.setVisible(true);
     markers.push(marker);
+    infoWindows.push(infowindow);
 
     info = buildInfoWindow(place);
     
@@ -77,22 +79,37 @@ function  buildInfoWindow(place) {
     
 }
 
-function setForm(form, place){
-    $(form).find('input[name="tip[name]"]').val(place.name)
-    $(form).find('input[name="tip[place_id]"]').val(place.place_id)
-    $(form).find('#add-tip-form').removeClass('hidden')
-    return $(form).html()
-
+function  buildSavedInfoWindow(name) {
+    string = "<h1>" + name + "</h1>"
+    return string
 }
 
-function addMarker(lat, lng) {
-    var myLatLng = {lat: lat, lng: lng}
+function setForm(form, place){
+    lat = place.geometry.location.lat()
+    lng = place.geometry.location.lng()
+    $(form).find('input[name="tip[name]"]').val(place.name)
+    $(form).find('input[name="tip[place_id]"]').val(place.place_id)
+    $(form).find('input[name="tip[lat]"]').val(lat)
+    $(form).find('input[name="tip[lng]"]').val(lng)
+    $(form).find('#add-tip-form').removeClass('hidden')
+    return $(form).html()
+}
+
+function addMarker(lat, lng, title) {
+    var myLatLng = {lat: parseFloat(lat), lng: parseFloat(lng)}
+    var infowindow = new google.maps.InfoWindow();
+    infowindow.setContent(buildSavedInfoWindow(title));
     var marker = new google.maps.Marker({
+        title: title,
         map: map,
         position: myLatLng
     });
-
+    marker.addListener('click', function() {
+        closeAllInfoWindows();
+        infowindow.open(map, marker);
+    });
     markers.push(marker);
+    infoWindows.push(infowindow);
 }
 // Sets the map on all markers in the array.
 
@@ -113,5 +130,11 @@ function showMarkers() {
 function deleteMarkers() {
   clearMarkers();
   markers = [];
+}
+
+function closeAllInfoWindows() {
+  for (var i=0;i<infoWindows.length;i++) {
+     infoWindows[i].close();
+  }
 }
 
