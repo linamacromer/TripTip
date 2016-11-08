@@ -93,6 +93,10 @@ $(function() {
   $('.trip-edits').on('click', ".trip-update", function(event) {
     console.log("clicked on update")
     event.preventDefault();
+    var $trip = this.parentElement.parentElement;
+    var $tripLink = $($trip).find('a.trip-map');
+    var $tripName = $tripLink.text();
+    
     debugger
   })
 
