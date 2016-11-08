@@ -18,5 +18,10 @@ function submitTip(event) {
   })
 }
 
+function loadMarkers(data){
+  for (var i = data.length - 1; i >= 0; i--) {
+    addMarker(data[i].lat, data[i].lng, data[i].name)
+  }
+}
 
 

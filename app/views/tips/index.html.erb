@@ -6,6 +6,8 @@
         <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :id => 'add-tip-form', :class => 'hidden', method: "post") do %>
           <%= hidden_field_tag("tip[name]") %>
           <%= hidden_field_tag("tip[place_id]") %>
+          <%= hidden_field_tag("tip[lat]") %>
+          <%= hidden_field_tag("tip[lng]") %>
           <%= submit_tag("add") %>
         <% end %>
       <% end %>
