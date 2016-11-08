@@ -44,6 +44,7 @@ function initMap() {
       map.setCenter(place.geometry.location);
       map.setZoom(12);
     }
+    debugger;
 
     // Set the position of the marker using the place ID and location.
     marker.setPlace({
@@ -79,8 +80,9 @@ function  buildInfoWindow(place) {
     
 }
 
-function  buildSavedInfoWindow(name) {
-    string = "<h1>" + name + "</h1>"
+function  buildSavedInfoWindow(tip) {
+    string = "<h1>" + tip.name + "</h1>"
+    console.log(tip.place_id)
     return string
 }
 
@@ -95,17 +97,17 @@ function setForm(form, place){
     return $(form).html()
 }
 
-function addMarker(lat, lng, title) {
-    var myLatLng = {lat: parseFloat(lat), lng: parseFloat(lng)}
+function addMarker(tip) {
+    var myLatLng = {lat: parseFloat(tip.lat), lng: parseFloat(tip.lng)}
     var infowindow = new google.maps.InfoWindow();
-    infowindow.setContent(buildSavedInfoWindow(title));
     var marker = new google.maps.Marker({
-        title: title,
+        title: tip.name,
         map: map,
         position: myLatLng
     });
     marker.addListener('click', function() {
         closeAllInfoWindows();
+        infowindow.setContent(buildSavedInfoWindow(tip));
         infowindow.open(map, marker);
     });
     markers.push(marker);
