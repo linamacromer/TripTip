@@ -3,7 +3,7 @@
   <ul>
     <li>
       <% if session[:user_id] == @user.id %>
-        <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips/new", :id => 'add-tip-form', :class => 'hidden', method: "post") do %>
+        <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :id => 'add-tip-form', :class => 'hidden', method: "post") do %>
           <%= hidden_field_tag("tip[name]") %>
           <%= hidden_field_tag("tip[place_id]") %>
           <%= submit_tag("add") %>
@@ -12,7 +12,7 @@
     </li>
     <% if @trip.tips.length != 0 %>
     <% @trip.tips.reverse.each do |x| %>
-      <li class=""><%= link_to x.name, new_user_trip_tip_path(@user, @trip, x) %></li>
+      <li class=""><%= link_to x.name, user_trip_tip_path(@user, @trip, x) %></li>
     <% end %>
     <% end %>
   </ul>

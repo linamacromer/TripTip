@@ -64,8 +64,8 @@ function  buildInfoWindow(place) {
         '<br>' 
 
 
-    if (form === undefined){
-        return info + 'Select a trip to add location'
+    if (form.length === 0){
+        return info + '<em>Select a trip to add location</em>'
     } else {
         return info + setForm(form,place)
     }
@@ -73,12 +73,11 @@ function  buildInfoWindow(place) {
 }
 
 function setForm(form, place){
+    debugger;
     $(form).find('input[name="tip[name]"]').val(place.name)
     $(form).find('input[name="tip[place_id]"]').val(place.place_id)
     $(form).find('#add-tip-form').removeClass('hidden')
     return $(form).html()
 
 }
-
-[value='Hot Fuzz']
 
