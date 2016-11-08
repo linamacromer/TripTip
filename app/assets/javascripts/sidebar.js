@@ -54,18 +54,18 @@ $(function() {
     $('.add-trip-button').hide()
 
     $('#trips-header, #all-trips i').on('click', function(){
-    $('#user-trips').toggleClass('hidden')
-    $('#trips-title a .fa').toggleClass('fa-sort-asc')
-    $('.t-underline').toggleClass('underline-animation')
+      $('#user-trips').toggleClass('hidden')
+      $('#trips-title a .fa').toggleClass('fa-sort-asc')
+      $('.t-underline').toggleClass('underline-animation')
 
-    if($('#user-trips').hasClass('hidden')) {
-      $('.add-trip-button').removeClass('add-trip-opacity-animation')
-      $('.add-trip-button').hide()
-    } else {
-      $('.add-trip-button').show()
-      $('.add-trip-button').addClass('add-trip-opacity-animation')
-    }
-  })
+      if($('#user-trips').hasClass('hidden') || $('#trip_name').is(':visible')) {
+        $('.add-trip-button').removeClass('add-trip-opacity-animation')
+        $('.add-trip-button').hide()
+      } else {
+        $('.add-trip-button').show()
+        $('.add-trip-button').addClass('add-trip-opacity-animation')
+      }
+    })
 
   $('.add-trip-button').on('click', function(){
     if(!$('#user-trips').hasClass('hidden')) {
