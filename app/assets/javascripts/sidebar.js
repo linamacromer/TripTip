@@ -24,7 +24,7 @@ $(function() {
   })
 
 
-  $('.trip-items').on('click', 'a', function(event){
+  $('.trip-items').on('click', 'a.trip-map', function(event){
     event.preventDefault()
     remove_temp_nav()
     var url = $(event.target).attr('href')
@@ -79,13 +79,32 @@ $(function() {
   })
 
 
+// LINA IS WORKING ON THIS
+  // $('.trip-edits').on('click', ".trip-update", function(event) {
+  //   event.preventDefault();
+  //   console.log(event);
+  // })
+
+  // $('.trip-edits').on('click', ".trip-delete", function(event) {
+  //   event.preventDefault();
+  //   alert("Are you sure you want to delete this trip?")
+    
+  //   $.ajax({
+  //     method: "DELETE",
+  //     url: this.pathname,
+  //   }).done(function(response) {
+  //   })
+  // })
 
 });
 
 function prependTripToList(data){
-  var id = $('#user_id').val()
+  var user_id = $('#user_id').val()
   var template = $('#trip-template')
-  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
+  var link = "/users/" + user_id + "/trips/" + data.id
+  template.find('.trip-name').attr('href', link).text(data.name)
+  template.find('.trip-update').attr('href', link)
+  template.find('.trip-delete').attr('href', link)
   $(template).removeClass('hidden')
 }
 

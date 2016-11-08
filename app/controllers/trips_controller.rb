@@ -13,7 +13,6 @@ class TripsController < ApplicationController
   end
 
   def create
-    p params
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.create(trip_params)
 
@@ -22,6 +21,19 @@ class TripsController < ApplicationController
     else
       render json: @trip.errors, status: :unprocessable_entity
     end
+  end
+
+# LINA IS WORKING ON THIS
+  # def update
+  #   p "---------------------------------"
+  #   @trip = Trip.find(params[:id])
+  #   p @trip
+  #   p "---------------------------------"
+  # end
+
+  def destroy
+    Trip.destroy(params[:id])
+    redirect_to '/'
   end
 
   private
