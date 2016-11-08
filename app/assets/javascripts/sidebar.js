@@ -1,19 +1,25 @@
 $(function() {
+
+  $(document).on('submit','#add-tip-form', submitTip)
+
   var user_id = $('#user_id').val()
   $('.new-trip').submit(function(event){
     event.preventDefault()
     var latLng = map.getCenter().lat() + " " + map.getCenter().lng()
     var tripZ = map.getZoom()
+    var id = $('#user_id').val()
     var tripName = $('#trip_name').val()
     var private = $("#private").is(':checked')
     var data = {trip: {name: tripName, center: latLng, zoom: tripZ, private: private}}
     $.ajax({
       type: "POST",
-      url: '/users/' + user_id + '/trips',
+      url: '/users/' + id + '/trips',
       data: data
     }).done(function(data){
       prependTripToList(data)
       $('#trip_name').val("")
+      $('.new-trip').toggleClass('hidden')
+      $('.add-trip-button').toggleClass('add-trip-opacity-animation')
     })
   })
 
@@ -34,12 +40,26 @@ $(function() {
 
   })
 
+  // $('#sidebar').on('click', '#all-trips', function(){
+  //   $('#user-trips').toggleClass('hidden')
+  //   $('#trips-title a .fa').toggleClass('fa-sort-asc')
+  //   $('.t-underline').toggleClass('underline-animation')
+  //   $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+  // })
+    $('.add-trip-button').hide()
 
-  $('#sidebar').on('click', '#all-trips i', function(){
+    $('#trips-header, #all-trips i').on('click', function(){
     $('#user-trips').toggleClass('hidden')
     $('#trips-title a .fa').toggleClass('fa-sort-asc')
     $('.t-underline').toggleClass('underline-animation')
-    $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+
+    if($('#user-trips').hasClass('hidden')) {
+      $('.add-trip-button').removeClass('add-trip-opacity-animation')
+      $('.add-trip-button').hide()
+    } else {
+      $('.add-trip-button').show()
+      $('.add-trip-button').addClass('add-trip-opacity-animation')
+    }
   })
 
   $('.add-trip-button').on('click', function(){
@@ -79,12 +99,18 @@ $(function() {
 });
 
 function prependTripToList(data){
+<<<<<<< HEAD
   var user_id = $('#user_id').val()
   var template = $('#trip-template')
   var link = "/users/" + user_id + "/trips/" + data.id
   template.find('.trip-name').attr('href', link).text(data.name)
   template.find('.trip-update').attr('href', link)
   template.find('.trip-delete').attr('href', link)
+=======
+  var id = $('#user_id').val()
+  var template = $('#trip-template')
+  template.find('a').attr('href', "/users/" + id + "/trips/" + data.id).text(data.name)
+>>>>>>> master
   $(template).removeClass('hidden')
 }
 
@@ -99,7 +125,7 @@ function get_tips_list(url,self){
 }
 
 function add_to_nav(html){
-  $('#nav').append(html)
+  $('#nav').append("<br>" + html)
 }
 
 function remove_temp_nav(){

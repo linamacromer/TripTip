@@ -17,8 +17,21 @@ class User < ApplicationRecord
 
   def friends
     friends = []
-    Friendship.where("friend1_id = ?", self.id).each{|x|friends << x.friend2}
-    Friendship.where("friend2_id = ?", self.id).each{|x|friends << x.friend1}
+    Friendship.where("friend1_id = ? and confirmed = ?", self.id, true).each{|x|friends << x.friend2}
+    Friendship.where("friend2_id = ? and confirmed = ?", self.id, true).each{|x|friends << x.friend1}
     return friends
   end
+
+  def unconfirmed_friends
+    friends = []
+    Friendship.where("friend1_id = ? and confirmed = ?", self.id, false).each{|x|friends << x.friend2}
+    return friends
+  end
+
+  def friend_requests
+    friends = []
+    Friendship.where("friend2_id = ? and confirmed = ?", self.id, false).each{|x|friends << x.friend1}
+    return friends
+  end
+
 end
