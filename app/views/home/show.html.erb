@@ -37,9 +37,9 @@
                 <% end %>
             </li>
 
-            <li id="trip-template" class="trip-items sub-li hidden"><a class="trip-name" href="#"></a>
-                <a class="trip-update" data-method="patch" href="#" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a class="trip-delete" data-confirm="Are you sure you want to delete?" data-method="delete" href="#" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <li id="trip-template" class="trip-items sub-li hidden"><a class="trip-map" href="#"></a>
+                <a class="trip-update" href="#" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a class="trip-delete" href="#" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
             </li>
 
             <% if @user.trips.length != 0 %>
@@ -47,8 +47,10 @@
             <li class='trip-items'>
               <%= link_to x.name, user_trip_path(@user, x), class: "trip-map" %>
 
-              <a class="trip-update" data-method="patch" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-              <a class="trip-delete" data-confirm="Are you sure you want to delete?" data-method="delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+              <span class="trip-edits">
+              <a class="trip-update" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a class="trip-delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+              </span>
 
             </li>
             <% end %>
