@@ -4,7 +4,7 @@ puts "***Did you remember to db:drop, then db:create, db:migrate, then log in th
 
 10.times do
   user = User.create(name: Faker::Name.name)
-  user.friendships.create(friend2_id: 1)
+  user.friendships.create(friend2_id: 1, confirmed: true)
 end
 
 trip = Trip.create( user_id: 2, name: "NYC", center: "40.7591704 -74.039271", zoom: 12)
