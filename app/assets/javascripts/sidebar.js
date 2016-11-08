@@ -1,4 +1,7 @@
 $(function() {
+
+  $(document).on('submit','#add-tip-form', submitTip)
+
   var user_id = $('#user_id').val()
   $('.new-trip').submit(function(event){
     event.preventDefault()
