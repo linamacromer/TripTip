@@ -105,12 +105,13 @@ $(function() {
 
 function prependTripToList(data){
   var user_id = $('#user_id').val()
-  var template = $('#trip-template')
+  var template = $('#trip-template').clone()
   var link = "/users/" + user_id + "/trips/" + data.id
   template.find('.trip-name').attr('href', link).text(data.name)
   template.find('.trip-update').attr('href', link)
   template.find('.trip-delete').attr('href', link)
-  $(template).removeClass('hidden')
+  template.removeClass('hidden')
+  $("#user-trips > li:nth-child(2)").after(template);
 }
 
 function get_tips_list(url,self){
