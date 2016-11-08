@@ -23,7 +23,7 @@
         <ul id="user-trips" class="hidden">
             <li>
                 <%= form_tag("/users/#{@user.id}/trips", :class => 'new-trip hidden', method: "post") do %>
-                  <%= text_field_tag("trip[name]") %>
+                  <%= text_field_tag("trip[name]", "", required: 'true') %>
                   <%= hidden_field_tag("user[id]", @user.id) %>
                   <%= hidden_field_tag("trip[center]", "3245678") %>
                   <%= hidden_field_tag("trip[zoom]", "12") %>
@@ -31,25 +31,27 @@
                             <%= content_tag(:strong, '+') %>
                     <!-- <i class="fa fa-plus-square" aria-hidden="true"></i> -->
                   <% end %>
-                  <div class="">
+                  <div>
                     <%= check_box_tag :private %> private
                   </div>
                 <% end %>
             </li>
 
             <li id="trip-template" class="trip-items sub-li hidden"><a class="trip-name" href="#"></a>
-                <a class="trip-update" data-method="patch" href="#" rel="nofollow">pencil</a>
-                <a class="trip-delete" data-method="delete" href="#" rel="nofollow">x</a>
+                <a class="trip-update" href="#" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a class="trip-delete" href="#" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
             </li>
 
             <% if @user.trips.length != 0 %>
             <% @user.trips.reverse.each do |x| %>
             <li class='trip-items'>
               <%= link_to x.name, user_trip_path(@user, x), class: "trip-map" %>
-              <div class="trip-edits">
-              <a class="trip-update" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">pencil</a>
-              <a class="trip-delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">x</a>
-              </div>
+
+              <span class="trip-edits">
+              <a class="trip-update" data-method="patch" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a class="trip-delete" data-confirm="Are you sure you want to delete?" data-method="delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+              </span>
+
             </li>
             <% end %>
             <% end %>
