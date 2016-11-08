@@ -84,11 +84,11 @@ $(function() {
   //   })
   // }
 
-// LINA IS WORKING ON THIS
-  // $('.trip-edits').on('click', ".trip-update", function(event) {
-  //   event.preventDefault();
-  //   console.log(event);
-  // })
+  $('.trip-edits').on('click', ".trip-update", function(event) {
+    console.log("clicked on update")
+    event.preventDefault();
+    debugger
+  })
 
 
   $('.trip-edits').on('click', ".trip-delete", function(event) {
