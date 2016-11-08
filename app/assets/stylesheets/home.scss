@@ -108,14 +108,14 @@ ul {
     padding-bottom: 5px;
     .trip-map {
       padding-right: 10px;
-      font-size: 1.4em;
+      font-size: 1.15em;
     }
   }
   form {
     padding: 5px 0px 15px -5px;
     // @include blue-border-bottom;
     #trip_name {
-      font-size: 1.4em;
+      font-size: 1em;
       width: 85%;
       display: inline;
       padding: 3px 0px 6px 6px;
@@ -194,10 +194,11 @@ ul {
 }
 .add-trip-submit {
   width: 10%;
-  float: none;
-  background-color: white;
-  border: none;
   font-size: 25px;
+  float: none;
+  border: none;
+  vertical-align: bottom;
+  background-color: white;
   color: $purple;
   &:hover {
     cursor: pointer;
