@@ -87,24 +87,18 @@ $(function() {
   // })
 
   $('.trip-edits').on('click', ".trip-delete", function(event) {
-    console.log("hi")
     event.preventDefault();
-    // var answer=confirm('Are you sure you want to delete this trip?');
-    //   if(answer){
-    //     alert('Deleted');
-    //   }
-    //   else{
-    //     event.preventDefault();      
-    //   }    
-
-
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: this.pathname,
-  //   }).done(function(response) {
-  //   })
+    debugger
+    var answer=confirm('Are you sure you want to delete this trip?');
+      if(answer){
+        $.ajax({
+          type: "delete",
+          url: this.pathname,
+        }).done(function(response) {
+          console.log(this);
+        })
+      }
   })
-
 });
 
 function prependTripToList(data){
