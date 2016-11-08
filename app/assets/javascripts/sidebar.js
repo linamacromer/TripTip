@@ -19,6 +19,7 @@ $(function() {
       prependTripToList(data)
       $('#trip_name').val("")
       $('.new-trip').toggleClass('hidden')
+      $('.add-trip-button').show()
       $('.add-trip-button').toggleClass('add-trip-opacity-animation')
     })
   })
@@ -63,8 +64,12 @@ $(function() {
   })
 
   $('.add-trip-button').on('click', function(){
-    $('.new-trip').toggleClass('hidden')
-    $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+    if(!$('#user-trips').hasClass('hidden')) {
+      $('.new-trip').toggleClass('hidden')
+      $('.add-trip-button').toggleClass('add-trip-opacity-animation')
+      $('.add-trip-button').hide()
+      $('input#trip_name').focus()
+    }
   })
 
   $('#sidebar').on('click', '#friend-list', function(){
@@ -73,11 +78,11 @@ $(function() {
     $('.f-underline').toggleClass('underline-animation')
   })
 
-  $('#sidebar').on('click', '#user-home', function(){
-    $('#user-box').toggleClass('hidden')
-    $('#user-home a .fa').toggleClass('fa-rotate-180')
-  })
-
+  // if(!$('#user-trips').hasClass('hidden')) {
+  //   $('*:not(#user-trips)').on('click', function() {
+  //     $('#user-trips').toggleClass('hidden')
+  //   })
+  // }
 
 // LINA IS WORKING ON THIS
   // $('.trip-edits').on('click', ".trip-update", function(event) {
@@ -88,7 +93,7 @@ $(function() {
   // $('.trip-edits').on('click', ".trip-delete", function(event) {
   //   event.preventDefault();
   //   alert("Are you sure you want to delete this trip?")
-    
+
   //   $.ajax({
   //     method: "DELETE",
   //     url: this.pathname,
