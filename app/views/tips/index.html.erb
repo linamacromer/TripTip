@@ -14,7 +14,7 @@
     </li>
     <% if @trip.tips.length != 0 %>
     <% @trip.tips.reverse.each do |x| %>
-      <li class=""><%= link_to x.name, user_trip_tip_path(@user, @trip, x) %></li>
+      <li class="tip-item"><%= link_to x.name, user_trip_tip_path(@user, @trip, x), "data-place_id" => x.place_id  %></li>
     <% end %>
     <% end %>
   </ul>

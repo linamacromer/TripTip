@@ -82,7 +82,6 @@ function  buildInfoWindow(place) {
 
 function  buildSavedInfoWindow(tip) {
     string = "<h1>" + tip.name + "</h1>"
-    console.log(tip.place_id)
     return string
 }
 
@@ -103,12 +102,12 @@ function addMarker(tip) {
     var marker = new google.maps.Marker({
         title: tip.name,
         map: map,
+        place_id: tip.place_id,
         position: myLatLng
     });
+    infowindow.setContent(buildSavedInfoWindow(tip));
     marker.addListener('click', function() {
-        closeAllInfoWindows();
-        infowindow.setContent(buildSavedInfoWindow(tip));
-        infowindow.open(map, marker);
+        openMarker(marker, infowindow)
     });
     markers.push(marker);
     infoWindows.push(infowindow);
@@ -132,6 +131,7 @@ function showMarkers() {
 function deleteMarkers() {
   clearMarkers();
   markers = [];
+  infoWindows = [];
 }
 
 function closeAllInfoWindows() {

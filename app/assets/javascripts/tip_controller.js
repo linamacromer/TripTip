@@ -24,4 +24,24 @@ function loadMarkers(data){
   }
 }
 
+function openMarker(marker, infowindow){
+  event.preventDefault();
+  closeAllInfoWindows();
 
+  if (infowindow == undefined) {
+    place_id = $(event.target).data('place_id')
+    obj = findMarker(place_id)
+    infoWindows[obj.index].open(map,obj.mark)
+  } else {
+    infowindow.open(map, marker);
+  }
+
+}
+
+function findMarker(place_id){
+  for (var i = markers.length - 1; i >= 0; i--) {
+    if (markers[i].place_id == place_id) {
+      return {mark: markers[i], index: i}
+    }
+  }
+}
