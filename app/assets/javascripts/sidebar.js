@@ -144,7 +144,7 @@ function get_tip_markers(url){
 }
 
 function add_to_nav(html){
-  $('#nav').append("<br>" + html)
+  $('#nav').append(html)
 }
 
 function remove_temp_nav(){
