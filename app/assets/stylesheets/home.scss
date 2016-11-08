@@ -108,7 +108,7 @@ ul {
     padding-bottom: 5px;
     .trip-map {
       padding-right: 10px;
-      font-size: 1.4em;
+      font-size: 1.15em;
     }
   }
   form {
@@ -194,10 +194,11 @@ ul {
 }
 .add-trip-submit {
   width: 10%;
-  float: none;
-  background-color: white;
-  border: none;
   font-size: 25px;
+  float: none;
+  border: none;
+  vertical-align: bottom;
+  background-color: white;
   color: $purple;
   &:hover {
     cursor: pointer;
