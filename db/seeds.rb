@@ -7,6 +7,11 @@ puts "***Did you remember to db:drop, then db:create, db:migrate, then log in th
   user.friendships.create(friend2_id: 1, confirmed: true)
 end
 
+3.times do
+  user = User.create(name: Faker::Name.name)
+  user.friendships.create(friend2_id: 1, confirmed: false)
+end
+
 trip = Trip.create( user_id: 2, name: "NYC", center: "40.7591704 -74.039271", zoom: 12)
 3.times do
 	trip.tips.create(place_id: "placeholder", name: Faker::Company.name)
@@ -188,4 +193,19 @@ trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 User.create(name: Faker::Name.name)
 
 trip = Trip.create( user_id: 17, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
+
+User.create(name: Faker::Name.name)
+
+trip = Trip.create( user_id: 18, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
+
+User.create(name: Faker::Name.name)
+
+trip = Trip.create( user_id: 19, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
+
+User.create(name: Faker::Name.name)
+
+trip = Trip.create( user_id: 20, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
