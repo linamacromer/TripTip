@@ -6,10 +6,14 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
-  resources :users, only: [:show] do
-      resources :trips, only: [:index, :show, :new, :create, :update, :destroy] do
-        resources :tips, only: [:index, :show, :new, :create, :update, :destroy]
-      end
+  resources :users, only: [:show, :search] do
+    resources :trips, only: [:index, :show, :new, :create, :update, :destroy] do
+      resources :tips, only: [:index, :show, :new, :create, :update, :destroy]
+    end
+  end
+
+  scope :users do
+    get 'search/:q' => 'users#search'
   end
 
   root to: "home#show"
