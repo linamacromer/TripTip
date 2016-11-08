@@ -15,10 +15,9 @@ class FriendshipsController < ActionController::Base
 
   def confirm
     friendship = Friendship.find_by(friend1: params[:friend_id], friend2: params[:id])
-    p friendship
     #friendship.confirmed = true
     friendship.save
-    render json: friendship
+    render json: {friend: friendship.friend1, trips: friendship.friend1.trips}
   end
 
   private

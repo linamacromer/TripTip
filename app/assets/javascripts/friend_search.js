@@ -51,8 +51,9 @@ $(function() {
       method: "PUT",
       url: url
     })
-    .done(function(){
+    .done(function(data){
       updateConfirmationText(self, name)
+      console.log(data)
     })
   })
 
