@@ -43,9 +43,11 @@
             <% if @user.trips.length != 0 %>
             <% @user.trips.reverse.each do |x| %>
             <li class='trip-items'>
-              <%= link_to x.name, user_trip_path(@user, x) %>
+              <%= link_to x.name, user_trip_path(@user, x), class: "trip-map" %>
+              <div class="trip-edits">
               <a class="trip-update" data-method="patch" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">pencil</a>
               <a class="trip-delete" data-confirm="Are you sure you want to delete?" data-method="delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow">x</a>
+              </div>
             </li>
             <% end %>
             <% end %>
