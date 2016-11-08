@@ -1,4 +1,6 @@
 var map;
+var markers = [];
+var service;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -10,6 +12,7 @@ function initMap() {
     zoom: 12,
     clickableIcons: false
   });
+  service = new google.maps.places.PlacesService(map);
 
   var input = document.getElementById('pac-input');
 
@@ -35,7 +38,7 @@ function initMap() {
 
     if (place.geometry.viewport) {
       map.fitBounds(place.geometry.viewport);
-      map.setZoom(15);
+      map.setZoom(12);
     } else {
       map.setCenter(place.geometry.location);
       map.setZoom(12);
@@ -47,6 +50,7 @@ function initMap() {
       location: place.geometry.location
     });
     marker.setVisible(true);
+    markers.push(marker);
 
     info = buildInfoWindow(place);
     
@@ -79,5 +83,35 @@ function setForm(form, place){
     $(form).find('#add-tip-form').removeClass('hidden')
     return $(form).html()
 
+}
+
+function addMarker(lat, lng) {
+    var myLatLng = {lat: lat, lng: lng}
+    var marker = new google.maps.Marker({
+        map: map,
+        position: myLatLng
+    });
+
+    markers.push(marker);
+}
+// Sets the map on all markers in the array.
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+// Removes the markers from the map, but keeps them inthe array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
+// Deletes all markers in the array by removingreferences to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
 }
 

@@ -3,7 +3,11 @@ class TipsController < ApplicationController
 		@user_id = session[:user_id]
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.find_by(id: params[:trip_id])
-    render :index, :layout => false
+ 
+    respond_to do |format|
+			format.html { render :index, :layout => false }
+			format.json { render json: @trip.tips }
+		end
 	end
 
 	def show

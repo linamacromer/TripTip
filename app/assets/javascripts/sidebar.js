@@ -27,8 +27,8 @@ $(function() {
   $('.trip-items').on('click', 'a', function(event){
     event.preventDefault()
     remove_temp_nav()
+    clearMarkers()
     var url = $(event.target).attr('href')
-    get_tips_list(url, event)
 
     $.get( url, function(data) {
       zoom = data.zoom
@@ -36,7 +36,11 @@ $(function() {
       latlng = new google.maps.LatLng(center[0], center[1])
       map.panTo(latlng)
       map.setZoom(zoom)
+      get_tips_list(url, event)
+      get_tip_markers(url)
     });
+
+
 
   })
 
@@ -99,6 +103,18 @@ function get_tips_list(url,self){
     })
 }
 
+function get_tip_markers(url){
+    console.log(url)
+    $.ajax({
+      dataType: "json",
+      type: "GET",
+      url: url + '/tips'
+    })
+    .done(function(data){
+      loadMarkers(data)
+    })
+}
+
 function add_to_nav(html){
   $('#nav').append("<br>" + html)
 }
@@ -107,6 +123,3 @@ function remove_temp_nav(){
   $('#temp-section').remove()
 }
 
-function add_list(data){
-
-}
