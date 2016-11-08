@@ -79,21 +79,21 @@ $(function() {
   })
 
 
-  $('.trip-edits').on('click', ".trip-update", function(event) {
-    event.preventDefault();
-    console.log(event);
-  })
+  // $('.trip-edits').on('click', ".trip-update", function(event) {
+  //   event.preventDefault();
+  //   console.log(event);
+  // })
 
-  $('.trip-edits').on('click', ".trip-delete", function(event) {
-    event.preventDefault();
-    alert("Are you sure you want to delete this trip?")
+  // $('.trip-edits').on('click', ".trip-delete", function(event) {
+  //   event.preventDefault();
+  //   alert("Are you sure you want to delete this trip?")
     
-    $.ajax({
-      method: "DELETE",
-      url: this.pathname,
-    }).done(function(response) {
-    })
-  })
+  //   $.ajax({
+  //     method: "DELETE",
+  //     url: this.pathname,
+  //   }).done(function(response) {
+  //   })
+  // })
 
 });
 

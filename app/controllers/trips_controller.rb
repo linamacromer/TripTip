@@ -23,15 +23,17 @@ class TripsController < ApplicationController
     end
   end
 
-  def update
-    p "---------------------------------"
-    @trip = Trip.find(params[:id])
-    p @trip
-    p "---------------------------------"
-  end
+# LINA IS WORKING ON THIS
+  # def update
+  #   p "---------------------------------"
+  #   @trip = Trip.find(params[:id])
+  #   p @trip
+  #   p "---------------------------------"
+  # end
 
   def destroy
     Trip.destroy(params[:id])
+    redirect_to '/'
   end
 
   private
