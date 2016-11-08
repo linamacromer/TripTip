@@ -1,6 +1,6 @@
 <li id='temp-section'>
   <h1><%= @trip.name %>:Tips</h1>
-  <ul>
+  <ul id='tip-list'>
     <li>
       <% if session[:user_id] == @user.id %>
         <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :id => 'add-tip-form', :class => 'hidden', method: "post") do %>

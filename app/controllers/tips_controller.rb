@@ -20,7 +20,7 @@ class TipsController < ApplicationController
     @tip = @trip.tips.create(tip_params)
 
     if @tip.save
-      render json: @tip, status: :created
+      render :show, :layout => false , status: :created
     else
       render json: @tip.errors, status: :unprocessable_entity
     end

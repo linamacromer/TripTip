@@ -56,7 +56,8 @@ function initMap() {
 }
 
 function  buildInfoWindow(place) {
-    form = $('#add-tip-form').wrap('<p/>').parent();
+    $form = $('#add-tip-form').clone();
+    form = $form.wrap('<p/>').parent()
     name = place.name
     address = place.formatted_address
     place_id = place.place_id
@@ -73,7 +74,6 @@ function  buildInfoWindow(place) {
 }
 
 function setForm(form, place){
-    debugger;
     $(form).find('input[name="tip[name]"]').val(place.name)
     $(form).find('input[name="tip[place_id]"]').val(place.place_id)
     $(form).find('#add-tip-form').removeClass('hidden')
