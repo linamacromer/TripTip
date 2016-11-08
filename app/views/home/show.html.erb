@@ -79,7 +79,7 @@
     <ul id="friends" class="hidden">
         <% if @user.friends.length != 0 %>
           <li><h4>Friends:</h4></li>
-          <% @user.friends.each do |x| %>
+          <% @user.friends.reverse.each do |x| %>
             <li id="friend-name">
               <%= link_to x.name, user_trips_path(x), :class => 'friend-li', :data => x.id %>
             </li>
