@@ -91,13 +91,17 @@ $(function() {
   // }
 
   $('.trip-edits').on('click', ".trip-update", function(event) {
-    console.log("clicked on update")
     event.preventDefault();
-    var $trip = this.parentElement.parentElement;
-    var $tripLink = $($trip).find('a.trip-map');
+    var $pencil = $(this)
+    var $tripContainer = this.parentElement.parentElement;
+    var $tripLink = $($tripContainer).find('a.trip-map');
     var $tripName = $tripLink.text();
-    
-    debugger
+    var $form = $("<form id='trip-update-form'></form>");
+    $form.append("<input type='text' name='trip[name]' id='trip_name' value='" + $tripName + "'>");
+    $form.append("<button type='submit' id-'trip-update-button'>Update</button>");
+    $($tripContainer).prepend($form);
+    $tripLink.hide();
+    $pencil.hide();
   })
 
 
