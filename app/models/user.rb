@@ -34,4 +34,6 @@ class User < ApplicationRecord
     return friends
   end
 
+
+
 end

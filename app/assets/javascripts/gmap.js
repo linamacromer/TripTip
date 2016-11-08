@@ -1,4 +1,7 @@
 var map;
+var markers = [];
+var infoWindows = [];
+var service;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -10,6 +13,7 @@ function initMap() {
     zoom: 12,
     clickableIcons: false
   });
+  service = new google.maps.places.PlacesService(map);
 
   var input = document.getElementById('pac-input');
 
@@ -35,7 +39,7 @@ function initMap() {
 
     if (place.geometry.viewport) {
       map.fitBounds(place.geometry.viewport);
-      map.setZoom(15);
+      map.setZoom(12);
     } else {
       map.setCenter(place.geometry.location);
       map.setZoom(12);
@@ -47,6 +51,8 @@ function initMap() {
       location: place.geometry.location
     });
     marker.setVisible(true);
+    markers.push(marker);
+    infoWindows.push(infowindow);
 
     info = buildInfoWindow(place);
     
@@ -73,11 +79,62 @@ function  buildInfoWindow(place) {
     
 }
 
+function  buildSavedInfoWindow(name) {
+    string = "<h1>" + name + "</h1>"
+    return string
+}
+
 function setForm(form, place){
+    lat = place.geometry.location.lat()
+    lng = place.geometry.location.lng()
     $(form).find('input[name="tip[name]"]').val(place.name)
     $(form).find('input[name="tip[place_id]"]').val(place.place_id)
+    $(form).find('input[name="tip[lat]"]').val(lat)
+    $(form).find('input[name="tip[lng]"]').val(lng)
     $(form).find('#add-tip-form').removeClass('hidden')
     return $(form).html()
+}
 
+function addMarker(lat, lng, title) {
+    var myLatLng = {lat: parseFloat(lat), lng: parseFloat(lng)}
+    var infowindow = new google.maps.InfoWindow();
+    infowindow.setContent(buildSavedInfoWindow(title));
+    var marker = new google.maps.Marker({
+        title: title,
+        map: map,
+        position: myLatLng
+    });
+    marker.addListener('click', function() {
+        closeAllInfoWindows();
+        infowindow.open(map, marker);
+    });
+    markers.push(marker);
+    infoWindows.push(infowindow);
+}
+// Sets the map on all markers in the array.
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+// Removes the markers from the map, but keeps them inthe array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
+// Deletes all markers in the array by removingreferences to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+function closeAllInfoWindows() {
+  for (var i=0;i<infoWindows.length;i++) {
+     infoWindows[i].close();
+  }
 }
 

@@ -33,7 +33,6 @@ class TripsController < ApplicationController
 
   def destroy
     Trip.destroy(params[:id])
-    redirect_to '/'
   end
 
   private

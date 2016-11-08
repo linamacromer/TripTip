@@ -28,8 +28,8 @@ $(function() {
   $('.trip-items').on('click', 'a.trip-map', function(event){
     event.preventDefault()
     remove_temp_nav()
+    clearMarkers()
     var url = $(event.target).attr('href')
-    get_tips_list(url, event)
 
     $.get( url, function(data) {
       zoom = data.zoom
@@ -37,7 +37,11 @@ $(function() {
       latlng = new google.maps.LatLng(center[0], center[1])
       map.panTo(latlng)
       map.setZoom(zoom)
+      get_tips_list(url, event)
+      get_tip_markers(url)
     });
+
+
 
   })
 
@@ -74,6 +78,8 @@ $(function() {
 
   $('#sidebar').on('click', '#friend-list', function(){
     $('#friends').toggleClass('hidden')
+    $('#add-friends-section').toggleClass('hidden')
+    $('#pending').toggleClass('hidden')
     $('#friend-list a .fa').toggleClass('fa-rotate-180')
     $('.f-underline').toggleClass('underline-animation')
   })
@@ -90,16 +96,20 @@ $(function() {
   //   console.log(event);
   // })
 
-  // $('.trip-edits').on('click', ".trip-delete", function(event) {
-  //   event.preventDefault();
-  //   alert("Are you sure you want to delete this trip?")
 
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: this.pathname,
-  //   }).done(function(response) {
-  //   })
-  // })
+  $('.trip-edits').on('click', ".trip-delete", function(event) {
+    event.preventDefault();
+    var $trip = this.parentElement.parentElement;
+    var answer=confirm('Are you sure you want to delete this trip?');
+      if(answer){
+        $.ajax({
+          type: "delete",
+          url: this.pathname,
+        }).done(function(response) {
+          $trip.remove()
+        })
+      }
+  })
 
 });
 
@@ -107,7 +117,7 @@ function prependTripToList(data){
   var user_id = $('#user_id').val()
   var template = $('#trip-template').clone()
   var link = "/users/" + user_id + "/trips/" + data.id
-  template.find('.trip-name').attr('href', link).text(data.name)
+  template.find('.trip-map').attr('href', link).text(data.name)
   template.find('.trip-update').attr('href', link)
   template.find('.trip-delete').attr('href', link)
   template.removeClass('hidden')
@@ -124,6 +134,17 @@ function get_tips_list(url,self){
     })
 }
 
+function get_tip_markers(url){
+    $.ajax({
+      dataType: "json",
+      type: "GET",
+      url: url + '/tips'
+    })
+    .done(function(data){
+      loadMarkers(data)
+    })
+}
+
 function add_to_nav(html){
   $('#nav').append("<br>" + html)
 }
@@ -132,6 +153,3 @@ function remove_temp_nav(){
   $('#temp-section').remove()
 }
 
-function add_list(data){
-
-}
