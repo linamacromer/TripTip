@@ -90,16 +90,20 @@ $(function() {
   //   console.log(event);
   // })
 
-  // $('.trip-edits').on('click', ".trip-delete", function(event) {
-  //   event.preventDefault();
-  //   alert("Are you sure you want to delete this trip?")
 
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: this.pathname,
-  //   }).done(function(response) {
-  //   })
-  // })
+  $('.trip-edits').on('click', ".trip-delete", function(event) {
+    event.preventDefault();
+    var $trip = this.parentElement.parentElement;
+    var answer=confirm('Are you sure you want to delete this trip?');
+      if(answer){
+        $.ajax({
+          type: "delete",
+          url: this.pathname,
+        }).done(function(response) {
+          $trip.remove()
+        })
+      }
+  })
 
 });
 
@@ -107,7 +111,7 @@ function prependTripToList(data){
   var user_id = $('#user_id').val()
   var template = $('#trip-template').clone()
   var link = "/users/" + user_id + "/trips/" + data.id
-  template.find('.trip-name').attr('href', link).text(data.name)
+  template.find('.trip-map').attr('href', link).text(data.name)
   template.find('.trip-update').attr('href', link)
   template.find('.trip-delete').attr('href', link)
   template.removeClass('hidden')
