@@ -1,6 +1,7 @@
 <% if session[:user_id] %>
 <% @user = User.find(session[:user_id]) %>
 <div id="sidebar" role="navigation">
+  <%= link_to "Sign out", signout_path, id: "sign_out"%>
     <%= image_tag('TripTip_Logo-01') %>
     <ul id='nav'>
         <li id='user-home'>
@@ -9,8 +10,9 @@
 
         <li id='trips-section'>
         <li id='trips-title'>
-            <a id="all-trips" href="#">Trips
-              <i class="fa fa-sort-desc" aria-hidden="true"></i>
+            <a id="all-trips" href="#">
+              <div id="trips-header">Trips</div>
+              <i id="trips-dropdown" class="fa fa-sort-desc" aria-hidden="true"></i>
               <%= button_tag(type: "button", class: 'add-trip-button') do %>
                 <i class="fa fa-plus-square" aria-hidden="true"></i>
                 add
