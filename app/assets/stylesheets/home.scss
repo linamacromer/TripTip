@@ -124,6 +124,7 @@ ul {
   width: 90%;
   position: relative;
   z-index: 0;
+  font-size: 1.4em;
 }
 #user-trips {
   .trip-items {
@@ -195,6 +196,9 @@ ul {
   li {
     p {
       margin-top: 5px;
+      a {
+        font-size: 1.15em;
+      }
     }
   }
 }
@@ -203,6 +207,7 @@ ul {
   width: 80%;
   position: relative;
   z-index: 0;
+  font-size: 1.4em;
 }
 #search_name {
   font-size: 1em;
@@ -222,6 +227,9 @@ ul {
 #friend-name {
   // box-shadow: 0px 3px 1px #d2d2d2;
   padding-bottom: 3px;
+  a {
+    font-size: 1.15em
+  }
 }
 .unsent, .sent {
   padding-left: 20px;
@@ -285,13 +293,13 @@ ul {
 }
 .fa-sort-desc {
   float: right;
-  margin-top: -3px
+  margin-top: 4px
 }
 .fa-rotate-180 {
-  margin-top: 6.15px
+  margin-top: 12px
 }
 .fa-sort-asc {
-  margin-top: 6px
+  margin-top: 12px
 }
 .fa-times {
   font-size: 1.05em;

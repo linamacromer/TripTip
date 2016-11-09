@@ -93,6 +93,7 @@ function updateConfirmationText(self, name){
 function addUserToFriends(data){
   var friend = data.friend
   var trips = data.trips
+  filterNoFriends()
   $('#friends li:first').after('<li id="friend-name" class="new-friend"><a href="/users/' + friend.id + '/trips">' + friend.name + '</a></li>')
   if (trips.length > 0){
     $('.new-friend').after('<ul class="friend-trips new-trip">')
@@ -108,5 +109,11 @@ function addUserToFriends(data){
 function removePending(){
   if ($('#pending').children().length == 1) {
     $('#pending').remove()
+  }
+}
+
+function filterNoFriends(){
+  if($('#friends').find('.no-friends')){
+    $('.no-friends').html('<h4>Friends:</h4>')
   }
 }
