@@ -24,11 +24,9 @@ class TripsController < ApplicationController
   end
 
   def update
-    p "---------------------------------"
     @trip = Trip.find(params[:id])
     @trip.update_attributes(trip_params)
-    p @trip
-    p "---------------------------------"
+    render json: @trip
   end
 
   def destroy

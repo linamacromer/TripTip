@@ -110,12 +110,18 @@ $(function() {
     var $form = $(this).closest('form');
     var $data = $form.serialize();
     var $url = $form.attr('action');
+    var $tripContainer = this.parentElement.parentElement;
+    var $tripLink = $($tripContainer).find('a.trip-map');
+    var $pencil = $($tripContainer).find('a.trip-update');
     $.ajax({
       type: "patch",
       url: $url,
       data: $data
     }).done(function(response) {
-      console.log("I got a positive response!")
+      $form.hide();
+      $pencil.show();
+      $tripLink.html(response.name)
+      $tripLink.show();
     })
   })
 
