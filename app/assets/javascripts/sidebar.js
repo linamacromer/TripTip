@@ -90,7 +90,7 @@ $(function() {
     if($('#add-friends-section').hasClass('hidden') || $('#search_name').is(':visible')) {
       $('.add-friend-button').removeClass('add-friend-opacity-animation')
       $('.add-friend-button').hide()
-      $('#trips-header').css('width', '80%')
+      $('#friends-header').css('width', '80%')
     } else {
       $('.add-friend-button').show()
       $('.add-friend-button').addClass('add-friend-opacity-animation')
