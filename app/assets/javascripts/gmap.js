@@ -44,8 +44,8 @@ function initMap() {
       map.setCenter(place.geometry.location);
       map.setZoom(12);
     }
-    debugger;
 
+    debugger;
     // Set the position of the marker using the place ID and location.
     marker.setPlace({
       placeId: place.place_id,
@@ -92,6 +92,8 @@ function setForm(form, place){
     $(form).find('input[name="tip[place_id]"]').val(place.place_id)
     $(form).find('input[name="tip[lat]"]').val(lat)
     $(form).find('input[name="tip[lng]"]').val(lng)
+    $(form).find('input[name="tip[address]"]').val(place.formatted_address)
+    $(form).find('input[name="tip[g_rating]"]').val(place.rating)
     $(form).find('#add-tip-form').removeClass('hidden')
     return $(form).html()
 }
@@ -103,8 +105,10 @@ function addMarker(tip) {
         title: tip.name,
         map: map,
         place_id: tip.place_id,
-        position: myLatLng
+        position: myLatLng,
+        address: tip.address
     });
+
     infowindow.setContent(buildSavedInfoWindow(tip));
     marker.addListener('click', function() {
         openMarker(marker, infowindow)

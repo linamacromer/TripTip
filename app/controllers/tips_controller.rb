@@ -47,7 +47,7 @@ class TipsController < ApplicationController
 	private
 
 	def tip_params
-		params.require(:tip).permit( :name, :place_id, :rating, :comment, :lat, :lng )
+		params.require(:tip).permit( :name, :place_id, :rating, :comment, :lat, :lng, :address, :g_rating )
 	end
 
 end
