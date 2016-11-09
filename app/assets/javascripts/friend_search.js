@@ -34,25 +34,25 @@ $(function() {
     var url = "/users/" + id + "/friends/pending"
     $.get( url, function(requests) {
       if (requests.length > 0){
-        $('#pending').append('<li><h4>Pending friend requests:</h4></li>')
+        $('#pending').append('<li><h4>Pending requests</h4></li>')
       }
       for (var i = 0; i < requests.length; i++) {
-        $('#pending').append('<li><p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">' + requests[i].name + '</a></p></li>')
+        $('#pending').append('<li><p class="name">' + requests[i].name + '</p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">Accept</a><a class="declination" href="/users/' + id + '/friends/' + requests[i].id + '">Decline</a></li>')
       }
     })
   })
 
   $('#sidebar').on('click', '.confirmation', function(){
     event.preventDefault()
-    var name = $(event.target).text()
-    var self = $(event.target)
+    var name = $(event.target).parent().find('.name').text()
+    var self = $(event.target).parent()
     url = $(event.target).attr('href')
     $.ajax({
       method: "PUT",
       url: url
     })
     .done(function(data){
-      updateConfirmationText(self, name)
+      updateAddedConfirmationText(self, name)
       addUserToFriends(data)
       setTimeout(function(){
       removePending()
@@ -60,8 +60,21 @@ $(function() {
     })
   })
 
-  $('#sidebar').on('click', '.confirmed', function(){
+  $('#sidebar').on('click', '.declination', function(){
     event.preventDefault()
+    var name = $(event.target).parent().find('.name').text()
+    var self = $(event.target).parent()
+    url = $(event.target).attr('href')
+    $.ajax({
+      method: "DELETE",
+      url: url
+    })
+    .done(function(data){
+      updateDeniedConfirmationText(self, name)
+      setTimeout(function(){
+      removePending()
+      }, 2900)
+    })
   })
 
 
@@ -77,22 +90,32 @@ function updateRequestText(self, name){
   self.addClass('sent')
 }
 
-function updateConfirmationText(self, name){
-  self.removeClass('confirmation')
-  self.addClass('confirmed')
+function updateAddedConfirmationText(self, name){
   self.fadeOut(250)
   setTimeout(function(){
       self.text(name + ' - friend added')
   }, 250)
   self.fadeIn(250).fadeOut(2000)
   setTimeout(function(){
-    self.parent().parent().remove()
+    self.remove()
+  }, 2500)
+}
+
+function updateDeniedConfirmationText(self, name){
+  self.fadeOut(250)
+  setTimeout(function(){
+      self.text(name + ' - request denied')
+  }, 250)
+  self.fadeIn(250).fadeOut(2000)
+  setTimeout(function(){
+    self.remove()
   }, 2500)
 }
 
 function addUserToFriends(data){
   var friend = data.friend
   var trips = data.trips
+  filterNoFriends()
   $('#friends li:first').after('<li id="friend-name" class="new-friend"><a href="/users/' + friend.id + '/trips">' + friend.name + '</a></li>')
   if (trips.length > 0){
     $('.new-friend').after('<ul class="friend-trips new-trip">')
@@ -111,3 +134,8 @@ function removePending(){
   }
 }
 
+function filterNoFriends(){
+  if($('#friends').find('.no-friends')){
+    $('.no-friends').html('<h4>Friends:</h4>')
+  }
+}

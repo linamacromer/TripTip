@@ -48,8 +48,11 @@ ul {
           padding-right: 10px;
         }
       }
+      &#friend-list {
+         padding-bottom: 6px;
+      }
       &#trips-title, &#friend-list {
-        padding-top: 6px; padding-bottom: 6px;
+        padding-top: 6px;
         // width: 100%;
         a {
           display: block;
@@ -113,6 +116,7 @@ ul {
     font-family: Roboto;
 
     padding-top: 0;
+    padding-bottom: 0;
   }
 }
 #trips-header {
@@ -120,10 +124,15 @@ ul {
   width: 90%;
   position: relative;
   z-index: 0;
+  font-size: 1.4em;
 }
 #user-trips {
   .trip-items {
+    padding-top: 5px;
     padding-bottom: 5px;
+    &:hover {
+      background-color: #f5f5f5;
+    }
     .trip-map {
       padding-right: 10px;
       font-size: 1.15em;
@@ -163,11 +172,42 @@ ul {
 .trip-map, .trip-update, .trip-delete {
   display: inline
 }
+#friends {
+  li {
+    h4 {
+      margin-top: 10px;
+      /* border-bottom: 1px solid #0B9444; */
+      padding-bottom: 5px;
+      font-size: 1.5em;
+      margin-bottom: 3px;
+    }
+
+  }
+}
+#pending {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  // border-bottom: 1px solid #a5d6a7;
+  h4 {
+    font-size: 1.5em;
+    margin-top: 5px;
+    margin-bottom: 3px;
+  }
+  li {
+    p {
+      margin-top: 5px;
+      a {
+        font-size: 1.15em;
+      }
+    }
+  }
+}
 #friends-header {
   display: inline-block;
   width: 80%;
   position: relative;
   z-index: 0;
+  font-size: 1.4em;
 }
 #search_name {
   font-size: 1em;
@@ -187,6 +227,9 @@ ul {
 #friend-name {
   // box-shadow: 0px 3px 1px #d2d2d2;
   padding-bottom: 3px;
+  a {
+    font-size: 1.15em
+  }
 }
 .unsent, .sent {
   padding-left: 20px;
@@ -250,13 +293,13 @@ ul {
 }
 .fa-sort-desc {
   float: right;
-  margin-top: -3px
+  margin-top: 4px
 }
 .fa-rotate-180 {
-  margin-top: 6.15px
+  margin-top: 12px
 }
 .fa-sort-asc {
-  margin-top: 6px
+  margin-top: 12px
 }
 .fa-times {
   font-size: 1.05em;
