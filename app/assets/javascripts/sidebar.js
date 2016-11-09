@@ -95,15 +95,29 @@ $(function() {
     var $pencil = $(this)
     var $tripContainer = this.parentElement.parentElement;
     var $tripLink = $($tripContainer).find('a.trip-map');
+    var $tripURL = this.pathname
     var $tripName = $tripLink.text();
-    var $form = $("<form id='trip-update-form'></form>");
+    var $form = $("<form id='trip-update-form' action=" + $tripURL + "></form>");
     $form.append("<input type='text' name='trip[name]' id='trip_name' value='" + $tripName + "'>");
-    $form.append("<button type='submit' id-'trip-update-button'>Update</button>");
+    $form.append("<button type='submit' id='trip-update-button'>Update</button>");
     $($tripContainer).prepend($form);
     $tripLink.hide();
     $pencil.hide();
   })
 
+  $('.trip-items').on('click', '#trip-update-button', function(event) {
+    event.preventDefault();
+    var $form = $(this).closest('form');
+    var $data = $form.serialize();
+    var $url = $form.attr('action');
+    $.ajax({
+      type: "patch",
+      url: $url,
+      data: $data
+    }).done(function(response) {
+      console.log("I got a positive response!")
+    })
+  })
 
   $('.trip-edits').on('click', ".trip-delete", function(event) {
     event.preventDefault();
