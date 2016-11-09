@@ -34,7 +34,7 @@ $(function() {
     var url = "/users/" + id + "/friends/pending"
     $.get( url, function(requests) {
       if (requests.length > 0){
-        $('#pending').append('<li><h4>Pending friend requests:</h4></li>')
+        $('#pending').append('<li><h4>Pending requests</h4></li>')
       }
       for (var i = 0; i < requests.length; i++) {
         $('#pending').append('<li><p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">' + requests[i].name + '</a></p></li>')
@@ -110,4 +110,3 @@ function removePending(){
     $('#pending').remove()
   }
 }
-

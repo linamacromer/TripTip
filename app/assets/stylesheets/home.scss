@@ -48,8 +48,11 @@ ul {
           padding-right: 10px;
         }
       }
+      &#friend-list {
+         padding-bottom: 6px;
+      }
       &#trips-title, &#friend-list {
-        padding-top: 6px; padding-bottom: 6px;
+        padding-top: 6px;
         // width: 100%;
         a {
           display: block;
@@ -113,6 +116,7 @@ ul {
     font-family: Roboto;
 
     padding-top: 0;
+    padding-bottom: 0;
   }
 }
 #trips-header {
@@ -123,7 +127,11 @@ ul {
 }
 #user-trips {
   .trip-items {
+    padding-top: 5px;
     padding-bottom: 5px;
+    &:hover {
+      background-color: #f5f5f5;
+    }
     .trip-map {
       padding-right: 10px;
       font-size: 1.15em;
@@ -162,6 +170,33 @@ ul {
 }
 .trip-map, .trip-update, .trip-delete {
   display: inline
+}
+#friends {
+  li {
+    h4 {
+      margin-top: 10px;
+      /* border-bottom: 1px solid #0B9444; */
+      padding-bottom: 5px;
+      font-size: 1.5em;
+      margin-bottom: 3px;
+    }
+
+  }
+}
+#pending {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  // border-bottom: 1px solid #a5d6a7;
+  h4 {
+    font-size: 1.5em;
+    margin-top: 5px;
+    margin-bottom: 3px;
+  }
+  li {
+    p {
+      margin-top: 5px;
+    }
+  }
 }
 #friends-header {
   display: inline-block;
