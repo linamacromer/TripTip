@@ -66,6 +66,16 @@ html, body {
 .controls:focus {
   border-color: #4d90fe;
 }
+
+.confirmation{
+  padding-left: 10px;
+  font-weight: 400;
+}
+
+.declination{
+  padding-left: 10px;
+  font-weight: 400;
+}
 /*@media screen and (max-width: 1403px) and (min-width: 1100){
   #map {
     width: 78%
