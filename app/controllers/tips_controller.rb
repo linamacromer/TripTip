@@ -3,10 +3,15 @@ class TipsController < ApplicationController
 		@user_id = session[:user_id]
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.find_by(id: params[:trip_id])
+    @tips = @trip.tips.as_json
+
+    @tips.each do |tip|
+    	tip["user_id"] = @user.id
+    end
  
     respond_to do |format|
 			format.html { render :index, :layout => false }
-			format.json { render json: @trip.tips }
+			format.json { render json: @tips }
 		end
 	end
 
@@ -47,7 +52,7 @@ class TipsController < ApplicationController
 	private
 
 	def tip_params
-		params.require(:tip).permit( :name, :place_id, :rating, :comment, :lat, :lng )
+		params.require(:tip).permit( :name, :place_id, :rating, :comment, :lat, :lng, :address, :g_rating )
 	end
 
 end

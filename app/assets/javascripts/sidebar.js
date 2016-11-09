@@ -1,6 +1,7 @@
 $(function() {
 
   $(document).on('submit','#add-tip-form', submitTip)
+  $(document).on('click','.tip-item a', openMarker)
 
   var user_id = $('#user_id').val()
   $('.new-trip').submit(function(event){
