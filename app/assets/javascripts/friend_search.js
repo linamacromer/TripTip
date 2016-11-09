@@ -97,7 +97,7 @@ function addUserToFriends(data){
   if (trips.length > 0){
     $('.new-friend').after('<ul class="friend-trips new-trip">')
     for (var i = 0; i < trips.length; i++) {
-      $('.new-trip').append('<li class="trip-items"><a class="sub-li" data="' + trips[i].id + '" href="/users/' + trips[i].user_id + '/trips/'+trips[i].id + '">' + trips[i].name + '</a></li>')
+      $('.new-trip').append('<li class="trip-items"><a class="sub-li trip-map" data="' + trips[i].id + '" href="/users/' + trips[i].user_id + '/trips/'+trips[i].id + '">' + trips[i].name + '</a></li>')
     }
     $('.new-trip').removeClass('new-trip')
     $('.new-friend li:last').after('</ul>')

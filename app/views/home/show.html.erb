@@ -43,7 +43,7 @@
             </li>
 
             <form id="">
-              
+
             </form>
 
             <% if @user.trips.length != 0 %>
@@ -100,7 +100,7 @@
               <% x.trips.each do |t| %>
                 <% if !t.private %>
                   <li class='trip-items'>
-                    <%= link_to t.name, user_trip_path(x, t), :class => 'sub-li', :data => x.id %>
+                    <%= link_to t.name, user_trip_path(x, t), :class => 'sub-li trip-map', :data => x.id %>
                   </li>
                 <% end %>
               <% end %>
