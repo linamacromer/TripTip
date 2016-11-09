@@ -26,7 +26,7 @@ $(function() {
   })
 
 
-  $('#friends').on('click', 'a.trip-map', function(event){
+  $('#sidebar').on('click', 'a.trip-map', function(event){
     event.preventDefault()
     remove_temp_nav()
     clearMarkers()
