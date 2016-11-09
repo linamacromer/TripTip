@@ -45,7 +45,6 @@ function initMap() {
       map.setZoom(12);
     }
 
-    debugger;
     // Set the position of the marker using the place ID and location.
     marker.setPlace({
       placeId: place.place_id,
@@ -109,7 +108,7 @@ function addMarker(tip) {
         address: tip.address
     });
 
-    infowindow.setContent(buildSavedInfoWindow(tip));
+    infowindow.setContent(renderTipPartial(tip));
     marker.addListener('click', function() {
         openMarker(marker, infowindow)
     });
