@@ -62,13 +62,15 @@ $(function() {
       if($('#user-trips').hasClass('hidden') || $('#trip_name').is(':visible')) {
         $('.add-trip-button').removeClass('add-trip-opacity-animation')
         $('.add-trip-button').hide()
+        $('#trips-header').css('width', '90%')
       } else {
         $('.add-trip-button').show()
         $('.add-trip-button').addClass('add-trip-opacity-animation')
+        $('#trips-header').css('width', '64.43%')
       }
     })
 
-  $('.add-trip-button').on('click', function(){
+  $('.add-trip-button, .fa-plus-square').on('click', function(){
     if(!$('#user-trips').hasClass('hidden')) {
       $('.new-trip').toggleClass('hidden')
       $('.add-trip-button').toggleClass('add-trip-opacity-animation')
@@ -77,12 +79,33 @@ $(function() {
     }
   })
 
-  $('#sidebar').on('click', '#friend-list', function(){
+  $('.add-friend-button').hide()
+
+  $('#friends-header, #friend-list a i').on('click', function(){
     $('#friends').toggleClass('hidden')
     $('#add-friends-section').toggleClass('hidden')
     $('#pending').toggleClass('hidden')
     $('#friend-list a .fa').toggleClass('fa-rotate-180')
     $('.f-underline').toggleClass('underline-animation')
+
+    if($('#add-friends-section').hasClass('hidden') || $('#search_name').is(':visible')) {
+      $('.add-friend-button').removeClass('add-friend-opacity-animation')
+      $('.add-friend-button').hide()
+      $('#friends-header').css('width', '80%')
+    } else {
+      $('.add-friend-button').show()
+      $('.add-friend-button').addClass('add-friend-opacity-animation')
+      $('#friends-header').css('width', '64.43%')
+    }
+  })
+
+  $('.add-friend-button').on('click', function(){
+    if(!$('#add-friends-section').hasClass('hidden')) {
+      $('#search').toggleClass('hidden')
+      $('.add-friend-button').toggleClass('add-friend-opacity-animation')
+      $('.add-friend-button').hide()
+      $('input#search_name').focus()
+    }
   })
 
   // if(!$('#user-trips').hasClass('hidden')) {
@@ -91,12 +114,40 @@ $(function() {
   //   })
   // }
 
-// LINA IS WORKING ON THIS
-  // $('.trip-edits').on('click', ".trip-update", function(event) {
-  //   event.preventDefault();
-  //   console.log(event);
-  // })
+  $('.trip-edits').on('click', ".trip-update", function(event) {
+    event.preventDefault();
+    var $pencil = $(this)
+    var $tripContainer = this.parentElement.parentElement;
+    var $tripLink = $($tripContainer).find('a.trip-map');
+    var $tripURL = this.pathname
+    var $tripName = $tripLink.text();
+    var $form = $("<form id='trip-update-form' action=" + $tripURL + "></form>");
+    $form.append("<input type='text' name='trip[name]' id='trip_name' value='" + $tripName + "'>");
+    $form.append("<button type='submit' id='trip-update-button'>Update</button>");
+    $($tripContainer).prepend($form);
+    $tripLink.hide();
+    $pencil.hide();
+  })
 
+  $('.trip-items').on('click', '#trip-update-button', function(event) {
+    event.preventDefault();
+    var $form = $(this).closest('form');
+    var $data = $form.serialize();
+    var $url = $form.attr('action');
+    var $tripContainer = this.parentElement.parentElement;
+    var $tripLink = $($tripContainer).find('a.trip-map');
+    var $pencil = $($tripContainer).find('a.trip-update');
+    $.ajax({
+      type: "patch",
+      url: $url,
+      data: $data
+    }).done(function(response) {
+      $form.hide();
+      $pencil.show();
+      $tripLink.html(response.name)
+      $tripLink.show();
+    })
+  })
 
   $('.trip-edits').on('click', ".trip-delete", function(event) {
     event.preventDefault();
@@ -147,10 +198,9 @@ function get_tip_markers(url){
 }
 
 function add_to_nav(html){
-  $('#nav').append("<br>" + html)
+  $('#nav').append(html)
 }
 
 function remove_temp_nav(){
   $('#temp-section').remove()
 }
-

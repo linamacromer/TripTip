@@ -23,13 +23,11 @@ class TripsController < ApplicationController
     end
   end
 
-# LINA IS WORKING ON THIS
-  # def update
-  #   p "---------------------------------"
-  #   @trip = Trip.find(params[:id])
-  #   p @trip
-  #   p "---------------------------------"
-  # end
+  def update
+    @trip = Trip.find(params[:id])
+    @trip.update_attributes(trip_params)
+    render json: @trip
+  end
 
   def destroy
     Trip.destroy(params[:id])
