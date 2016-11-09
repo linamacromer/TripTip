@@ -120,11 +120,11 @@ ul {
     }
   }
   & li:nth-child(3) {
-    padding-top: 10px;
+    margin-top: 20px;
   }
   form {
     padding: 5px 0px 15px -5px;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     #trip_name {
       font-size: 1em;
       width: 85%;
