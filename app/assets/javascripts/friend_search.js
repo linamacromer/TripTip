@@ -34,7 +34,7 @@ $(function() {
     var url = "/users/" + id + "/friends/pending"
     $.get( url, function(requests) {
       if (requests.length > 0){
-        $('#pending').append('<li><h4>Pending friend requests:</h4></li>')
+        $('#pending').append('<li><h4>Pending requests</h4></li>')
       }
       for (var i = 0; i < requests.length; i++) {
         $('#pending').append('<li><p class="name">' + requests[i].name + '</p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">Accept</a><a class="declination" href="/users/' + id + '/friends/' + requests[i].id + '">Decline</a></li>')
@@ -139,4 +139,3 @@ function filterNoFriends(){
     $('.no-friends').html('<h4>Friends:</h4>')
   }
 }
-
