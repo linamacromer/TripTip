@@ -78,12 +78,33 @@ $(function() {
     }
   })
 
-  $('#sidebar').on('click', '#friend-list', function(){
+  $('.add-friend-button').hide()
+
+  $('#friends-header, #friend-list a i').on('click', function(){
     $('#friends').toggleClass('hidden')
     $('#add-friends-section').toggleClass('hidden')
     $('#pending').toggleClass('hidden')
     $('#friend-list a .fa').toggleClass('fa-rotate-180')
     $('.f-underline').toggleClass('underline-animation')
+
+    if($('#add-friends-section').hasClass('hidden') || $('#search_name').is(':visible')) {
+      $('.add-friend-button').removeClass('add-friend-opacity-animation')
+      $('.add-friend-button').hide()
+      $('#trips-header').css('width', '80%')
+    } else {
+      $('.add-friend-button').show()
+      $('.add-friend-button').addClass('add-friend-opacity-animation')
+      $('#friends-header').css('width', '65.43%')
+    }
+  })
+
+  $('.add-friend-button').on('click', function(){
+    if(!$('#add-friends-section').hasClass('hidden')) {
+      $('#search').toggleClass('hidden')
+      $('.add-friend-button').toggleClass('add-friend-opacity-animation')
+      $('.add-friend-button').hide()
+      $('input#search_name').focus()
+    }
   })
 
   // if(!$('#user-trips').hasClass('hidden')) {
