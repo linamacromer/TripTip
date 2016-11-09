@@ -65,7 +65,7 @@ $(function() {
       } else {
         $('.add-trip-button').show()
         $('.add-trip-button').addClass('add-trip-opacity-animation')
-        $('#trips-header').css('width', '65.43%')
+        $('#trips-header').css('width', '64.43%')
       }
     })
 
@@ -90,11 +90,11 @@ $(function() {
     if($('#add-friends-section').hasClass('hidden') || $('#search_name').is(':visible')) {
       $('.add-friend-button').removeClass('add-friend-opacity-animation')
       $('.add-friend-button').hide()
-      $('#trips-header').css('width', '80%')
+      $('#friends-header').css('width', '80%')
     } else {
       $('.add-friend-button').show()
       $('.add-friend-button').addClass('add-friend-opacity-animation')
-      $('#friends-header').css('width', '65.43%')
+      $('#friends-header').css('width', '64.43%')
     }
   })
 
