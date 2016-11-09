@@ -15,7 +15,7 @@
     </script>
     <script type="text/html" id="tip-partial">
       <div id='map-info-box'>
-        <h3 id='info-box-title'><a href='/users/{{user_id}}/trips/{{trip_id}}/tips/{{id}}'>{{name}}</a></h3>
+        <h3 id='info-box-title'><a href="#ex1" rel="modal:open" name='/users/{{user_id}}/trips/{{trip_id}}/tips/{{id}}'>{{name}}</a></h3>
         <ul id='info-box-list'>
           <li id='info-box-address'>{{address}}</li>
           <li id='info-box-g_rating'>Google Rating: {{g_rating}}</li>
@@ -36,6 +36,9 @@
     </div>
     <div>
     <%= yield %>
+    </div>
+      <div id="ex1" style="display:none;">
+      <p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr1YztyN-tIYSsmsZszIsc3VwP7c8nyRI&libraries=places&callback=initMap"
     async defer></script>

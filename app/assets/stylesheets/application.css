@@ -66,6 +66,8 @@ html, body {
 .controls:focus {
   border-color: #4d90fe;
 }
+
+
 /*@media screen and (max-width: 1403px) and (min-width: 1100){
   #map {
     width: 78%

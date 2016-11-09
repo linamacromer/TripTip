@@ -2,6 +2,7 @@ $(function() {
 
   $(document).on('submit','#add-tip-form', submitTip)
   $(document).on('click','.tip-item a', openMarker)
+  $(document).on('click','#info-box-title a', openTipShow)
 
   var user_id = $('#user_id').val()
   $('.new-trip').submit(function(event){

@@ -17,12 +17,9 @@
     <div id='large-info-comment'>
       <span>Comment: <%= format_comment %></span>
       <br>
-      <%= text_area_tag(:message, format_comment , size: "80x10", name: 'tip[comment]') %>
+      <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]') %>
     </div>
     <br>
     <%= submit_tag("Update") %>
   <% end %>
 </div>
-
-  
-<!-- :class => 'new-trip hidden' -->

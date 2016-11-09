@@ -47,3 +47,15 @@ function findMarker(place_id){
     }
   }
 }
+
+function openTipShow(event){
+  event.preventDefault();
+  var url = $(event.target).attr('name')
+  
+  $.ajax({
+    type: "GET",
+    url: url
+  }).done(function(data){
+    $('#ex1').html(data)
+  })
+}
