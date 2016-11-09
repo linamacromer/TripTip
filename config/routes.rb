@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     post ':id/friends' => 'friendships#create'
     get ':id/friends/pending' => 'friendships#pending'
     put ':id/friends/:friend_id' => 'friendships#confirm'
+    delete ':id/friends/:friend_id' => 'friendships#destroy'
   end
 
   root to: "home#show"

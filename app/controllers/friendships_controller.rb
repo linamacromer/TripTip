@@ -20,6 +20,12 @@ class FriendshipsController < ActionController::Base
     render json: {friend: friendship.friend1, trips: friendship.friend1.trips}
   end
 
+  def destroy
+    friendship = Friendship.find_by(friend1: params[:friend_id], friend2: params[:id])
+    Friendship.delete(friendship.id)
+    render json: friendship
+  end
+
   private
 
   def friendship_params
