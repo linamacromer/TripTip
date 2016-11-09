@@ -167,45 +167,45 @@ end
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 12, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 12, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 13, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 13, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 14, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 14, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 15, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 15, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 16, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 16, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 17, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 17, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 18, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 18, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 19, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 19, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")
 
 User.create(name: Faker::Name.name)
 
-trip = Trip.create( user_id: 20, name: "Bermuda Triangle", center: "24.8339412 -71.5727022,", zoom: 9)
+trip = Trip.create( user_id: 20, name: "Bermuda Triangle", center: "24.8339412 -71.5727022", zoom: 9)
 trip.tips.create(place_id: "placeholder", name: "Shipwreck...")

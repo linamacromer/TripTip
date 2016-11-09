@@ -1,6 +1,7 @@
 $(function() {
 
   $(document).on('submit','#add-tip-form', submitTip)
+  $(document).on('click','.tip-item a', openMarker)
 
   var user_id = $('#user_id').val()
   $('.new-trip').submit(function(event){
@@ -25,7 +26,7 @@ $(function() {
   })
 
 
-  $('.trip-items').on('click', 'a.trip-map', function(event){
+  $('#sidebar').on('click', 'a.trip-map', function(event){
     event.preventDefault()
     remove_temp_nav()
     clearMarkers()

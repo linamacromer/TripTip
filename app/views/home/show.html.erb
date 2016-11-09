@@ -42,9 +42,9 @@
                 <a class="trip-update" href="#" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
             </li>
 
-            <!-- <form id="">
+            <form id="">
 
-            </form> -->
+            </form>
 
             <% if @user.trips.length != 0 %>
             <% @user.trips.reverse.each do |x| %>
@@ -100,7 +100,7 @@
               <% x.trips.each do |t| %>
                 <% if !t.private %>
                   <li class='trip-items'>
-                    <%= link_to t.name, user_trip_path(x, t), :class => 'sub-li', :data => x.id %>
+                    <%= link_to t.name, user_trip_path(x, t), :class => 'sub-li trip-map', :data => x.id %>
                   </li>
                 <% end %>
               <% end %>

@@ -8,13 +8,15 @@
           <%= hidden_field_tag("tip[place_id]") %>
           <%= hidden_field_tag("tip[lat]") %>
           <%= hidden_field_tag("tip[lng]") %>
+          <%= hidden_field_tag("tip[address]") %>
+          <%= hidden_field_tag("tip[g_rating]") %>
           <%= submit_tag("add") %>
         <% end %>
       <% end %>
     </li>
     <% if @trip.tips.length != 0 %>
     <% @trip.tips.reverse.each do |x| %>
-      <li class=""><%= link_to x.name, user_trip_tip_path(@user, @trip, x) %></li>
+      <li class="tip-item"><%= link_to x.name, user_trip_tip_path(@user, @trip, x), "data-place_id" => x.place_id  %></li>
     <% end %>
     <% end %>
   </ul>
