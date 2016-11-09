@@ -65,7 +65,7 @@ $(function() {
       } else {
         $('.add-trip-button').show()
         $('.add-trip-button').addClass('add-trip-opacity-animation')
-        $('#trips-header').css('width', '65.43%')
+        $('#trips-header').css('width', '64.43%')
       }
     })
 
@@ -94,7 +94,7 @@ $(function() {
     } else {
       $('.add-friend-button').show()
       $('.add-friend-button').addClass('add-friend-opacity-animation')
-      $('#friends-header').css('width', '65.43%')
+      $('#friends-header').css('width', '64.43%')
     }
   })
 
