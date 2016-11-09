@@ -59,6 +59,14 @@ ul {
     transform: scale(.7);
   }
 }
+.divider {
+  height: 1px;
+  width: 0.5%;
+  margin: 0 auto;
+  background-color: $green;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
 #nav {
   // box-shadow: 0px 1px 5px #d2d2d2;
   li {
@@ -99,7 +107,7 @@ ul {
 }
 #trips-header {
   display: inline-block;
-  width: 150px;
+  width: 90%;
   position: relative;
   z-index: 0;
 }
@@ -111,14 +119,17 @@ ul {
       font-size: 1.15em;
     }
   }
+  & li:nth-child(3) {
+    padding-top: 10px;
+  }
   form {
     padding: 5px 0px 15px -5px;
-    // @include blue-border-bottom;
+    margin-bottom: 20px;
     #trip_name {
       font-size: 1em;
       width: 85%;
       display: inline;
-      padding: 3px 0px 6px 6px;
+      padding: 6px 0px 6px 6px;
       border-style: solid;
       border-radius: 5px;
       border: 1px solid #2E3192;
@@ -142,9 +153,33 @@ ul {
 .trip-map, .trip-update, .trip-delete {
   display: inline
 }
+#friends-header {
+  display: inline-block;
+  width: 80%;
+  position: relative;
+  z-index: 0;
+}
+#search_name {
+  font-size: 1em;
+  width: 85%;
+  display: inline;
+  padding: 5px 0px 6px 6px;
+  border-style: solid;
+  border-radius: 5px;
+  border: 1px solid #2E3192;
+  margin-top: 3px;
+  margin-left: 18px;
+  &:focus {
+    outline: none;
+    border: 1px solid $purple;
+  }
+}
 #friend-name {
   // box-shadow: 0px 3px 1px #d2d2d2;
   padding-bottom: 3px;
+}
+.unsent, .sent {
+  padding-left: 20px;
 }
 .friend-trips {
   padding: 0px 1px 10px 21px;
@@ -176,7 +211,7 @@ ul {
   top:5px;
   padding: 5px 5px 5px 5px;
 }
-.add-trip-button {
+.add-trip-button, .add-friend-button {
   background-color: transparent;
   border: none;
   font-size: .7em;
@@ -207,7 +242,7 @@ ul {
     outline: none
   }
 }
-.add-trip-opacity-animation {
+.add-trip-opacity-animation, .add-friend-opacity-animation {
   opacity: 1;
 }
 .fa-sort-desc {
@@ -220,23 +255,43 @@ ul {
 .fa-sort-asc {
   margin-top: 6px
 }
+.fa-times {
+  font-size: 1.05em;
+  padding-right: 10px;
+}
+.fa-pencil, .fa-times {
+  float: right;
+  padding-left: 5px;
+  padding-top: 3px;
+}
 .trip-delete .fa-trash {
   padding-left: 5px;
 }
 .trip-update .fa-pencil {
-  font-size: .9em
+  font-size: 1em
+}
+#friend-search-icon {
+  position: absolute;
+  top: 9px;
+  right: 24px;
+  color: $purple;
 }
 .t-underline, .f-underline {
   width: 0%;
-  height: 1.5px;
+  height: 1px;
   background-color: $green;
   margin-top: 2px;
+  margin-bottom: 3px;
   transition: width .5s, opacity .5s;
   opacity: 0;
+  margin: 0 auto;
 }
 .underline-animation {
   opacity: 1;
   width: 100%
+}
+.wrapper {
+  position: relative;
 }
 // .rotate-fa {
 //   -ms-transform: rotate(90deg); /* IE 9 */

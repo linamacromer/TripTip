@@ -38,8 +38,8 @@
             </li>
 
             <li id="trip-template" class="trip-items sub-li hidden"><a class="trip-map" href="#"></a>
-                <a class="trip-update" href="#" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                 <a class="trip-delete" href="#" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a class="trip-update" href="#" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
             </li>
 
             <form id="">
@@ -50,13 +50,13 @@
             <% @user.trips.reverse.each do |x| %>
             <li class='trip-items'>
               <%= link_to x.name, user_trip_path(@user, x), class: "trip-map" %>
-
               <span class="trip-edits">
-              <a class="trip-update" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
               <a class="trip-delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+              <a class="trip-update" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
               </span>
 
             </li>
+            <div class="divider"></div>
             <% end %>
             <% end %>
         </ul>
@@ -64,15 +64,23 @@
 
     <li id='friends-section'>
     <li id="friend-list">
-        <a href="#">Friends<i class="fa fa-sort-desc" aria-hidden="true"></i>
+        <a href="#">
+          <div id="friends-header">Friends</div>
+          <i class="fa fa-sort-desc" aria-hidden="true"></i>
+          <%= button_tag(type: "button", class: 'add-friend-button') do %>
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            add
+          <% end %>
         </a>
         <div class="f-underline"></div>
     </li>
     <ul id='add-friends-section' class="hidden">
       <li>
-        <h4>Add Friend</h4>
-        <li>
-          Search: <%= text_field_tag("search[name]") %>
+        <li id='search' class="hidden">
+          <div class="wrapper">
+            <%= text_field_tag("search[name]", '', required: 'true') %>
+            <i id="friend-search-icon" class="fa fa-search" aria-hidden="true"></i>
+          </div>
         </li>
         <li id='query-results'>
         </li>
