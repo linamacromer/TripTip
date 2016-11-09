@@ -1,0 +1,99 @@
+$blue: #1e88e5;
+$green: #0B9444;
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+nav {
+  padding: 0;
+  margin: 0;
+  ul {
+    padding: 0;
+    margin: 0;
+    // background-color: #1565c0;
+    width: 100%;
+    height: 60px;
+    box-shadow: 0px 3px 10px #757575;
+    li {
+      float: right;
+      padding: 15px  15px 0px 0px;
+      list-style: none;
+      font-size: 1.3em;
+      a {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.logo {
+  font-size: 10em;
+  text-align: center;
+  color: white;
+  margin-top: 150px;
+  font-family: Fugaz One;
+  text-shadow: 0px 3px 3px $blue;
+}
+section {
+  .header {
+    color: white;
+    font-size: 90px;
+    font-family: Fugaz One;
+    line-height: 600px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 0;
+  }
+  &.one {
+    width: 100%;
+    height: 85vh;
+    background-image: url(bg4.jpeg);
+    background-color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+  &.content-one, &.content-two {
+    max-width: 100vw;
+    height: 65vh;
+    font-size: 1.5em;
+    padding: 0px 100px 0px 100px;
+    background-color: $blue;
+    color: white;
+    // opacity: 0.3;
+    h1 {
+      font-size: 2em;
+      font-family: Fugaz One;
+      color: white;
+      padding: 0; margin: 0;
+    }
+    p {
+      font-family: Helvetica Neue;
+      font-size: 20px;
+    }
+  }
+  &.two {
+    width: 100%;
+    height: 80vh;
+    // background-image: url(bg5.jpeg);
+    background-color: orange;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+  &.three {
+    width: 100%;
+    height: 80vh;
+    // background-image: url(bg3.jpeg);
+    background-color: $green;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+}
