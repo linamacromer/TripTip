@@ -16,10 +16,16 @@ class TipsController < ApplicationController
 	end
 
 	def show
-		@tip = Tip.find(params[:id])
-		respond_to do |format|
-			format.html { render }
-			format.json { render json: @tip }
+		@user = User.find_by(id: params[:user_id])
+    @trip = @user.trips.find_by(id: params[:trip_id])
+    @tip = @trip.tips.find_by(id: params[:id])
+
+    @tip_json = @tip.as_json
+    @tip_json["user_id"] = @user.id
+
+    respond_to do |format|
+			format.html { render :show, :layout => false }
+			format.json { render json: @tip_json }
 		end
 	end
 
@@ -29,20 +35,23 @@ class TipsController < ApplicationController
     @tip = @trip.tips.create(tip_params)
 
     if @tip.save
-      render :show, :layout => false , status: :created
+      redirect_to user_trip_tip_path(@user,@trip,@tip)
     else
       render json: @tip.errors, status: :unprocessable_entity
     end
 	end
 
 	def update
-		@tip = Tip.find(params[:id])
+		@user = User.find_by(id: params[:user_id])
+    @trip = @user.trips.find_by(id: params[:trip_id])
+    @tip = @trip.tips.find_by(id: params[:id])
 		@tip.update_attributes(tip_params)
 
-		respond_to do |format|
-			format.html { render }
-			format.json { render json: @tip }
-		end
+    if @tip.save
+      render :show, :layout => false
+    else
+      render json: @tip.errors, status: :unprocessable_entity
+    end
 	end
 
 	def destroy
