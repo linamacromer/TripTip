@@ -113,12 +113,40 @@ $(function() {
   //   })
   // }
 
-// LINA IS WORKING ON THIS
-  // $('.trip-edits').on('click', ".trip-update", function(event) {
-  //   event.preventDefault();
-  //   console.log(event);
-  // })
+  $('.trip-edits').on('click', ".trip-update", function(event) {
+    event.preventDefault();
+    var $pencil = $(this)
+    var $tripContainer = this.parentElement.parentElement;
+    var $tripLink = $($tripContainer).find('a.trip-map');
+    var $tripURL = this.pathname
+    var $tripName = $tripLink.text();
+    var $form = $("<form id='trip-update-form' action=" + $tripURL + "></form>");
+    $form.append("<input type='text' name='trip[name]' id='trip_name' value='" + $tripName + "'>");
+    $form.append("<button type='submit' id='trip-update-button'>Update</button>");
+    $($tripContainer).prepend($form);
+    $tripLink.hide();
+    $pencil.hide();
+  })
 
+  $('.trip-items').on('click', '#trip-update-button', function(event) {
+    event.preventDefault();
+    var $form = $(this).closest('form');
+    var $data = $form.serialize();
+    var $url = $form.attr('action');
+    var $tripContainer = this.parentElement.parentElement;
+    var $tripLink = $($tripContainer).find('a.trip-map');
+    var $pencil = $($tripContainer).find('a.trip-update');
+    $.ajax({
+      type: "patch",
+      url: $url,
+      data: $data
+    }).done(function(response) {
+      $form.hide();
+      $pencil.show();
+      $tripLink.html(response.name)
+      $tripLink.show();
+    })
+  })
 
   $('.trip-edits').on('click', ".trip-delete", function(event) {
     event.preventDefault();
@@ -169,7 +197,7 @@ function get_tip_markers(url){
 }
 
 function add_to_nav(html){
-  $('#nav').append("<br>" + html)
+  $('#nav').append(html)
 }
 
 function remove_temp_nav(){
