@@ -8,7 +8,7 @@ module TipsHelper
       rating = @tip.rating.to_s
     end
 
-    @user.name.split.first + "'s Rating: " + rating
+    @user.name.split.first + "'s Rating: "
   end
 
   def format_comment

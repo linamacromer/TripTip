@@ -56,7 +56,7 @@
               </span>
 
             </li>
-            <div class="divider"></div>
+            <!-- <div class="divider"></div> -->
             <% end %>
             <% end %>
         </ul>
@@ -90,7 +90,7 @@
     </ul>
     <ul id="friends" class="hidden">
         <% if @user.friends.length != 0 %>
-          <li><h4>Friends:</h4></li>
+          <li><h4>Friends</h4></li>
           <% @user.friends.reverse.each do |x| %>
             <li id="friend-name">
               <%= link_to x.name, user_trips_path(x), :class => 'friend-li', :data => x.id %>
@@ -110,12 +110,11 @@
             <% end %>
           <% end %>
         <% else %>
-            <p>You don't have any friends</p>
+            <li class="no-friends"><p>You don't have any friends</p></li>
         <% end %>
 
       </ul>
     </li>
-    <li><p><a href="#ex1" rel="modal:open">Open Modal</a></p></li>
   </ul>
 </div>
 <div id="message" class="hidden"></div>
@@ -123,6 +122,9 @@
     placeholder="Enter a location">
     <div class="map-container">
       <div id="map"></div>
+    </div>
+    <div id="ex1" style="display:none;">
+        <div id='modal-html'></div>
     </div>
     <% else %>
     <section class="one">

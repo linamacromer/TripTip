@@ -6,17 +6,18 @@ class TipsController < ApplicationController
     @tips = @trip.tips.as_json
 
     @tips.each do |tip|
-    	tip["user_id"] = @user.id
+      tip["user_id"] = @user.id
+      tip["username"] = @user.name.split.first
     end
  
     respond_to do |format|
-			format.html { render :index, :layout => false }
-			format.json { render json: @tips }
-		end
-	end
+      format.html { render :index, :layout => false }
+      format.json { render json: @tips }
+    end
+  end
 
-	def show
-		@user = User.find_by(id: params[:user_id])
+  def show
+    @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.find_by(id: params[:trip_id])
     @tip = @trip.tips.find_by(id: params[:id])
 
@@ -24,8 +25,8 @@ class TipsController < ApplicationController
     @tip_json["user_id"] = @user.id
 
     respond_to do |format|
-			format.html { render :show, :layout => false }
-			format.json { render json: @tip_json }
+      format.html { render :show, :layout => false }
+      format.json { render json: @tip_json }
 		end
 	end
 

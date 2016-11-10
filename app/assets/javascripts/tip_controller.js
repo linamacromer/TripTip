@@ -56,6 +56,6 @@ function openTipShow(event){
     type: "GET",
     url: url
   }).done(function(data){
-    $('#ex1').html(data)
+    $('#modal-html').html(data)
   })
 }
