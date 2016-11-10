@@ -74,6 +74,7 @@ function updateTipModal(event) {
     data: data
   }).done(function(data){
     $('#modal-html').html(data)
-    $('.large-info-updated').show().fadeOut(3000)
+    $('#modal-html').append('<span class="large-info-updated">Updated!</span>')
+    $('.large-info-updated').fadeOut(3000)
   })
 }
