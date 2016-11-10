@@ -181,7 +181,7 @@ ul {
     }
   }
 }
-.trip-map, .trip-update, .trip-delete {
+.trip-map, .trip-update, .trip-delete, .tip-section-close {
   display: inline
 }
 #friends {
@@ -366,6 +366,9 @@ ul {
   padding-top: 3px;
 }
 .trip-delete .fa-trash {
+  padding-left: 5px;
+}
+.tip-delete .fa-trash {
   padding-left: 5px;
 }
 .trip-update .fa-pencil {
