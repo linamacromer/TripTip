@@ -1,5 +1,5 @@
-<li id='temp-section'>
-  <h1><%= @trip.name %>:Tips</h1>
+<li id='tip-section'>
+  <div id='tip-header'><%= @trip.name %></strong> - Tips</div>
   <ul id='tip-list'>
     <li>
       <% if session[:user_id] == @user.id %>
