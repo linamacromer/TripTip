@@ -8,22 +8,18 @@
     <%= stylesheet_link_tag    "application", media: "all"%>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <script type="text/html" id="nav-partial">
-      <li id="{{nav_type}}-nav">
-        <div id='{{nav_type}}-container'>
-          <ul id='{{nav_type}}-list'>
-            <li class='{{nav_name}}-item'></li>
-          </ul>
-        </div>
+    <script type="text/html" id="tip-nav-partial">
+      <li class="tip-item">
+        <a data-place_id="{{place_id}}" href='/users/{{user_id}}/trips/{{trip_id}}/tips/{{id}}'>{{name}}</a>
       </li>
     </script>
     <script type="text/html" id="tip-partial">
       <div id='map-info-box'>
-        <h3 id='info-box-title'><a href='/users/{{user_id}}/trips/{{trip_id}}/tips/{{id}}'>{{name}}</a></h3>
+        <h3 id='info-box-title'><a href="#ex1" rel="modal:open" name='/users/{{user_id}}/trips/{{trip_id}}/tips/{{id}}'>{{name}}</a></h3>
         <ul id='info-box-list'>
           <li id='info-box-address'>{{address}}</li>
           <li id='info-box-g_rating'>Google Rating: {{g_rating}}</li>
-          <li id='info-box-rating'>User Rating: {{rating}}</li>
+          <li id='info-box-rating'>{{username}}'s Rating: {{rating}}</li>
           <li id='info-box-comment'>Comments...</li>
         </ul>
       </div>

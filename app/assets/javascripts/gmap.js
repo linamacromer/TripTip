@@ -70,7 +70,6 @@ function  buildInfoWindow(place) {
     info = '<div><strong>' + name + '</strong><br>' + address +
         '<br>' 
 
-
     if (form.length === 0){
         return info + '<em>Select a trip to add location</em>'
     } else {
