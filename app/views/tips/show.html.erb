@@ -9,7 +9,7 @@
     <div id='large-info-rating'>
       <span><%= format_rating %></span>
       <% if user_owned %>
-        <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], selected: @tip.rating.to_s) %>
+        <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], selected: @tip.rating.to_s, class: 'rating') %>
       <% else %>
         <%= @tip.rating.to_s %>
       <% end %>
@@ -25,4 +25,5 @@
       <span class="large-info-updated hidden">Updated!</span>
     <% end %>
   <% end %>
+
 </div>
