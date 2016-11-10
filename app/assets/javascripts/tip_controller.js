@@ -9,9 +9,11 @@ function submitTip(event) {
     url: url,
     data: data
   }).done(function(data){
+    search_infoWindow.close()
     $(event.target).find('input[name="commit"]').addClass('hidden')
     $(event.target).parent().append('<p>Added</p>')
-    addMarker(data)
+    markerPair = addMarker(data)
+    openMarker(markerPair.marker, markerPair.infowindow)
     $('#tip-list').prepend(renderTipNavPartial(data))
   }).fail(function(data){
     error_text = data.responseJSON.place_id[0]
