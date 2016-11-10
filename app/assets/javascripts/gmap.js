@@ -106,7 +106,6 @@ function addMarker(tip) {
         position: myLatLng,
         address: tip.address
     });
-        debugger
 
     infowindow.setContent(renderTipPartial(tip));
     marker.addListener('click', function() {

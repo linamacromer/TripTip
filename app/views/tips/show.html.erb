@@ -2,7 +2,7 @@
   <h1 id='large-info-trip-name'><%= @trip.name %></h1>
   <h2 id='large-info-tip-name'><%= @tip.name %></h2>
   
-  <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips/#{@tip.id}", method: "put") do %>
+  <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips/#{@tip.id}", method: "put", class: "large-modal") do %>
     <div id='large-info-address'><%= @tip.address %></div>
     <br>
     <div id='large-info-g_rating'><span>Google+ Rating: <%= @tip.g_rating %></span></div>

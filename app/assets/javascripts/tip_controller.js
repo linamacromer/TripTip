@@ -59,3 +59,19 @@ function openTipShow(event){
     $('#modal-html').html(data)
   })
 }
+
+function updateTipModal(event) {
+  event.preventDefault();
+  var url = $(event.target).attr('action')
+  console.log(url)
+  var data = $(this).serialize()
+
+  $.ajax({
+    type: "PATCH",
+    url: url,
+    data: data
+  }).done(function(data){
+    alert("Updated!")
+    $('#modal-html').html(data)
+  })
+}
