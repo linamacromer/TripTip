@@ -95,9 +95,8 @@
           <% @user.friends.reverse.each do |x| %>
             <li id="friend-name">
               <%= link_to x.name, user_trips_path(x), :class => 'friend-li', :data => x.id %>
-            </li>
-            <% if x.trips != 0 %>
-              <ul class="friend-trips">
+              <% if x.trips != 0 %>
+              <ul class="friend-trips hidden">
               <% x.trips.each do |t| %>
                 <% if !t.private %>
                   <li class='trip-items'>
@@ -109,6 +108,7 @@
             <% else %>
               <li><%= x.name %> doesn't have any trips!</li>
             <% end %>
+            </li>
           <% end %>
         <% else %>
             <li class="no-friends"><p>You don't have any friends</p></li>
@@ -117,6 +117,7 @@
       </ul>
     </li>
   </ul>
+
 </div>
 <div id="message" class="hidden"></div>
   <input id="pac-input" class="controls" type="text"

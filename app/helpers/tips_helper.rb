@@ -21,4 +21,8 @@ module TipsHelper
 
   end
 
+  def user_owned
+    @current_user == @user.id
+  end
+
 end
