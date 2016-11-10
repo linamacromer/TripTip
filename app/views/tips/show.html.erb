@@ -8,7 +8,11 @@
     <div id='large-info-g_rating'><span>Google+ Rating: <%= @tip.g_rating %></span></div>
     <div id='large-info-rating'>
       <span><%= format_rating %></span>
-      <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], selected: @tip.rating.to_s) %>
+      <% if user_owned %>
+        <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], selected: @tip.rating.to_s) %>
+      <% else %>
+        <%= @tip.rating.to_s %>
+      <% end %>
     <div>
     <br>
     <div id='large-info-comment'>
@@ -16,7 +20,9 @@
       <br>
       <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]') %>
     </div>
-    <%= submit_tag("Update") %>
-    <span class="large-info-updated hidden">Updated!</span>
+    <% if user_owned %>
+      <%= submit_tag("Update") %>
+      <span class="large-info-updated hidden">Updated!</span>
+    <% end %>
   <% end %>
 </div>
