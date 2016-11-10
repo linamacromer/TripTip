@@ -17,6 +17,7 @@ class TipsController < ApplicationController
   end
 
   def show
+    @current_user = session[:user_id]
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.find_by(id: params[:trip_id])
     @tip = @trip.tips.find_by(id: params[:id])

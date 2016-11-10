@@ -127,7 +127,7 @@ ul {
     padding-bottom: 0;
   }
 }
-#trips-header {
+#trips-header, #tip-header {
   display: inline-block;
   width: 90%;
   position: relative;
@@ -392,6 +392,12 @@ ul {
 }
 .wrapper {
   position: relative;
+}
+
+#tip-header {
+  color: #2E3192;
+  font-size: 1.4em;
+  cursor: pointer;
 }
 // .rotate-fa {
 //   -ms-transform: rotate(90deg); /* IE 9 */

@@ -30,7 +30,7 @@ $(function() {
 
   $('#sidebar').on('click', 'a.trip-map', function(event){
     event.preventDefault()
-    remove_temp_nav()
+    remove_tip_nav()
     clearMarkers()
     var url = $(event.target).attr('href')
 
@@ -64,7 +64,45 @@ $(function() {
         $('.add-trip-button').addClass('add-trip-opacity-animation')
         $('#trips-header').css('width', '64.43%')
       }
+
+      if ($('#friends').is(':visible')){
+        $('#friends').addClass('hidden')
+        $('#friend-list a .fa').toggleClass('fa-rotate-180')
+        $('.f-underline').toggleClass('underline-animation')
+        $('.add-friend-button').removeClass('add-friend-opacity-animation')
+        $('.add-friend-button').hide()
+        $('#friends-header').css('width', '80%')
+        $('#pending').toggleClass('hidden')
+        $('#add-friends-section').toggleClass('hidden')
+      }
+      clearMarkers()
+      $('#tip-section').remove()
     })
+
+  $('#sidebar').on('click', '.trip-map', function(){
+    if ($(event.target).hasClass('sub-li')){
+      $(event.target).parent().parent().addClass('hidden')
+    }
+    if ($('#friends').is(':visible')){
+        $('#friends').addClass('hidden')
+        $('#friend-list a .fa').toggleClass('fa-rotate-180')
+        $('.f-underline').toggleClass('underline-animation')
+        $('.add-friend-button').removeClass('add-friend-opacity-animation')
+        $('.add-friend-button').hide()
+        $('#friends-header').css('width', '80%')
+        $('#pending').toggleClass('hidden')
+        $('#add-friends-section').toggleClass('hidden')
+    }
+    if ($('#user-trips').is(':visible')){
+      $('#user-trips').addClass('hidden')
+      $('#trips-title a .fa').toggleClass('fa-rotate-180')
+      $('.t-underline').toggleClass('underline-animation')
+      $('.add-trip-button').removeClass('add-trip-opacity-animation')
+      $('.add-trip-button').hide()
+      $('#trips-header').css('width', '90%')
+    }
+
+  })
 
   $('.add-trip-button, .fa-plus-square').on('click', function(){
     if(!$('#user-trips').hasClass('hidden')) {
@@ -93,6 +131,17 @@ $(function() {
       $('.add-friend-button').addClass('add-friend-opacity-animation')
       $('#friends-header').css('width', '64.43%')
     }
+
+    if ($('#user-trips').is(':visible')){
+      $('#user-trips').addClass('hidden')
+      $('#trips-title a .fa').toggleClass('fa-rotate-180')
+      $('.t-underline').toggleClass('underline-animation')
+      $('.add-trip-button').removeClass('add-trip-opacity-animation')
+      $('.add-trip-button').hide()
+      $('#trips-header').css('width', '90%')
+    }
+    $('#tip-section').remove()
+    clearMarkers()
   })
 
   $('.add-friend-button').on('click', function(){
@@ -160,15 +209,27 @@ $(function() {
   $('#sidebar').on('click', ".trip-delete", function(event) {
     event.preventDefault();
     var $trip = this.parentElement.parentElement;
-    var answer=confirm('Are you sure you want to delete this trip?');
-      if(answer){
-        $.ajax({
-          type: "delete",
-          url: this.pathname,
-        }).done(function(response) {
-          $trip.remove()
-        })
+    var url = this.pathname;
+    $.confirm({
+      title: 'Delete?',
+      content: 'Are you sure you want to delete this trip?',
+      buttons: {
+        ok: {
+          text: 'YES',
+          btnClass: 'btn-primary',
+          keys: ['enter'],
+          action: function(){
+            sendUpdate(url, $trip);
+          }
+        },
+        cancel: function(){}
       }
+    })
+  })
+
+  $('#sidebar').on('click', '#friend-name', function(event){
+    event.preventDefault()
+    $(event.target).next().toggleClass('hidden')
   })
 
 });
@@ -209,6 +270,15 @@ function add_to_nav(html){
   $('#nav').append(html)
 }
 
-function remove_temp_nav(){
-  $('#temp-section').remove()
+function remove_tip_nav(){
+  $('#tip-section').remove()
+}
+
+function sendUpdate(url, trip) {
+  $.ajax({
+    type: "delete",
+    url: url,
+  }).done(function(response) {
+    trip.remove()
+  })
 }
