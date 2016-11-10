@@ -128,6 +128,12 @@ function setMapOnAll(map) {
     markers[i].setMap(map);
   }
 }
+
+function openAllWindows(){
+  for (var i = 0; i < markers.length; i++) {
+    infoWindows[i].open(map, markers[i])
+  }
+}
 // Removes the markers from the map, but keeps them inthe array.
 function clearMarkers() {
   setMapOnAll(null);
