@@ -76,6 +76,7 @@ html, body {
   padding-left: 10px;
   font-weight: 400;
 }
+
 /*@media screen and (max-width: 1403px) and (min-width: 1100){
   #map {
     width: 78%
@@ -110,3 +111,7 @@ html, body {
   and (-webkit-min-device-pixel-ratio: 2)
   and (min-resolution: 192dpi) {
 }*/
+
+.large-info-updated {
+  color: green;
+}

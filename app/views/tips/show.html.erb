@@ -1,1 +1,22 @@
-<li class="tip-item"><%= link_to @tip.name, user_trip_tip_path(@user, @trip, @tip) %></li>
+<div id='large-info-box'>
+  <h1 id='large-info-trip-name'><%= @trip.name %></h1>
+  <h2 id='large-info-tip-name'><%= @tip.name %></h2>
+  
+  <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips/#{@tip.id}", method: "put", class: "large-modal") do %>
+    <div id='large-info-address'><%= @tip.address %></div>
+    <br>
+    <div id='large-info-g_rating'><span>Google+ Rating: <%= @tip.g_rating %></span></div>
+    <div id='large-info-rating'>
+      <span><%= format_rating %></span>
+      <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], selected: @tip.rating.to_s) %>
+    <div>
+    <br>
+    <div id='large-info-comment'>
+      <span>Comment:</span>
+      <br>
+      <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]') %>
+    </div>
+    <%= submit_tag("Update") %>
+    <span class="large-info-updated hidden">Updated!</span>
+  <% end %>
+</div>
