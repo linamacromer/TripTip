@@ -18,7 +18,7 @@
     <div id='large-info-comment'>
       <span>Comment:</span>
       <br>
-      <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]') %>
+      <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]', placeholder: "Enter a comment!") %>
     </div>
     <% if user_owned %>
       <%= submit_tag("Update") %>
