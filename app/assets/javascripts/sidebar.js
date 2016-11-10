@@ -144,15 +144,22 @@ $(function() {
   $('#sidebar').on('click', ".trip-delete", function(event) {
     event.preventDefault();
     var $trip = this.parentElement.parentElement;
-    var answer=confirm('Are you sure you want to delete this trip?');
-      if(answer){
-        $.ajax({
-          type: "delete",
-          url: this.pathname,
-        }).done(function(response) {
-          $trip.remove()
-        })
+    var url = this.pathname;
+    $.confirm({
+      title: 'Delete?',
+      content: 'Are you sure you want to delete this trip?',
+      buttons: {
+        ok: {
+          text: 'YES',
+          btnClass: 'btn-primary',
+          keys: ['enter'],
+          action: function(){
+            sendUpdate(url, $trip);
+          }
+        },
+        cancel: function(){}
       }
+    })
   })
 
 });
@@ -195,4 +202,13 @@ function add_to_nav(html){
 
 function remove_temp_nav(){
   $('#temp-section').remove()
+}
+
+function sendUpdate(url, trip) {
+  $.ajax({
+    type: "delete",
+    url: url,
+  }).done(function(response) {
+    trip.remove()
+  })
 }
