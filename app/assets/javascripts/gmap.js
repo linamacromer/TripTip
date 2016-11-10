@@ -107,6 +107,7 @@ function addMarker(tip) {
     var marker = new google.maps.Marker({
         title: tip.name,
         map: map,
+        icon: "/assets/TipPin.png",
         place_id: tip.place_id,
         position: myLatLng,
         address: tip.address
