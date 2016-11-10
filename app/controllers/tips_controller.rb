@@ -1,6 +1,5 @@
 class TipsController < ApplicationController
 	def index
-    session[:user_id] = 11
 		@user_id = session[:user_id]
     @user = User.find_by(id: params[:user_id])
     @trip = @user.trips.find_by(id: params[:trip_id])
