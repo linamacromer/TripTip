@@ -34,11 +34,11 @@ $(function() {
     var url = "/users/" + id + "/friends/pending"
     $.get( url, function(requests) {
       if (requests.length > 0){
-        $('#pending').append(`<li><h4>Pending requests<span id='request-count'>${requests.length}</span></h4></li>`)
+        $('#pending').append("<li><h4 id='pending-request-header'>Pending requests<span id='request-count'>" + requests.length + "</span></h4></li>")
         console.log(requests.length)
       }
       for (var i = 0; i < requests.length; i++) {
-        $('#pending').append('<li class="pending-request"><p class="name">' + requests[i].name + '</p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">Accept</a><a class="declination" href="/users/' + id + '/friends/' + requests[i].id + '">Decline</a></li>')
+        $('#pending').append('<li class="pending-request hidden"><p class="name">' + requests[i].name + '</p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">Accept</a><a class="declination" href="/users/' + id + '/friends/' + requests[i].id + '">Decline</a></li>')
       }
     })
   })
@@ -57,6 +57,7 @@ $(function() {
       addUserToFriends(data)
       setTimeout(function(){
       removePending()
+      updateRequestCount()
       }, 2900)
     })
   })
@@ -74,12 +75,20 @@ $(function() {
       updateDeniedConfirmationText(self, name)
       setTimeout(function(){
       removePending()
+      updateRequestCount()
       }, 2900)
     })
   })
-
-
 })
+
+function updateRequestCount() {
+  var id = $('#user_id').val()
+  var url = "/users/" + id + "/friends/pending"
+
+  $.get( url, function(requests) {
+      $('#request-count').text(requests.length)
+  })
+}
 
 function updateRequestText(self, name){
   self.fadeOut(450)

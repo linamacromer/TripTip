@@ -204,7 +204,7 @@ ul {
     font-size: .55em;
     margin-left: 10px;
     border: 1px solid black;
-    padding: 0px 4px 0px 3px;
+    padding: 1px 4px 1px 4px;
     border-radius: 10px;
     position: absolute;
     z-index: 1;
@@ -238,6 +238,13 @@ ul {
         font-size: 1.15em;
       }
     }
+  }
+}
+#pending-request-header {
+  cursor: pointer;
+  transition: all .5s ease;
+  &:hover {
+    color: $purple
   }
 }
 #friends-header {

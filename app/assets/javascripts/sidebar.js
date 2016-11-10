@@ -104,6 +104,22 @@ $(function() {
     }
   })
 
+  $(document).on('click', '#pending-request-header', function() {
+    if($('.pending-request').is(':visible')) {
+      $('.pending-request').hide()
+    } else {
+      $('.pending-request').show()
+    }
+  })
+
+  $(document).on('click', '.confirmation, .declination', function() {
+    // var id = $('#user_id').val()
+    // var url = "/users/" + id + "/friends/pending"
+    //
+    // $.get( url, function(requests) {
+    //     $('#request-count').text(requests.length)
+    // })
+  })
 
   $('#sidebar').on('click', ".trip-update", function(event) {
     event.preventDefault();
