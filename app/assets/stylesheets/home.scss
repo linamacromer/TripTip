@@ -163,6 +163,7 @@ ul {
       border-style: solid;
       border-radius: 5px;
       border: 1px solid #2E3192;
+      margin-top: 8px;
       &:focus {
         outline: none;
         border: 1px solid $purple;
@@ -204,7 +205,7 @@ ul {
     font-size: .55em;
     margin-left: 10px;
     border: 1px solid black;
-    padding: 0px 4px 0px 3px;
+    padding: 1px 4px 1px 4px;
     border-radius: 10px;
     position: absolute;
     z-index: 1;
@@ -220,6 +221,12 @@ ul {
     margin-bottom: 3px;
   }
   li {
+    .confirmation:hover {
+      color: $green;
+    }
+    .declination:hover {
+      color: #e53935;
+    }
     .confirmation, .declination {
       display: inline;
       padding-left: 0;
@@ -238,6 +245,14 @@ ul {
         font-size: 1.15em;
       }
     }
+  }
+}
+#pending-request-header {
+  cursor: pointer;
+  transition: all .5s ease;
+  &:hover {
+    color: $purple;
+    transform: scale(1.05);
   }
 }
 #friends-header {
@@ -331,7 +346,8 @@ ul {
 }
 .fa-sort-desc {
   float: right;
-  margin-top: 4px
+  margin-top: 4px;
+  height: 25px;
 }
 .fa-rotate-180 {
   margin-top: 12px
@@ -342,6 +358,7 @@ ul {
 .fa-times {
   font-size: 1.05em;
   padding-right: 10px;
+  color: #e53935;
 }
 .fa-pencil, .fa-times {
   float: right;
@@ -355,7 +372,8 @@ ul {
   padding-left: 5px;
 }
 .trip-update .fa-pencil {
-  font-size: 1em
+  font-size: 1em;
+  color: #03a9f4;
 }
 #friend-search-icon {
   position: absolute;
@@ -367,11 +385,10 @@ ul {
   width: 0%;
   height: 1px;
   background-color: $green;
-  margin-top: 2px;
-  margin-bottom: 3px;
   transition: width .5s, opacity .5s;
   opacity: 0;
   margin: 0 auto;
+  margin-top: 4px;
 }
 .underline-animation {
   opacity: 1;
