@@ -279,7 +279,6 @@ function closeSection(event) {
   event.preventDefault()
   $('#tip-section').remove()
   clearMarkers()
-  console.log('here')
 }
 
 function sendUpdate(url, trip) {
