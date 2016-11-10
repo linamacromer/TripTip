@@ -11,7 +11,8 @@ function initMap() {
     streetViewControl: false,
     zoomControl: false,
     zoom: 12,
-    clickableIcons: false
+    clickableIcons: false,
+    styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#cacaca"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.fill","stylers":[{"color":"#90c383"},{"visibility":"on"}]},{"featureType":"poi.attraction","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#a9a9a9"}]},{"featureType":"poi.business","elementType":"geometry.fill","stylers":[{"color":"#a9a9a9"},{"visibility":"on"}]},{"featureType":"poi.government","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#a9a9a9"}]},{"featureType":"poi.medical","elementType":"geometry.fill","stylers":[{"color":"#c34131"},{"visibility":"on"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#b3ebb0"}]},{"featureType":"poi.place_of_worship","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#a9a9a9"}]},{"featureType":"poi.school","elementType":"geometry.fill","stylers":[{"color":"#e1e262"}]},{"featureType":"poi.sports_complex","elementType":"geometry.fill","stylers":[{"color":"#a9a9a9"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#f1f1f1"},{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#8f8f8f"},{"visibility":"on"},{"weight":"1"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#f3f3f3"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#b7b7b7"},{"visibility":"on"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#a59686"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#a9a9a9"},{"visibility":"on"}]},{"featureType":"transit.station.bus","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#a9a9a9"}]},{"featureType":"transit.station.rail","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#a9a9a9"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dabd0"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"}]}]
   });
   service = new google.maps.places.PlacesService(map);
 
@@ -55,7 +56,7 @@ function initMap() {
     infoWindows.push(infowindow);
 
     info = buildInfoWindow(place);
-    
+
     infowindow.setContent(info);
     infowindow.open(map, marker);
   });
@@ -68,15 +69,14 @@ function  buildInfoWindow(place) {
     address = place.formatted_address
     place_id = place.place_id
     info = '<div><strong>' + name + '</strong><br>' + address +
-        '<br>' 
-
+        '<br>'
 
     if (form.length === 0){
         return info + '<em>Select a trip to add location</em>'
     } else {
         return info + setForm(form,place)
     }
-    
+
 }
 
 function  buildSavedInfoWindow(tip) {

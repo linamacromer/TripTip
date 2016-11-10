@@ -7,11 +7,11 @@ function renderTipPartial(tipData) {
   return $.Mustache.render('tipTemplate', tipData);
 };
 
-function setNavPartial() {
-  return $.Mustache.add('navTemplate', $('#nav-partial').html());
+function setTipNavPartial() {
+  return $.Mustache.add('navTemplate', $('#tip-nav-partial').html());
 };
 
-function renderNavPartial(navData) {
-  setNavPartial();
+function renderTipNavPartial(navData) {
+  setTipNavPartial();
   return $.Mustache.render('navTemplate', navData);
 };

@@ -4,13 +4,15 @@ function submitTip(event) {
   var data = $(event.target).serialize()
     
   $.ajax({
+    dataType: "json",
     type: "POST",
     url: url,
     data: data
   }).done(function(data){
     $(event.target).find('input[name="commit"]').addClass('hidden')
     $(event.target).parent().append('<p>Added</p>')
-    $('#tip-list').prepend(data)
+    addMarker(data)
+    $('#tip-list').prepend(renderTipNavPartial(data))
   }).fail(function(data){
     error_text = data.responseJSON.place_id[0]
     $(event.target).find('input[name="commit"]').addClass('hidden')
@@ -44,4 +46,32 @@ function findMarker(place_id){
       return {mark: markers[i], index: i}
     }
   }
+}
+
+function openTipShow(event){
+  event.preventDefault();
+  var url = $(event.target).attr('name')
+  
+  $.ajax({
+    type: "GET",
+    url: url
+  }).done(function(data){
+    $('#modal-html').html(data)
+  })
+}
+
+function updateTipModal(event) {
+  event.preventDefault();
+  var form = $(event.target)
+  var url = form.attr('action')
+  var data = $(this).serialize()
+
+  $.ajax({
+    type: "PATCH",
+    url: url,
+    data: data
+  }).done(function(data){
+    $('#modal-html').html(data)
+    $('.large-info-updated').show().fadeOut(3000)
+  })
 }
