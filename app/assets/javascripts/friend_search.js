@@ -34,7 +34,7 @@ $(function() {
     var url = "/users/" + id + "/friends/pending"
     $.get( url, function(requests) {
       if (requests.length > 0){
-        $('#pending').append(`<li><h4>Pending requests<span id='request-count'>${requests.length}</span></h4></li>`)
+        $('#pending').append("<li><h4>Pending requests<span id='request-count'>" + requests.length + "</span></h4></li>")
         console.log(requests.length)
       }
       for (var i = 0; i < requests.length; i++) {
