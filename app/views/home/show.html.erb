@@ -38,8 +38,10 @@
             </li>
 
             <li id="trip-template" class="trip-items sub-li hidden"><a class="trip-map" href="#"></a>
+              <span class="trip-edits">
                 <a class="trip-delete" href="#" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <a class="trip-update" href="#" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              </span>
             </li>
 
             <form id="">
@@ -51,12 +53,11 @@
             <li class='trip-items'>
               <%= link_to x.name, user_trip_path(@user, x), class: "trip-map" %>
               <span class="trip-edits">
-              <a class="trip-delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
-              <a class="trip-update" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a class="trip-delete" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <a class="trip-update" href="/users/<%=@user.id%>/trips/<%=x.id%>" rel="nofollow"><i class="fa fa-pencil" aria-hidden="true"></i></a>
               </span>
 
             </li>
-            <!-- <div class="divider"></div> -->
             <% end %>
             <% end %>
         </ul>
