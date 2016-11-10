@@ -62,8 +62,8 @@ function openTipShow(event){
 
 function updateTipModal(event) {
   event.preventDefault();
-  var url = $(event.target).attr('action')
-  console.log(url)
+  var form = $(event.target)
+  var url = form.attr('action')
   var data = $(this).serialize()
 
   $.ajax({
@@ -71,7 +71,7 @@ function updateTipModal(event) {
     url: url,
     data: data
   }).done(function(data){
-    alert("Updated!")
     $('#modal-html').html(data)
+    $('.large-info-updated').show().fadeOut(3000)
   })
 }
