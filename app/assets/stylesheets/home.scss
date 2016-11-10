@@ -138,6 +138,8 @@ ul {
   margin-top: 5px;
 }
 #user-trips {
+  opacity: 0;
+  transition: all .5s ease;
   .trip-items {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -255,9 +257,13 @@ ul {
     transform: scale(1.05);
   }
 }
+#friends {
+  opacity: 0;
+  transition: all .5s ease;
+}
 #friends-header {
   display: inline-block;
-  width: 80%;
+  width: 95%;
   position: relative;
   z-index: 0;
   font-size: 1.4em;

@@ -52,16 +52,22 @@ $(function() {
 
     $('#trips-header, #all-trips i').on('click', function(){
       $('#user-trips').toggleClass('hidden')
-      $('#trips-title a .fa').toggleClass('fa-sort-asc')
+      $('#user-trips').css('opacity', '0')
+      $('#trips-title a .fa').toggleClass('fa-rotate-180')
       $('.t-underline').toggleClass('underline-animation')
 
-      if($('#user-trips').hasClass('hidden') || $('#trip_name').is(':visible')) {
+      if($('#user-trips').hasClass('hidden')) {
+        if(!$('.new-trip').hasClass('hidden')) {
+          $('.new-trip').toggleClass('hidden')
+        }
         $('.add-trip-button').removeClass('add-trip-opacity-animation')
         $('.add-trip-button').hide()
+        $('#user-trips').css('opacity', '0')
         $('#trips-header').css('width', '90%')
       } else {
         $('.add-trip-button').show()
         $('.add-trip-button').addClass('add-trip-opacity-animation')
+        $('#user-trips').css('opacity', '1')
         $('#trips-header').css('width', '64.43%')
       }
 
@@ -117,18 +123,23 @@ $(function() {
 
   $('#friends-header, #friend-list a i').on('click', function(){
     $('#friends').toggleClass('hidden')
+    $('#friends').css('opacity', '0')
     $('#add-friends-section').toggleClass('hidden')
     $('#pending').toggleClass('hidden')
     $('#friend-list a .fa').toggleClass('fa-rotate-180')
     $('.f-underline').toggleClass('underline-animation')
-
+    if($('#search').is(':visible')) {
+      $('#search').toggleClass('hidden')
+    }
     if($('#add-friends-section').hasClass('hidden') || $('#search_name').is(':visible')) {
       $('.add-friend-button').removeClass('add-friend-opacity-animation')
       $('.add-friend-button').hide()
-      $('#friends-header').css('width', '80%')
+      $('#friends').css('opacity', '0')
+      $('#friends-header').css('width', '95%')
     } else {
       $('.add-friend-button').show()
       $('.add-friend-button').addClass('add-friend-opacity-animation')
+      $('#friends').css('opacity', '1')
       $('#friends-header').css('width', '64.43%')
     }
 
@@ -139,6 +150,9 @@ $(function() {
       $('.add-trip-button').removeClass('add-trip-opacity-animation')
       $('.add-trip-button').hide()
       $('#trips-header').css('width', '90%')
+    }
+    if(!$('.new-trip').hasClass('hidden')) {
+      $('.new-trip').toggleClass('hidden')
     }
     $('#tip-section').remove()
     clearMarkers()
@@ -161,15 +175,6 @@ $(function() {
     }
   })
 
-  $(document).on('click', '.confirmation, .declination', function() {
-    // var id = $('#user_id').val()
-    // var url = "/users/" + id + "/friends/pending"
-    //
-    // $.get( url, function(requests) {
-    //     $('#request-count').text(requests.length)
-    // })
-  })
-
   $('#sidebar').on('click', ".trip-update", function(event) {
     event.preventDefault();
     var $pencil = $(this)
@@ -177,7 +182,6 @@ $(function() {
     var $tripLink = $($tripContainer).find('a.trip-map');
     var $tripURL = this.pathname
     var $tripName = $tripLink.text();
-    debugger
     var $form = $("<form id='trip-update-form' action=" + $tripURL + "></form>");
     $form.append("<input type='text' name='trip[name]' id='trip_name' value='" + $tripName + "'>");
     $form.append("<button type='submit' id='trip-update-button'>Update</button>");
