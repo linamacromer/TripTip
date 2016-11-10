@@ -1,6 +1,10 @@
 var map;
 var markers = [];
 var infoWindows = [];
+
+var search_marker;
+var search_infoWindow;
+
 var service;
 
 function initMap() {
@@ -23,16 +27,16 @@ function initMap() {
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  var infowindow = new google.maps.InfoWindow();
-  var marker = new google.maps.Marker({
+  search_infoWindow = new google.maps.InfoWindow();
+  search_marker = new google.maps.Marker({
     map: map
   });
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
+  search_marker.addListener('click', function() {
+    search_infoWindow.open(map, search_marker);
   });
 
   autocomplete.addListener('place_changed', function() {
-    infowindow.close();
+    search_infoWindow.close();
     var place = autocomplete.getPlace();
     if (!place.geometry) {
       return;
@@ -41,24 +45,24 @@ function initMap() {
     if (place.geometry.viewport) {
       map.fitBounds(place.geometry.viewport);
       map.setZoom(12);
+
     } else {
       map.setCenter(place.geometry.location);
       map.setZoom(12);
     }
 
     // Set the position of the marker using the place ID and location.
-    marker.setPlace({
+    search_marker.setPlace({
       placeId: place.place_id,
       location: place.geometry.location
     });
-    marker.setVisible(true);
-    markers.push(marker);
-    infoWindows.push(infowindow);
+    search_marker.setVisible(true);
 
     info = buildInfoWindow(place);
 
-    infowindow.setContent(info);
-    infowindow.open(map, marker);
+    search_infoWindow.setContent(info);
+    search_infoWindow.open(map, search_marker);
+    search_marker.setVisible(true)
   });
 }
 
@@ -114,6 +118,7 @@ function addMarker(tip) {
     });
     markers.push(marker);
     infoWindows.push(infowindow);
+    return {marker: marker, infowindow: infowindow}
 }
 // Sets the map on all markers in the array.
 
@@ -125,6 +130,10 @@ function setMapOnAll(map) {
 // Removes the markers from the map, but keeps them inthe array.
 function clearMarkers() {
   setMapOnAll(null);
+  if (search_marker != undefined) {
+    search_infoWindow.close()
+    search_marker.setVisible(false)
+  }
 }
 // Shows any markers currently in the array.
 function showMarkers() {
@@ -138,6 +147,10 @@ function deleteMarkers() {
 }
 
 function closeAllInfoWindows() {
+  if (search_infoWindow != undefined) {
+    search_infoWindow.close()
+  }
+
   for (var i=0;i<infoWindows.length;i++) {
      infoWindows[i].close();
   }

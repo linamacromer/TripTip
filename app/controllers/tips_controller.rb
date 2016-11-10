@@ -23,6 +23,7 @@ class TipsController < ApplicationController
 
     @tip_json = @tip.as_json
     @tip_json["user_id"] = @user.id
+    @tip_json["username"] = @user.name.split.first
 
     respond_to do |format|
       format.html { render :show, :layout => false }

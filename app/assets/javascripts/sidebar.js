@@ -48,12 +48,6 @@ $(function() {
 
   })
 
-  // $('#sidebar').on('click', '#all-trips', function(){
-  //   $('#user-trips').toggleClass('hidden')
-  //   $('#trips-title a .fa').toggleClass('fa-sort-asc')
-  //   $('.t-underline').toggleClass('underline-animation')
-  //   $('.add-trip-button').toggleClass('add-trip-opacity-animation')
-  // })
     $('.add-trip-button').hide()
 
     $('#trips-header, #all-trips i').on('click', function(){
@@ -110,19 +104,15 @@ $(function() {
     }
   })
 
-  // if(!$('#user-trips').hasClass('hidden')) {
-  //   $('*:not(#user-trips)').on('click', function() {
-  //     $('#user-trips').toggleClass('hidden')
-  //   })
-  // }
 
-  $('.trip-edits').on('click', ".trip-update", function(event) {
+  $('#sidebar').on('click', ".trip-update", function(event) {
     event.preventDefault();
     var $pencil = $(this)
     var $tripContainer = this.parentElement.parentElement;
     var $tripLink = $($tripContainer).find('a.trip-map');
     var $tripURL = this.pathname
     var $tripName = $tripLink.text();
+    debugger
     var $form = $("<form id='trip-update-form' action=" + $tripURL + "></form>");
     $form.append("<input type='text' name='trip[name]' id='trip_name' value='" + $tripName + "'>");
     $form.append("<button type='submit' id='trip-update-button'>Update</button>");
@@ -131,7 +121,7 @@ $(function() {
     $pencil.hide();
   })
 
-  $('.trip-items').on('click', '#trip-update-button', function(event) {
+  $('#sidebar').on('click', '#trip-update-button', function(event) {
     event.preventDefault();
     var $form = $(this).closest('form');
     var $data = $form.serialize();
@@ -151,7 +141,7 @@ $(function() {
     })
   })
 
-  $('.trip-edits').on('click', ".trip-delete", function(event) {
+  $('#sidebar').on('click', ".trip-delete", function(event) {
     event.preventDefault();
     var $trip = this.parentElement.parentElement;
     var answer=confirm('Are you sure you want to delete this trip?');
@@ -175,7 +165,6 @@ function prependTripToList(data){
   template.find('.trip-update').attr('href', link)
   template.find('.trip-delete').attr('href', link)
   template.removeClass('hidden')
-  // $("#user-trips > li:nth-child(2)").after('<div class="divider"></div>')
   $("#user-trips > li:nth-child(2)").after(template);
 }
 
