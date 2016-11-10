@@ -175,7 +175,7 @@ function prependTripToList(data){
   template.find('.trip-update').attr('href', link)
   template.find('.trip-delete').attr('href', link)
   template.removeClass('hidden')
-  $("#user-trips > li:nth-child(2)").after('<div class="divider"></div>')
+  // $("#user-trips > li:nth-child(2)").after('<div class="divider"></div>')
   $("#user-trips > li:nth-child(2)").after(template);
 }
 

@@ -6,6 +6,14 @@ $green: #0B9444;
 @mixin blue-border-bottom {
   border-bottom: 2px solid $ocean-blue;
 }
+@keyframes bounce {
+  from {
+    margin-top: 7px
+  }
+  to {
+    margin-top: 1px;
+  }
+}
 #sign_out {
   // margin-top: -25px;
   margin-top: 2.5px;
@@ -126,6 +134,9 @@ ul {
   z-index: 0;
   font-size: 1.4em;
 }
+#trip-template {
+  margin-top: 5px;
+}
 #user-trips {
   .trip-items {
     padding-top: 5px;
@@ -189,6 +200,20 @@ ul {
   margin-bottom: 20px;
   max-width: 280px;
   // border-bottom: 1px solid #a5d6a7;
+  #request-count {
+    font-size: .55em;
+    margin-left: 10px;
+    border: 1px solid black;
+    padding: 0px 4px 0px 3px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+    transition: all .8s ease;
+    animation-duration: .8s;
+    animation-name: bounce;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
   h4 {
     font-size: 1.5em;
     margin-top: 5px;
@@ -199,6 +224,12 @@ ul {
       display: inline;
       padding-left: 0;
       padding-right: 8px;
+    }
+    &.pending-request {
+      padding-top: 5px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      width: 85%;
     }
     p {
       margin-top: 5px;
