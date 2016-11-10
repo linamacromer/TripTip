@@ -1,23 +1,28 @@
 <li id='tip-section'>
-  <div id='tip-header'><%= @trip.name %></strong> - Tips</div>
+  <div id="tip-header">
+    <span id=''><strong><%= @trip.name %></strong> - Tips</span>
+    <span class="tip-controls">
+      <a class="tip-section-close" href="#" rel="nofollow"><i class="fa fa-times" aria-hidden="true"></i></a>
+    </span>
+  </div>
   <ul id='tip-list'>
-    <li>
-      <% if session[:user_id] == @user.id %>
-        <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :id => 'add-tip-form', :class => 'hidden', method: "post") do %>
-          <%= hidden_field_tag("tip[name]") %>
-          <%= hidden_field_tag("tip[place_id]") %>
-          <%= hidden_field_tag("tip[lat]") %>
-          <%= hidden_field_tag("tip[lng]") %>
-          <%= hidden_field_tag("tip[address]") %>
-          <%= hidden_field_tag("tip[g_rating]") %>
-          <%= submit_tag("add") %>
-        <% end %>
-      <% end %>
-    </li>
     <% if @trip.tips.length != 0 %>
     <% @trip.tips.reverse.each do |x| %>
       <li class="tip-item"><%= link_to x.name, user_trip_tip_path(@user, @trip, x), "data-place_id" => x.place_id  %></li>
     <% end %>
     <% end %>
   </ul>
+  <div class='hidden'>
+  <% if session[:user_id] == @user.id %>
+    <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips", :id => 'add-tip-form', :class => 'hidden', method: "post") do %>
+      <%= hidden_field_tag("tip[name]") %>
+      <%= hidden_field_tag("tip[place_id]") %>
+      <%= hidden_field_tag("tip[lat]") %>
+      <%= hidden_field_tag("tip[lng]") %>
+      <%= hidden_field_tag("tip[address]") %>
+      <%= hidden_field_tag("tip[g_rating]") %>
+      <%= submit_tag("add") %>
+    <% end %>
+  <% end %>
+  </div>
 </li>

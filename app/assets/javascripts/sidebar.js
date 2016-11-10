@@ -4,6 +4,7 @@ $(function() {
   $(document).on('click','.tip-item a', openMarker)
   $(document).on('click','#info-box-title a', openTipShow)
   $(document).on('submit', ".large-modal", updateTipModal)
+  $(document).on('click','.tip-section-close',closeSection)
 
   var user_id = $('#user_id').val()
   $('.new-trip').submit(function(event){
@@ -153,6 +154,22 @@ $(function() {
     }
   })
 
+  $(document).on('click', '#pending-request-header', function() {
+    if($('.pending-request').is(':visible')) {
+      $('.pending-request').hide()
+    } else {
+      $('.pending-request').show()
+    }
+  })
+
+  $(document).on('click', '.confirmation, .declination', function() {
+    // var id = $('#user_id').val()
+    // var url = "/users/" + id + "/friends/pending"
+    //
+    // $.get( url, function(requests) {
+    //     $('#request-count').text(requests.length)
+    // })
+  })
 
   $('#sidebar').on('click', ".trip-update", function(event) {
     event.preventDefault();
@@ -256,6 +273,12 @@ function add_to_nav(html){
 
 function remove_tip_nav(){
   $('#tip-section').remove()
+}
+
+function closeSection(event) {
+  event.preventDefault()
+  $('#tip-section').remove()
+  clearMarkers()
 }
 
 function sendUpdate(url, trip) {

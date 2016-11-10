@@ -59,7 +59,7 @@ function initMap() {
     search_marker.setVisible(true);
 
     info = buildInfoWindow(place);
-
+    closeAllInfoWindows()
     search_infoWindow.setContent(info);
     search_infoWindow.open(map, search_marker);
     search_marker.setVisible(true)
