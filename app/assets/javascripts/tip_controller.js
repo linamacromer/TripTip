@@ -1,23 +1,23 @@
 function submitTip(event) {
-  event.preventDefault()
-  var url = $(event.target).attr('action')
-  var data = $(event.target).serialize()
-    
-  $.ajax({
-    dataType: "json",
-    type: "POST",
-    url: url,
-    data: data
-  }).done(function(data){
-    search_infoWindow.close()
-    markerPair = addMarker(data)
-    openMarker(markerPair.marker, markerPair.infowindow)
-    $('#tip-list').prepend(renderTipNavPartial(data))
-  }).fail(function(data){
-    error_text = data.responseJSON.place_id[0]
-    $(event.target).find('input[name="commit"]').addClass('hidden')
-    $(event.target).append('<p class="error">' + error_text + '</p>')
-  })
+    event.preventDefault()
+    var url = $(event.target).attr('action')
+    var data = $(event.target).serialize()
+
+    $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: url,
+        data: data
+    }).done(function(data) {
+        search_infoWindow.close()
+        markerPair = addMarker(data)
+        openMarker(markerPair.marker, markerPair.infowindow)
+        $('#tip-list').prepend(renderTipNavPartial(data))
+    }).fail(function(data) {
+        error_text = data.responseJSON.place_id[0]
+        $(event.target).find('input[name="commit"]').addClass('hidden')
+        $(event.target).append('<p class="error">' + error_text + '</p>')
+    })
 }
 
 function loadMarkers(data) {
@@ -76,13 +76,13 @@ function updateTipModal(event) {
 }
 
 $(document).on('click', '#map-info-box', function(event) {
-  var linkTarget = $(event.target).closest('.gm-style-iw').find('a');
-  var url = linkTarget.attr('name')
-  $.ajax({
-    type: "GET",
-    url: url
-  }).done(function(data){
-    $('#modal-html').html(data)
-    linkTarget.modal();
-  })
+    var linkTarget = $(event.target).closest('.gm-style-iw').find('a');
+    var url = linkTarget.attr('name')
+    $.ajax({
+        type: "GET",
+        url: url
+    }).done(function(data) {
+        $('#modal-html').html(data)
+        linkTarget.modal();
+    })
 })
