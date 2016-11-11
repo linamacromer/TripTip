@@ -62,8 +62,9 @@ function updateTipModal(event) {
     data: data
   }).done(function(data){
     $('#modal-html').html(data)
-    $('#modal-html').append('<span class="large-info-updated">Updated!</span>')
-    $('.large-info-updated').fadeOut(3000)
+    rating = $('#tip_rating').val()
+    $('#info-box-rating span').text(rating)
+    $('.large-info-updated').show().fadeOut(3000)
   })
 }
 
