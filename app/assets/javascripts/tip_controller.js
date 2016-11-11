@@ -50,18 +50,6 @@ function findMarker(place_id){
   }
 }
 
-function openTipShow(event){
-  event.preventDefault();
-  var url = $(event.target).attr('name')
-  
-  $.ajax({
-    type: "GET",
-    url: url
-  }).done(function(data){
-    $('#modal-html').html(data)
-  })
-}
-
 function updateTipModal(event) {
   event.preventDefault();
   var form = $(event.target)
@@ -74,6 +62,20 @@ function updateTipModal(event) {
     data: data
   }).done(function(data){
     $('#modal-html').html(data)
+    rating = $('#tip_rating').val()
+    $('#info-box-rating span').text(rating)
     $('.large-info-updated').show().fadeOut(3000)
   })
 }
+
+$(document).on('click', '.gm-style-iw', function(event) {
+  var linkTarget = $(event.target).closest('.gm-style-iw').find('a');
+  var url = linkTarget.attr('name')
+  $.ajax({
+    type: "GET",
+    url: url
+  }).done(function(data){
+    $('#modal-html').html(data)
+    linkTarget.modal();
+  })
+})
