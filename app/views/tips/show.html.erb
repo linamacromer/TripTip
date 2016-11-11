@@ -5,12 +5,12 @@
   <%= form_tag("/users/#{@user.id}/trips/#{@trip.id}/tips/#{@tip.id}", method: "put", class: "large-modal") do %>
     <div id='large-info-address'><%= @tip.address %></div>
     <br>
-    <!-- <div id='large-info-g_rating'><span>
-
-      Google+ Rating: <% if @tip.g_rating.nil? %>
-      N/A
+    <div id='large-info-rating'>
+    <% if @tip.g_rating.nil? %>
+      <span id="format-rating">Google+ Rating: N/A</span>
       <% else %>
-      <fieldset class="rating">
+      <span id="format-rating">Google+ Rating: </span>
+      <fieldset class="rating google ">
           <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
           <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
           <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
@@ -19,13 +19,16 @@
       </fieldset>
       <script type="text/javascript">
         $('#star<%=@tip.g_rating.round%>').click()
+        $(".google input").attr("disabled", true);
       </script>
       <% end %>
-    </span></div> -->
+    </div>
+    <br>
+    <br>
     <div id='large-info-rating'>
       <span id="format-rating"><%= format_rating %></span>
       <% if user_owned %>
-      <fieldset class="rating">
+      <fieldset class="rating user">
           <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
           <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
           <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
@@ -37,7 +40,7 @@
       </script>
         <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], { :class => 'hidden', :selected => @tip.rating.to_s}) %>
       <% else %>
-      <fieldset class="rating">
+      <fieldset class="rating user">
           <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
           <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
           <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
@@ -46,11 +49,14 @@
       </fieldset>
       <script type="text/javascript">
         $('#star<%=@tip.rating.to_s%>').click()
+        $(".user input").attr("disabled", true);
       </script>
       <% end %>
-    <div>
+    </div>
+    <br>
+    <br>
     <div id='large-info-comment'>
-      <span>Comment</span>
+      <span>Comment:</span>
       <br>
     <% if user_owned %>
       <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]', placeholder: "Enter a comment!") %>
@@ -61,7 +67,6 @@
       <p><%=@tip.comment%></p>
     <% end %>
   <% end %>
-
 </div>
 
 <!-- $('#tip_rating option[value=0]').attr('selected', 'selected').parent().focus() -->
