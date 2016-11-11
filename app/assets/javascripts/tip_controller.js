@@ -86,3 +86,7 @@ $(document).on('click', '#map-info-box', function(event) {
         linkTarget.modal();
     })
 })
+
+$(document).on('click', '.rating input', function() {
+    $('#tip_rating option[value=' + $(this).val() + ']').attr('selected', 'selected').parent().focus()
+})

@@ -97,7 +97,7 @@
           <% @user.friends.reverse.each do |x| %>
             <li id="friend-name">
               <%= link_to x.name, user_trips_path(x), :class => 'friend-li', :data => x.id %>
-              <% if x.trips != 0 %>
+              <% if x.trips.length != 0 %>
               <ul class="friend-trips hidden">
               <% x.trips.each do |t| %>
                 <% if !t.private %>
@@ -108,7 +108,7 @@
               <% end %>
               </ul>
             <% else %>
-              <li><%= x.name %> doesn't have any trips!</li>
+              <!-- <li style="font-size: .5em"><%= x.name %> doesn't have any trips!</li> -->
             <% end %>
             </li>
           <% end %>

@@ -1,3 +1,122 @@
-// Place all the styles related to the Trips controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#large-info-trip-name {
+  background-color: #66bb6a;
+  margin: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+  color: white;
+}
+#large-info-tip-name {
+  padding-left: 10px;
+  color: black;
+  margin-bottom: 0;
+}
+#large-info-comment {
+  span {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    padding-top: 9px;
+    margin-left: 10px;
+    margin-top: 28px;
+    margin-left: -240px;
+    padding-left: 3px;
+    padding-right: 3px;
+    height: 12px;
+  }
+}
+#format-rating {
+  float: left;
+}
+.modal select {
+  border-color: #66bb6a;
+  &:focus {
+    outline: none
+  }
+}
+.large-modal {
+  padding-left: 10px
+}
+#message {
+  margin: 0px;
+  width: 94.5%;
+  height: 177px;
+  z-index: auto;
+  position: relative;
+  line-height: normal;
+  font-size: 11px;
+  transition: none;
+  background: transparent !important;
+  resize: none;
+  border-color: #66bb6a;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-width: 2px;
+  padding-top: 11px;
+  padding-left: 11px;
+  &:focus {
+    outline: none
+  }
+}
+#ex1 {
+  padding: 0 0 10px 0;
+}
+.modal input[type=submit] {
+  font-size: 1.1em;
+  border-color: #66bb6a;
+  background-color: #66bb6a;
+  border-style: solid;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+select {
+  display: none
+}
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+  margin-top: -3.5px;
+  margin-bottom: 20px;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+ float: right;
+}
+
+
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label { color: #FFD700; cursor: pointer} 
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label { color: #FFED85; cursor: pointer}
