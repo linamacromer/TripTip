@@ -51,6 +51,7 @@ $(function() {
     $('.add-trip-button').hide()
 
     $('#trips-header, #all-trips i').on('click', function(){
+      $('#search_name').val('').keyup()
       $('#user-trips').toggleClass('hidden')
       $('#user-trips').css('opacity', '0')
       $('#trips-title a .fa').toggleClass('fa-rotate-180')
@@ -128,6 +129,7 @@ $(function() {
     $('#pending').toggleClass('hidden')
     $('#friend-list a .fa').toggleClass('fa-rotate-180')
     $('.f-underline').toggleClass('underline-animation')
+    $('#search_name').val('').keyup()
     if($('#search').is(':visible')) {
       $('#search').toggleClass('hidden')
     }

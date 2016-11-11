@@ -43,9 +43,9 @@ $(function() {
   })
 
   $('#search-close').on('click', function() {
-    console.log('hi')
     $('#search').toggleClass('hidden')
     $('.add-friend-button').addClass('add-friend-opacity-animation')
+    $('#search_name').val('').keyup()
     $('.add-friend-button').show()
   })
 

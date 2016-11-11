@@ -190,6 +190,10 @@ ul {
 .trip-map, .trip-update, .trip-delete, .tip-section-close {
   display: inline
 }
+
+.modal {
+  font-family: Roboto;
+}
 #friends {
   li {
     h4 {
@@ -395,6 +399,9 @@ ul {
   background-color: white;
   cursor: pointer;
 }
+#tip-close {
+  font-size: .8em
+}
 #friend-search-icon {
   position: absolute;
   top: 9px;
@@ -422,6 +429,10 @@ ul {
   color: #2E3192;
   font-size: 1.4em;
   cursor: pointer;
+  width: 100%
+}
+#tip-section {
+  padding-right: 0px !important;
 }
 // .rotate-fa {
 //   -ms-transform: rotate(90deg); /* IE 9 */
