@@ -2,7 +2,6 @@ $(function() {
 
   $(document).on('submit','#add-tip-form', submitTip)
   $(document).on('click','.tip-item a', openMarker)
-  $(document).on('click','#info-box-title a', openTipShow)
   $(document).on('submit', ".large-modal", updateTipModal)
   $(document).on('click','.tip-section-close',closeSection)
 

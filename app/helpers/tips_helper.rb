@@ -14,7 +14,7 @@ module TipsHelper
   def format_comment
 
     if @tip.comment == nil
-      "There are no comments yet"
+      ""
     else
       @tip.comment
     end

@@ -9,7 +9,7 @@
     <div id='large-info-rating'>
       <span><%= format_rating %></span>
       <% if user_owned %>
-        <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], selected: @tip.rating.to_s) %>
+        <%= select_tag "tip[rating]", options_for_select(['0','1','2','3','4','5'], selected: @tip.rating.to_s, class: 'rating') %>
       <% else %>
         <%= @tip.rating.to_s %>
       <% end %>
@@ -18,11 +18,12 @@
     <div id='large-info-comment'>
       <span>Comment:</span>
       <br>
-      <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]') %>
+      <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]', placeholder: "Enter a comment!") %>
     </div>
     <% if user_owned %>
       <%= submit_tag("Update") %>
       <span class="large-info-updated hidden">Updated!</span>
     <% end %>
   <% end %>
+
 </div>

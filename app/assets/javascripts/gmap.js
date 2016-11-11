@@ -107,6 +107,7 @@ function addMarker(tip) {
     var marker = new google.maps.Marker({
         title: tip.name,
         map: map,
+        icon: "/assets/TipPin.png",
         place_id: tip.place_id,
         position: myLatLng,
         address: tip.address
@@ -125,6 +126,12 @@ function addMarker(tip) {
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
+  }
+}
+
+function openAllWindows(){
+  for (var i = 0; i < markers.length; i++) {
+    infoWindows[i].open(map, markers[i])
   }
 }
 // Removes the markers from the map, but keeps them inthe array.
