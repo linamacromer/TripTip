@@ -8,10 +8,10 @@ class TipsController < ApplicationController
     @tips.each do |tip|
       tip["user_id"] = @user.id
       tip["username"] = @user.name.split.first
-      if tip['comment'] != ""
-        tip["comment_icon"] = ''
+      if tip['comment'] == "" || tip['comment'].nil?
+        tip["comment_icon"] = 'hidden'
       else
-        tip["comment_icon"] = "hidden"
+        tip["comment_icon"] = ""
       end
     end
 
@@ -30,10 +30,10 @@ class TipsController < ApplicationController
     @tip_json = @tip.as_json
     @tip_json["user_id"] = @user.id
     @tip_json["username"] = @user.name.split.first
-    if @tip["comment"] != ""
-      @tip_json["comment_icon"] = ''
+    if @tip["comment"] == "" || @tip["comment"].nil?
+      @tip_json["comment_icon"] = 'hidden'
     else
-      @tip_json["comment_icon"] = "hidden"
+      @tip_json["comment_icon"] = ""
     end
 
     respond_to do |format|
