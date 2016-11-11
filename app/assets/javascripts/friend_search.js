@@ -19,11 +19,16 @@ $(function() {
         var url = '/users/' + id + '/friends'
 
         $.post(url, {
-            name: name
-        }).done(function() {
-            updateRequestText(self, name)
-        });
+                name: name
+            })
+            .done(function() {
+                updateRequestText(self, name)
+            });
     });
+
+    $('#query-results').on('click', 'a.sent', function() {
+        event.preventDefault()
+    })
 
     $('#sidebar').on('click', '#friend-list', function() {
         $('#pending').empty()
@@ -44,39 +49,6 @@ $(function() {
         $('#search').toggleClass('hidden')
         $('.add-friend-button').addClass('add-friend-opacity-animation')
         $('.add-friend-button').show()
-    })
-
-    $('#sidebar').on('click', '.confirmation', function() {
-        event.preventDefault()
-        var name = $(event.target).parent().find('.name').text()
-        var self = $(event.target).parent()
-        url = $(event.target).attr('href')
-        $.ajax({
-            method: "PUT",
-            url: url
-        }).done(function(data) {
-            updateAddedConfirmationText(self, name)
-            addUserToFriends(data)
-            setTimeout(function() {
-                removePending()
-                updateRequestCount()
-            }, 2900)
-        })
-    })
-
-    $('#sidebar').on('click', '#friend-list', function() {
-        $('#pending').empty()
-        var id = $('#user_id').val()
-        var url = "/users/" + id + "/friends/pending"
-        $.get(url, function(requests) {
-            if (requests.length > 0) {
-                $('#pending').append("<li><h4 id='pending-request-header'>Pending requests<span id='request-count'>" + requests.length + "</span></h4></li>")
-                console.log(requests.length)
-            }
-            for (var i = 0; i < requests.length; i++) {
-                $('#pending').append('<li class="pending-request hidden"><p class="name">' + requests[i].name + '</p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">Accept</a><a class="declination" href="/users/' + id + '/friends/' + requests[i].id + '">Decline</a></li>')
-            }
-        })
     })
 
     $('#sidebar').on('click', '.confirmation', function() {
