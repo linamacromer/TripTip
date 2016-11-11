@@ -71,6 +71,13 @@ ul {
       }
     }
 }
+#welcome {
+  display: inline;
+  position: relative;
+  top: 2.5px;
+  left: 5px;
+  color: $purple
+}
 #user-home, #trips-section {
   padding: 0;
 }
