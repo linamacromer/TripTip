@@ -88,6 +88,5 @@ $(document).on('click', '#map-info-box', function(event) {
 })
 
 $(document).on('click', '.user input', function() {
-    console.log('worked')
     $('#tip_rating option[value=' + $(this).val() + ']').attr('selected', 'selected').parent().focus()
 })
