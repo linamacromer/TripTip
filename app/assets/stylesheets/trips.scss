@@ -75,6 +75,41 @@ body{ margin: 20px; }
 
 /****** Style Star Rating Widget *****/
 
+.random {
+  border: none;
+  float: left;
+  margin-top: -3.5px;
+  margin-bottom: 0px;
+}
+
+.random > input { display: none; }
+.random > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.random > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.random > label {
+  color: #ddd;
+ float: right;
+}
+
+.random > input:checked ~ label,
+.random:not(:checked) > label:hover,
+.random:not(:checked) > label:hover ~ label { color: #FFD700; cursor: pointer} 
+
+.random > input:checked + label:hover,
+.random > input:checked ~ label:hover,
+.random > label:hover ~ input:checked ~ label,
+.random > input:checked ~ label:hover ~ label { color: #FFED85; cursor: pointer}
+
 .rating {
   border: none;
   float: left;
