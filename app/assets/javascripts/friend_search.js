@@ -18,16 +18,34 @@ $(function() {
         var id = $('#user_id').val()
         var url = '/users/' + id + '/friends'
 
-        $.post(url, {
-                name: name
-            })
-            .done(function() {
-                updateRequestText(self, name)
-            });
+  $('#sidebar').on('click', '#friend-list', function(){
+    $('#pending').empty()
+    var id = $('#user_id').val()
+    var url = "/users/" + id + "/friends/pending"
+    $.get( url, function(requests) {
+      if (requests.length > 0){
+        $('#pending').append("<li><h4 id='pending-request-header'>Pending requests<span id='request-count'>" + requests.length + "</span></h4></li>")
+      }
+      for (var i = 0; i < requests.length; i++) {
+        $('#pending').append('<li class="pending-request hidden"><p class="name">' + requests[i].name + '</p><a class="confirmation" href="/users/' + id + '/friends/' + requests[i].id + '">Accept</a><a class="declination" href="/users/' + id + '/friends/' + requests[i].id + '">Decline</a></li>')
+      }
     })
 
-    $('#query-results').on('click', 'a.sent', function() {
-        event.preventDefault()
+  $('#search-close').on('click', function() {
+    console.log('hi')
+    $('#search').toggleClass('hidden')
+    $('.add-friend-button').addClass('add-friend-opacity-animation')
+    $('.add-friend-button').show()
+  })
+
+  $('#sidebar').on('click', '.confirmation', function(){
+    event.preventDefault()
+    var name = $(event.target).parent().find('.name').text()
+    var self = $(event.target).parent()
+    url = $(event.target).attr('href')
+    $.ajax({
+      method: "PUT",
+      url: url
     })
 
     $('#sidebar').on('click', '#friend-list', function() {

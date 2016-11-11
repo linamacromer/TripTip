@@ -18,11 +18,13 @@
     <div id='large-info-comment'>
       <span>Comment:</span>
       <br>
+    <% if user_owned %>
       <%= text_area_tag(:message, format_comment , size: "50x10", name: 'tip[comment]', placeholder: "Enter a comment!") %>
     </div>
-    <% if user_owned %>
       <%= submit_tag("Update") %>
       <span class="large-info-updated hidden">Updated!</span>
+    <% else %>
+      <p><%=@tip.comment%></p>
     <% end %>
   <% end %>
 
