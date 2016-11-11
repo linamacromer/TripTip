@@ -3,10 +3,13 @@ function submitTip(event) {
     var url = $(event.target).attr('action')
     var data = $(event.target).serialize()
 
-    $.ajax({dataType: "json", type: "POST", url: url, data: data}).done(function(data) {
+    $.ajax({
+        dataType: "json",
+        type: "POST",
+        url: url,
+        data: data
+    }).done(function(data) {
         search_infoWindow.close()
-        $(event.target).find('input[name="commit"]').addClass('hidden')
-        $(event.target).parent().append('<p>Added</p>')
         markerPair = addMarker(data)
         openMarker(markerPair.marker, markerPair.infowindow)
         $('#tip-list').prepend(renderTipNavPartial(data))
@@ -40,7 +43,10 @@ function openMarker(marker, infowindow) {
 function findMarker(place_id) {
     for (var i = markers.length - 1; i >= 0; i--) {
         if (markers[i].place_id == place_id) {
-            return {mark: markers[i], index: i}
+            return {
+                mark: markers[i],
+                index: i
+            }
         }
     }
 }
@@ -51,18 +57,31 @@ function updateTipModal(event) {
     var url = form.attr('action')
     var data = $(this).serialize()
 
-    $.ajax({type: "PATCH", url: url, data: data}).done(function(data) {
+    $.ajax({
+        type: "PATCH",
+        url: url,
+        data: data
+    }).done(function(data) {
         $('#modal-html').html(data)
         rating = $('#tip_rating').val()
+        comment = $('#modal-html').find('textarea').text()
+        if (comment === "") {
+            $('#info-box-comment i').addClass('hidden')
+        } else {
+            $('#info-box-comment i').removeClass('hidden')
+        }
         $('#info-box-rating span').text(rating)
         $('.large-info-updated').show().fadeOut(3000)
     })
 }
 
-$(document).on('click', '.gm-style-iw', function(event) {
+$(document).on('click', '#map-info-box', function(event) {
     var linkTarget = $(event.target).closest('.gm-style-iw').find('a');
     var url = linkTarget.attr('name')
-    $.ajax({type: "GET", url: url}).done(function(data) {
+    $.ajax({
+        type: "GET",
+        url: url
+    }).done(function(data) {
         $('#modal-html').html(data)
         linkTarget.modal();
     })

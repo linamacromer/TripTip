@@ -1,5 +1,4 @@
 $(function() {
-
   $('#search_name').keyup(function(){
   query = $('#search_name').val()
     url = "/users/search/" + query

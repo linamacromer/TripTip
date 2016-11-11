@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       @unconfirmed = @user.unconfirmed_friends
       @requests = @user.friend_requests
       query = "%#{q}%"
-      results = User.where('name LIKE ?', query).all
+      results = User.where('lower(name) LIKE ?', query.downcase).all
       @users = []
       results.each do |x|
         @users << {:id => x.id, :name => x.name} if !@friends.include?(x) && x != @user && !@unconfirmed.include?(x) && !@requests.include?(x)
