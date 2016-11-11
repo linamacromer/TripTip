@@ -9,5 +9,9 @@ RSpec.describe Tip, type: :model do
 		it "has a place ID" do
 			expect(tip.place_id).to eq "ChIJrTLr-GyuEmsRBfy61i59si0"
 		end
+
+		it "is affiliated with a user" do
+		    expect(tip.trip.user).to eq user
+		end
 	end
 end
