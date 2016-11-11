@@ -8,5 +8,9 @@ RSpec.describe Trip, type: :model do
 		it "has a name" do
 			expect(trip.name).to eq "Italy"
 		end
+
+		it "is affiliated with a user" do
+			expect(trip.user).to eq user
+		end
 	end
 end
