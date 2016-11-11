@@ -1,7 +1,7 @@
 <% if session[:user_id] %>
 <% @user = User.find(session[:user_id]) %>
 <div id="sidebar" role="navigation">
-  <span>Hi, <%=@user.name%>!</span>
+  <p id="welcome">Hi, <%=@user.name.split(' ')[0]%>!</p>
   <%= link_to "Sign out", signout_path, id: "sign_out"%>
     <%= image_tag('TripTip_Logo-01') %>
     <ul id='nav'>
@@ -149,10 +149,10 @@
   <h1>About TripTip:</h1>
   <br>
   <p>
-    TripTip is a social website to share your favorite destinations with your friends. 
+    TripTip is a social website to share your favorite destinations with your friends.
   </p>
   <p>
-    With Google integration, you can log in and seamlessly create trips and tag each destination on your trip with a tip comment and rating. 
+    With Google integration, you can log in and seamlessly create trips and tag each destination on your trip with a tip comment and rating.
   </p>
 
 </section>
@@ -165,7 +165,7 @@
     TripTip is an excellent way to keep in touch with your friends around the world - see all the destinations they have visited and locations they loved!
   </p>
   <p>
-    Not into the social scene? Set a trip as private so your friends can't view it. 
+    Not into the social scene? Set a trip as private so your friends can't view it.
   </p>
   <br>
 
