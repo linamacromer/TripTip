@@ -10,8 +10,6 @@ function submitTip(event) {
     data: data
   }).done(function(data){
     search_infoWindow.close()
-    $(event.target).find('input[name="commit"]').addClass('hidden')
-    $(event.target).parent().append('<p>Added</p>')
     markerPair = addMarker(data)
     openMarker(markerPair.marker, markerPair.infowindow)
     $('#tip-list').prepend(renderTipNavPartial(data))
@@ -68,7 +66,7 @@ function updateTipModal(event) {
   })
 }
 
-$(document).on('click', '.gm-style-iw', function(event) {
+$(document).on('click', '#map-info-box', function(event) {
   var linkTarget = $(event.target).closest('.gm-style-iw').find('a');
   var url = linkTarget.attr('name')
   $.ajax({
