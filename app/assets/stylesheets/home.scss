@@ -183,6 +183,10 @@ ul {
     }
   }
 }
+#private-check {
+  transform: scale(.8);
+  margin-left: -28px;
+}
 .trip-map, .trip-update, .trip-delete {
   display: inline
 }
@@ -270,14 +274,15 @@ ul {
 }
 #search_name {
   font-size: 1em;
-  width: 85%;
+  width: 220px;
   display: inline;
-  padding: 5px 0px 6px 6px;
+  padding: 5px 0px 6px 25px;
   border-style: solid;
   border-radius: 5px;
   border: 1px solid #2E3192;
   margin-top: 3px;
   margin-left: 18px;
+  max-width: 300px;
   &:focus {
     outline: none;
     border: 1px solid $purple;
@@ -378,10 +383,19 @@ ul {
   font-size: 1em;
   color: #03a9f4;
 }
+#search-close {
+  font-size: .9em;
+  position: absolute;
+  top: -2px;
+  right: 12px;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+}
 #friend-search-icon {
   position: absolute;
   top: 9px;
-  right: 24px;
+  right: 240px;
   color: $purple;
 }
 .t-underline, .f-underline {

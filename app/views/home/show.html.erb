@@ -31,7 +31,7 @@
                             <%= content_tag(:strong, '+') %>
                     <!-- <i class="fa fa-plus-square" aria-hidden="true"></i> -->
                   <% end %>
-                  <div>
+                  <div id="private-check">
                     <%= check_box_tag :private %> private
                   </div>
                 <% end %>
@@ -79,8 +79,10 @@
       <li>
         <li id='search' class="hidden">
           <div class="wrapper">
-            <%= text_field_tag("search[name]", '', required: 'true') %>
+            <%= text_field_tag("search[name]", '', required: 'true', placeholder: 'Jane Doe') %>
             <i id="friend-search-icon" class="fa fa-search" aria-hidden="true"></i>
+            <i id="search-close" class="fa fa-times-circle" aria-hidden="true"></i>
+
           </div>
         </li>
         <li id='query-results'>
