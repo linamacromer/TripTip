@@ -29,7 +29,9 @@ function initMap() {
 
   search_infoWindow = new google.maps.InfoWindow();
   search_marker = new google.maps.Marker({
-    map: map
+    map: map,
+    icon: "/assets/TipPin.png"
+
   });
   search_marker.addListener('click', function() {
     search_infoWindow.open(map, search_marker);
