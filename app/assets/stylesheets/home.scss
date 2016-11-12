@@ -410,10 +410,10 @@ ul {
   font-size: .8em
 }
 #friend-search-icon {
-  position: absolute;
-  top: 9px;
-  right: 240px;
-  color: $purple;
+  position: fixed;
+  top: 265px;
+  left: 35px;
+  color: #2E3192;
 }
 .t-underline, .f-underline {
   width: 0%;
