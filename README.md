@@ -1,6 +1,6 @@
 # TripTip
 
-* [trip-tip.herokuapp.com](http://trip-tip.herokuapp.com)
+### [trip-tip.herokuapp.com](http://trip-tip.herokuapp.com)
 
 ## Our Mission
 
